@@ -39,6 +39,7 @@ var utils = {
     },
 
     onRequestError: function(response) {
+        alert('err');
         if (app.isDebug()) {
             utils.showXhrDebug(response.status, response.error, response.headers);
         }
