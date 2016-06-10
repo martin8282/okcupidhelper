@@ -1,0 +1,5 @@
+var geo = {
+    init: function() {
+
+    }
+};
