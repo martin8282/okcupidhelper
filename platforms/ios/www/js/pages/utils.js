@@ -15,16 +15,47 @@ var utils = {
         if (!isDef(options.headers)) options.headers = {};
         if (!isDef(options.data)) options.data = {};
         if (!isDef(options.error)) options.error = utils.onRequestError;
+        if (!isDef(options.show_mask)) options.show_mask = true;
+
+        var success = function(response) {
+            if (options.show_mask) utils.unmask();
+            options.success(response);
+        };
+
+        var error = function(response) {
+            if (options.show_mask) utils.unmask();
+            options.error(response);
+        };
+
+        if (options.show_mask) utils.mask();
 
         if (options.method.toLowerCase() == 'get') {
-            cordovaHTTP.get(okUrl, options.data, options.headers, options.success, options.error);
+            cordovaHTTP.get(okUrl, options.data, options.headers, success, error);
         }
         else if (options.method.toLowerCase() == 'post') {
-            cordovaHTTP.post(okUrl, options.data, options.headers, options.success, options.error);
+            cordovaHTTP.post(okUrl, options.data, options.headers, success, error);
         }
         else {
             throw 'Method unknown';
         }
+    },
+
+    mask: function(message) {
+        if (!isDef(message)) message  = consts.MESSAGE_WAIT;
+        $('body').waiting({
+            size: 30,
+            quantity: 8,
+            dotSize: 8,
+            enableReverse: true,
+            light: true
+        });
+    },
+
+    unmask: function() {
+        try {
+            $('body').waiting('done');
+        }
+        catch(ex) { };
     },
 
     parseJSON: function(data) {
@@ -39,12 +70,11 @@ var utils = {
     },
 
     onRequestError: function(response) {
-        alert('err');
         if (app.isDebug()) {
             utils.showXhrDebug(response.status, response.error, response.headers);
         }
         else {
-            flash.error(consts.SORRY_REQ_MESSAGE);
+            flash.error(consts.MESSAGE_SORRY_REQUEST);
         }
     },
 
@@ -57,10 +87,27 @@ var utils = {
     },
 
     navigateTo: function(pageName) {
-        // TODO animation
         if (pageName != app.currentPage()) {
             app.currentPage(pageName);
             document.location = pageName;
         }
+    },
+
+    getJsonValue: function(value) {
+        var result = null;
+        var exception = null;
+        if (isDef(value)) {
+            try {
+                result = value;
+            }
+            catch(ex) { exception = ex; }
+        }
+        else {
+            // caller?
+            throw 'Cannot resolve value ' + arguments.callee.caller;
+        }
+
+        if (exception != null) throw exception;
+        return result;
     }
 }

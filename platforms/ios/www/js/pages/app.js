@@ -23,6 +23,7 @@ var app = {
             flash.error(message);
         }
         else {
+            flash.error(consts.MESSAGE_SORRY);
             flash.error(consts.SORRY_MESSAGE);
         }
     },

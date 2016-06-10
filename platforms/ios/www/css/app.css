@@ -114,4 +114,16 @@ fieldset legend, h3 {
     height: 9em;
     width: 9em;
     border-radius: 4.5em;
+    -webkit-box-shadow: 9px 9px 18px -6px rgba(0,0,0,0.39);
+    -moz-box-shadow: 9px 9px 18px -6px rgba(0,0,0,0.39);
+    box-shadow: 9px 9px 18px -6px rgba(0,0,0,0.39);
+}
+
+.btn-search.pushed {
+    height: 8em;
+    width: 8em;
+    border-radius: 4em;
+    -webkit-box-shadow: 5px 5px 10px -6px rgba(0,0,0,0.39);
+    -moz-box-shadow: 5px 5px 10px -6px rgba(0,0,0,0.39);
+    box-shadow: 5px 5px 5px -6px rgba(0,0,0,0.39);
 }
