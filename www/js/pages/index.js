@@ -29,23 +29,15 @@ var index = {
             var data = utils.parseJSON(response.data);
             if (data == null) return;
             if (data.status != 0) {
-                flash.error(data.status_str);
+                flash.error(utils.getJsonValue(data.status_str));
             }
             else {
                 var keys = [ consts.KEY_ACCESS_TOKEN, consts.KEY_DISPLAY_NAME, consts.KEY_USER_ID ];
-                for (var idx = 0; idx < keys.length; idx++) {
+                for (var idx in keys) {
                     var key = keys[idx];
-                    if (!isDef(data[key])) throw 'Cannot find ' + key + ' in response';
-                    app.set(key, data[key]);
+                    app.set(key, utils.getJsonValue(data[key]));
                 }
-<<<<<<< HEAD
-                navigator.geolocation.getCurrentPosition(index.onCoords, function(error) {
-                    alert(error.message);
-                    utils.navigateTo(consts.PAGE_GEO)
-                });
-=======
                 navigator.geolocation.getCurrentPosition(index.onCoords, function(error) { utils.navigateTo(consts.PAGE_GEO) });
->>>>>>> 5dce02829113854c51dc68a07f7b79b816515240
             }
         }
 
@@ -53,19 +45,8 @@ var index = {
     },
 
     onCoords: function(position) {
-<<<<<<< HEAD
-        app.set(consts.KEY_LATITUDE, position.coords.latitude);
-        app.set(consts.KEY_LONGITUDE, position.coords.longitude);
+        app.set(consts.KEY_LATITUDE, utils.getJsonValue(position.coords.latitude));
+        app.set(consts.KEY_LONGITUDE, utils.getJsonValue(position.coords.longitude));
         utils.navigateTo(consts.PAGE_HOME);
-=======
-        if (position.coords.altitude > 0 && position.coords.longitude > 0) {
-            app.set(consts.KEY_LATITUDE, position.coords.latitude);
-            app.set(consts.KEY_LONGITUDE, position.coords.longitude);
-            utils.navigateTo(consts.PAGE_HOME);
-        }
-        else {
-            utils.navigateTo(consts.PAGE_GEO);
-        }
->>>>>>> 5dce02829113854c51dc68a07f7b79b816515240
     }
 }

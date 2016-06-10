@@ -23,11 +23,8 @@ var app = {
             flash.error(message);
         }
         else {
-<<<<<<< HEAD
             flash.error(consts.MESSAGE_SORRY);
-=======
             flash.error(consts.SORRY_MESSAGE);
->>>>>>> 5dce02829113854c51dc68a07f7b79b816515240
         }
     },
 

@@ -4,16 +4,6 @@ var geo = {
 
     init: function() {
         geo.initCountries();
-        /*
-         $('#btnGeoContinue').click(function() {
-         var map = $('#divGeoScreen').find('.cell').locationpicker('map');
-         app.set(consts.KEY_LATITUDE, map.location.latitude);
-         app.set(consts.KEY_LONGITUDE, map.location.longitude);
-         utils.navigateTo(consts.PAGE_HOME);
-         });
-
-         geo.showGeopicker();
-        */
     },
 
     initCountries: function() {
@@ -29,13 +19,8 @@ var geo = {
     },
 
     setLabel: function() {
-<<<<<<< HEAD
         $('#lbLocation').html($('#ddlCountry').val() == consts.COUNTRY_USA ? consts.MESSAGE_ENTER_ZIP : consts.MESSAGE_ENTER_CITY);
-=======
-        $('#lbLocation').html($('#ddlCountry').val() == consts.COUNTRY_USA ? 'Enter Your Zip code' : 'Enter Your City');
->>>>>>> 5dce02829113854c51dc68a07f7b79b816515240
         $('#tbLocation').empty().focus();
-
     },
 
     onLocationChange: function() {
@@ -68,12 +53,13 @@ var geo = {
             var data = utils.parseJSON(response.data);
             if (data == null) return;
 
-            if (data.results.length == 0) {
-                flash.error(data.message);
+            var records = utils.getJsonValue(data.results);
+            if (records.length == 0) {
+                flash.error(utils.getJsonValue(data.message));
             }
-            else if (data.results.length == 1) {
-                flash.info(data.message);
-                app.set(consts.KEY_LOCATION, data.results[0][consts.KEY_LOCATION]);
+            else if (records.length == 1) {
+                flash.info(utils.getJsonValue(data.message));
+                app.set(consts.KEY_LOCATION, utils.getJsonValue(records[0][consts.KEY_LOCATION]));
                 setTimeout(function() { utils.navigateTo(consts.PAGE_HOME); }, 1000);
             }
             else {
@@ -83,24 +69,4 @@ var geo = {
 
         utils.request(options);
     }
-
-    /*
-    ,showGeopicker: function() {
-        // mask
-
-        var geo = $('#divGeoScreen');
-        geo.find('.cell').locationpicker({
-            radius: 10,
-            inputBinding: {
-                locationNameInput: $('#tbLocation'),
-                radiusInput: $('#tbRadius')
-            },
-            enableAutocomplete: true,
-            oninitialized: function(component) {
-                // unmask
-            }
-        });
-
-        geo.removeClass('hidden');
-    }*/
 };

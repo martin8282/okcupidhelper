@@ -1,8 +1,9 @@
 var home = {
+    persons: null,
+
     init: function() {
         query.locid = app.get(consts.KEY_LOCATION);
-<<<<<<< HEAD
-        $('#btnSearch').click(home.startSearch);
+        $('#btnSearch').click(function() { home.search(null) });
     },
 
     animateButton: function() {
@@ -10,35 +11,68 @@ var home = {
         setTimeout(function() { $('#btnSearch').removeClass('pushed'); }, 100);
     },
 
-    startSearch: function() {
+    search: function(nextPage) {
         home.animateButton();
-=======
 
->>>>>>> 5dce02829113854c51dc68a07f7b79b816515240
+        if (nextPage != null) {
+            query.after = nextPage;
+        }
+        else {
+            utils.mask();
+            home.persons = [];
+        }
+
         var options = consts.optionsSearch(JSON.stringify(query));
+
         options.success = function(response) {
             var data = utils.parseJSON(response.data);
             if (data == null) return;
 
-<<<<<<< HEAD
-            $('#btnSeeAll').removeAttr('disabled');
+            home.processResults(data);
         }
-
-        options.leave_mask = true;
+        options.show_mask = false;
         utils.request(options);
     },
 
     processResults: function(data) {
-        var persons = [];
-        $.each(data.data, function(index, raw_person) {
-            var person = {};
+        var records = utils.getJsonValue(data.data);
+        for (var index in records) {
+            var raw_person = records[index];
 
-        });
-=======
-            flash.info('Found ' + data.total_matches + ' records');
+            if (home.persons.length >= consts.SEARCH_COUNT) {
+                home.finalizeResults();
+                return;
+            }
+
+            var person = {};
+            person.userid = utils.getJsonValue(raw_person.userid);
+            person.username = utils.getJsonValue(raw_person.username);
+
+            var userInfo = utils.getJsonValue(raw_person.userinfo);
+            person.gender_letter = utils.getJsonValue(userInfo.gender_letter);
+            person.gender = utils.getJsonValue(userInfo.gender);
+            person.age = utils.getJsonValue(userInfo.age);
+            person.rel_status = utils.getJsonValue(userInfo.rel_status);
+            person.location = utils.getJsonValue(userInfo.location);
+            person.orientation = utils.getJsonValue(userInfo.orientation);
+
+            home.persons.push(person);
         }
 
-        utils.request(options);
->>>>>>> 5dce02829113854c51dc68a07f7b79b816515240
+        var nextPage = utils.getJsonValue(data.paging.cursors.after);
+        if (nextPage == null) {
+            home.finalizeResults();
+        }
+        else {
+            home.search(nextPage);
+        }
+    },
+
+    finalizeResults: function() {
+        app.set(consts.KEY_RESULTS, home.persons);
+
+        $('#btnSeeAll').removeAttr('disabled');
+        $('#btnLike').removeAttr('disabled');
+        utils.unmask();
     }
 }

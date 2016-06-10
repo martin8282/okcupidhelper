@@ -1,11 +1,14 @@
-/**
- * Created by admin on 09.06.16.
- */
-{
-    "total_matches"
-:
-    103, "data"
-:
+var paging = {
+    "cursors" : {
+        "before" : "NzI2MzM2NDEyNTYwOTQyMDA5OSw1NCwxOA==",
+         "current" : "NzI2MzM2NDEyNTYwOTQyMDA5OSw3MiwxOA==",
+         "after" : "NzI2MzM2NDEyNTYwOTQyMDA5OSw5MCwxOA=="
+    }
+};
+
+var matches = {
+    "total_matches":103,
+    "data":
     [{
         "online": false,
         "userinfo": {
