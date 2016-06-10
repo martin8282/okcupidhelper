@@ -29,7 +29,11 @@ var geo = {
     },
 
     setLabel: function() {
+<<<<<<< HEAD
+        $('#lbLocation').html($('#ddlCountry').val() == consts.COUNTRY_USA ? consts.MESSAGE_ENTER_ZIP : consts.MESSAGE_ENTER_CITY);
+=======
         $('#lbLocation').html($('#ddlCountry').val() == consts.COUNTRY_USA ? 'Enter Your Zip code' : 'Enter Your City');
+>>>>>>> 5dce02829113854c51dc68a07f7b79b816515240
         $('#tbLocation').empty().focus();
 
     },

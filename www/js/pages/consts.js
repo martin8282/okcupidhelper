@@ -4,15 +4,31 @@ var consts = {
     PAGE_LOGIN: 'login.html',
     PAGE_HOME: 'home.html',
     PAGE_GEO: 'geo.html',
+<<<<<<< HEAD
+    PAGE_RESULTS: 'results.html',
+=======
+>>>>>>> 5dce02829113854c51dc68a07f7b79b816515240
 
     KEY_CURRENT_PAGE: 'current_page',
     KEY_ACCESS_TOKEN: 'oauth_accesstoken',
     KEY_USER_ID: 'userid',
     KEY_DISPLAY_NAME: 'screenname',
     KEY_LOCATION: 'locid',
+<<<<<<< HEAD
+    KEY_LATITUDE: 'latitude',
+    KEY_LONGITUDE: 'latitude',
+    KEY_RESULTS: 'results',
+
+    MESSAGE_SORRY_REQUEST: 'Sorry, error occurred while requesting Okcupid.com',
+    MESSAGE_SORRY: 'Sorry, error occurred',
+    MESSAGE_WAIT: 'Please, wait...',
+    MESSAGE_ENTER_CITY: 'Enter Your city, please',
+    MESSAGE_ENTER_ZIP: 'Enter Zip code, please',
+=======
 
     SORRY_REQ_MESSAGE: 'Sorry, error occurred while requesting Okcupid.com',
     SORRY_MESSAGE: 'Sorry, error occurred',
+>>>>>>> 5dce02829113854c51dc68a07f7b79b816515240
 
     COUNTRY_USA: 'United States',
 
