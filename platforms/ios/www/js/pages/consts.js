@@ -24,7 +24,7 @@ var consts = {
     SORRY_MESSAGE: 'Sorry, error occurred',
 
     COUNTRY_USA: 'United States',
-    SEARCH_COUNT: 100,
+    SEARCH_COUNT: 10,
 
     optionsLogin: function(login, password) {
         return { method: 'GET', url: 'login', data: { username: login, password: password, okc_api: 1 } }
@@ -38,5 +38,11 @@ var consts = {
         var url = '1/apitun/location/query?q=' + encodeURIComponent(mask);
         if (country != null) url += '+' + encodeURIComponent(country);
         return { method: 'GET', url: url }
+    },
+
+    optionsLike: function(userId) {
+        //var data = JSON.stringify({ access_token: app.get(consts.KEY_ACCESS_TOKEN) });
+        var data = '{"access_token": "1,0,1466084057,0xc2b239b0b431610d;f215597f33fc7aeb1423e91c50ac949dccd9ac59"}';
+        return { method: 'POST', url: '1/apitun/profile/' + userId + '/like', data: data }
     }
 }
