@@ -99,6 +99,10 @@ fieldset legend, h3 {
     padding: 0.8em;
 }
 
+.progress {
+    margin: 0.5em;
+}
+
 .alert {
     display: none
     opacity: 0.8;

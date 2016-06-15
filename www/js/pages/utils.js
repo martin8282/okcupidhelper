@@ -86,6 +86,29 @@ var utils = {
         return $(window).outerWidth()
     },
 
+    progress: function(percent, label) {
+        if (isDef(percent) && !isNaN(percent) && $('.progress').length) {
+            $('.progress').removeClass('hidden');
+            percent = Math.round(percent);
+
+            var progressBar = $('.progress .progress-bar');
+            if (!progressBar.length) {
+                progressBar = $('<div class="progress-bar progress-bar-success progress-bar-striped"></div>');
+                progressBar
+                    .attr('aria-valuemin', 0)
+                    .attr('aria-valuemax', 100);
+
+                $('.progress').append(progressBar);
+            }
+
+            progressBar.css('width', percent + '%').attr('aria-valuenow', percent).html(percent + '% ' + (isDef(label) ? label : ''));
+        }
+    },
+
+    progressHide: function() {
+        $('.progress').addClass('hidden');
+    },
+
     navigateTo: function(pageName) {
         if (pageName != app.currentPage()) {
             app.currentPage(pageName);
