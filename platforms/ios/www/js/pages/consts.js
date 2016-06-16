@@ -6,13 +6,14 @@ var consts = {
     PAGE_GEO: 'geo.html',
     PAGE_RESULTS: 'results.html',
 
+    KEY_GOOGLE_API: 'AIzaSyDathjZMlxipK8CpB2JsIiYyp6PGcNJxAI',
     KEY_CURRENT_PAGE: 'current_page',
     KEY_ACCESS_TOKEN: 'oauth_accesstoken',
     KEY_USER_ID: 'userid',
     KEY_DISPLAY_NAME: 'screenname',
     KEY_LOCATION: 'locid',
-    KEY_LATITUDE: 'latitude',
-    KEY_LONGITUDE: 'latitude',
+    KEY_CITY: 'city_name',
+    KEY_COUNTRY: 'country_name',
     KEY_RESULTS: 'results',
 
     MESSAGE_SORRY_REQUEST: 'Sorry, error occurred while requesting Okcupid.com',
@@ -24,7 +25,8 @@ var consts = {
     SORRY_MESSAGE: 'Sorry, error occurred',
 
     COUNTRY_USA: 'United States',
-    SEARCH_COUNT: 10,
+    COUNTRY_USA_CODE: 'US',
+    SEARCH_COUNT: 300,
 
     optionsLogin: function(login, password) {
         return { method: 'GET', url: 'login', data: { username: login, password: password, okc_api: 1 } }
@@ -36,13 +38,22 @@ var consts = {
 
     optionsLocation: function(country, mask) {
         var url = '1/apitun/location/query?q=' + encodeURIComponent(mask);
-        if (country != null) url += '+' + encodeURIComponent(country);
+        if (country != null) url += '%2C+' + encodeURIComponent(country);
         return { method: 'GET', url: url }
     },
 
     optionsLike: function(userId) {
-        //var data = JSON.stringify({ access_token: app.get(consts.KEY_ACCESS_TOKEN) });
-        var data = '{"access_token": "1,0,1466084057,0xc2b239b0b431610d;f215597f33fc7aeb1423e91c50ac949dccd9ac59"}';
+        var data = JSON.stringify({ access_token: app.get(consts.KEY_ACCESS_TOKEN) });
         return { method: 'POST', url: '1/apitun/profile/' + userId + '/like', data: data }
+    },
+
+    optionsGeocode: function(latitude, longitude) {
+        return {
+            method: 'GET',
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude +
+                ',' + longitude +
+                '&language=en' +
+                '&key=' + consts.KEY_GOOGLE_API
+        }
     }
 }

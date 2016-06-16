@@ -5,6 +5,7 @@ var home = {
         query.locid = app.get(consts.KEY_LOCATION);
         $('#btnSearch').click(function() { home.search(null) });
         $('#btnLike').click(function() { home.likeAll(0) });
+        $('#lbLocation').html('Your Location defined as: ' + app.get(consts.KEY_CITY) + ', ' + app.get(consts.KEY_COUNTRY));
     },
 
     animateButton: function() {
@@ -74,8 +75,6 @@ var home = {
     },
 
     finalizeResults: function() {
-        //app.set(consts.KEY_RESULTS, JSON.stringify(home.persons));
-
         $('#btnSeeAll').removeAttr('disabled');
         $('#btnLike').removeAttr('disabled').html('Like ' + home.persons.length + ' users');
 

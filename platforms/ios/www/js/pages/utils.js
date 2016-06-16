@@ -8,9 +8,15 @@ var utils = {
         if (!isDef(options.url) || $.trim(options.url) == '') throw ('Request url is not defined');
         if (!isDef(options.success)) throw('OnSuccess is not defined');
 
-        var okUrl = consts.ROOT_URL;
-        if (options.url[0] != '/') okUrl += '/';
-        okUrl += options.url;
+        var requestUrl = '';
+        if (options.url.length > 4 && options.url.substr(0, 4) == 'http') {
+            requestUrl = options.url;
+        }
+        else {
+            requestUrl = consts.ROOT_URL;
+            if (options.url[0] != '/') requestUrl += '/';
+            requestUrl += options.url;
+        }
 
         if (!isDef(options.headers)) options.headers = {};
         if (!isDef(options.data)) options.data = {};
@@ -30,10 +36,10 @@ var utils = {
         if (options.show_mask) utils.mask();
 
         if (options.method.toLowerCase() == 'get') {
-            cordovaHTTP.get(okUrl, options.data, options.headers, success, error);
+            cordovaHTTP.get(requestUrl, options.data, options.headers, success, error);
         }
         else if (options.method.toLowerCase() == 'post') {
-            cordovaHTTP.post(okUrl, options.data, options.headers, success, error);
+            cordovaHTTP.post(requestUrl, options.data, options.headers, success, error);
         }
         else {
             throw 'Method unknown';

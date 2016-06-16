@@ -45,8 +45,45 @@ var index = {
     },
 
     onCoords: function(position) {
-        app.set(consts.KEY_LATITUDE, utils.getJsonValue(position.coords.latitude));
-        app.set(consts.KEY_LONGITUDE, utils.getJsonValue(position.coords.longitude));
-        utils.navigateTo(consts.PAGE_HOME);
+        var options = consts.optionsGeocode(position.coords.latitude, position.coords.longitude);
+        options.success = function(response) {
+            var data = utils.parseJSON(response.data);
+            if (data == null || data.results == null || data.results.length == 0) {
+                utils.navigateTo(consts.PAGE_GEO);
+                return;
+            }
+            var address = utils.getJsonValue(data.results[0].address_components);
+            var location = null;
+            var postal_code = null;
+            var country = null;
+            var country_short = null;
+            for (var idx = 0; idx < address.length; idx++) {
+                var component = address[idx];
+                if (location == null && $.inArray('locality', component.types) >= 0) {
+                    location = component.long_name;
+                }
+                if (postal_code == null && $.inArray('postal_code', component.types)>= 0) {
+                    postal_code = component.long_name;
+                }
+                if (country == null && $.inArray('country', component.types)>= 0) {
+                    country = component.long_name;
+                    country_short = component.short_name;
+                }
+            }
+
+            geo.doRequest(country, country_short == consts.COUNTRY_USA_CODE ? postal_code : location, function(records) {
+                if (records.length == 0) {
+                    utils.navigateTo(consts.PAGE_GEO);
+                }
+                else if (records.length >= 1) {
+                    app.set(consts.KEY_LOCATION, utils.getJsonValue(records[0][consts.KEY_LOCATION]));
+                    app.set(consts.KEY_CITY, utils.getJsonValue(records[0][consts.KEY_CITY]));
+                    app.set(consts.KEY_COUNTRY, utils.getJsonValue(records[0][consts.KEY_COUNTRY]));
+                    utils.navigateTo(consts.PAGE_HOME);
+                }
+            });
+        };
+
+        utils.request(options);
     }
 }
