@@ -479,7 +479,11 @@ forHTTPHeaderField:(NSString *)field
     NSParameterAssert(request);
 
     NSMutableURLRequest *mutableRequest = [request mutableCopy];
-
+    
+    //NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:[request URL]];
+    [mutableRequest setHTTPShouldHandleCookies:YES];
+    [mutableRequest setAllHTTPHeaderFields:[NSHTTPCookie requestHeaderFieldsWithCookies:[NSHTTPCookieStorage sharedHTTPCookieStorage].cookies]];
+    
     [self.HTTPRequestHeaders enumerateKeysAndObjectsUsingBlock:^(id field, id value, BOOL * __unused stop) {
         if (![request valueForHTTPHeaderField:field]) {
             [mutableRequest setValue:value forHTTPHeaderField:field];
@@ -490,7 +494,8 @@ forHTTPHeaderField:(NSString *)field
         BOOL isString = [parameters isKindOfClass:[NSString class]];
         
         if (isString) {
-            [mutableRequest setHTTPBody:[parameters dataUsingEncoding:self.stringEncoding]];
+            NSData *data = [parameters dataUsingEncoding:self.stringEncoding];
+            [mutableRequest setHTTPBody:data];
         }
         else {
             NSString *query = nil;
