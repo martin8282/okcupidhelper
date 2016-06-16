@@ -71,17 +71,20 @@ var index = {
                 }
             }
 
-            geo.doRequest(country, country_short == consts.COUNTRY_USA_CODE ? postal_code : location, function(records) {
-                if (records.length == 0) {
-                    utils.navigateTo(consts.PAGE_GEO);
-                }
-                else if (records.length >= 1) {
-                    app.set(consts.KEY_LOCATION, utils.getJsonValue(records[0][consts.KEY_LOCATION]));
-                    app.set(consts.KEY_CITY, utils.getJsonValue(records[0][consts.KEY_CITY]));
-                    app.set(consts.KEY_COUNTRY, utils.getJsonValue(records[0][consts.KEY_COUNTRY]));
-                    utils.navigateTo(consts.PAGE_HOME);
-                }
-            });
+            geo.doRequest(
+                country_short == consts.COUNTRY_USA_CODE ? null : country,
+                country_short == consts.COUNTRY_USA_CODE ? postal_code : location,
+                function(records) {
+                    if (records.length == 0) {
+                        utils.navigateTo(consts.PAGE_GEO);
+                    }
+                    else if (records.length >= 1) {
+                        app.set(consts.KEY_LOCATION, utils.getJsonValue(records[0][consts.KEY_LOCATION]));
+                        app.set(consts.KEY_CITY, utils.getJsonValue(records[0][consts.KEY_CITY]));
+                        app.set(consts.KEY_COUNTRY, utils.getJsonValue(records[0][consts.KEY_COUNTRY]));
+                        utils.navigateTo(consts.PAGE_HOME);
+                    }
+                });
         };
 
         utils.request(options);

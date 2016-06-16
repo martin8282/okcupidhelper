@@ -5,7 +5,7 @@ var home = {
         query.locid = app.get(consts.KEY_LOCATION);
         $('#btnSearch').click(function() { home.search(null) });
         $('#btnLike').click(function() { home.likeAll(0) });
-        $('#lbLocation').html('Your Location defined as: ' + app.get(consts.KEY_CITY) + ', ' + app.get(consts.KEY_COUNTRY));
+        $('#lbLocation').html(app.get(consts.KEY_CITY) + ', ' + app.get(consts.KEY_COUNTRY));
     },
 
     animateButton: function() {
