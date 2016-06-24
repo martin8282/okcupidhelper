@@ -1,6 +1,14 @@
+/* overrides */
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper {
+    background-color: transparent;
+}
+
+/* end overrides */
+
 html, body {
     font-size: 15px;
     height: 100%;
+    background-color: #e8e8e8;
 }
 
 body.with-top-nav {
@@ -12,11 +20,17 @@ body.with-bottom-nav {
 }
 
 body.bg-sky {
-    background: url('../img/clouds_texture.jpg');
+    background: url('../img/clouds_texture.jpg') transparent;
 }
 
 nav {
     height: 50px;
+}
+
+hr {
+    margin: 0.1em;
+    color: white;
+    border-color: white;
 }
 
 fieldset {
@@ -62,6 +76,10 @@ fieldset legend, h3 {
     text-align: center;
 }
 
+.table .cell.content {
+    padding: 0.7em;
+}
+
 .login-panel {
     max-width: 15em;
     text-align: center;
@@ -73,12 +91,12 @@ fieldset legend, h3 {
     padding: 0.5em 0;
 }
 
-.form-horizontal label {
-    margin-top: 5px;
+.form-group {
+    margin: 0 0 0.4em 0;
 }
 
-.form-group {
-    margin-bottom: 0.5em;
+.form-group button {
+    margin: 0;
 }
 
 .form-group:last-child {

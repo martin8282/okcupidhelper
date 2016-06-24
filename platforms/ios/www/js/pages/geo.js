@@ -4,6 +4,7 @@ var geo = {
 
     init: function() {
         geo.initCountries();
+        $('#btnBack').click(utils.navigateBack);
     },
 
     initCountries: function() {
@@ -34,7 +35,7 @@ var geo = {
 
     onTimeoutLocation: function() {
         var location = $('#tbLocation').val();
-        if (location != geo.previousLocation) {
+        if (location != geo.previousLocation || location.length < 3) {
             geo.setTimeout();
         }
         else {
@@ -46,19 +47,21 @@ var geo = {
     requestLocation: function() {
         var country = $('#ddlCountry').val();
         if (country == consts.COUNTRY_USA) country = null;
-
         var location = $('#tbLocation').val();
 
-        geo.doRequest(country, location, function(records) {
+        flash.closeAll();
+        geo.doRequest(country, location, function(message, records) {
             if (records.length == 0) {
-                flash.error(utils.getJsonValue(data.message));
+                flash.error(utils.getJsonValue(message));
             }
             else if (records.length == 1) {
-                flash.info(utils.getJsonValue(data.message));
-                app.set(consts.KEY_LOCATION, utils.getJsonValue(records[0][consts.KEY_LOCATION]));
-                app.set(consts.KEY_CITY, utils.getJsonValue(records[0][consts.KEY_CITY]));
-                app.set(consts.KEY_COUNTRY, utils.getJsonValue(records[0][consts.KEY_COUNTRY]));
-                setTimeout(function() { utils.navigateTo(consts.PAGE_HOME); }, 1000);
+                flash.info(utils.getJsonValue(message));
+                settings.locationId(records[0][consts.SETTING_LOCATION]);
+                settings.locationName(
+                    utils.getJsonValue(records[0][consts.SETTING_COUNTRY]),
+                    utils.getJsonValue(records[0][consts.SETTING_CITY])
+                );
+                setTimeout(function() { geo.goNext(); }, 1000);
             }
             else {
                 // show multiple results
@@ -71,10 +74,18 @@ var geo = {
         options.success = function(response) {
             var data = utils.parseJSON(response.data);
             if (data == null) return;
-
-            complete(utils.getJsonValue(data.results))
+            complete(data.message, utils.getJsonValue(data.results))
         }
 
         utils.request(options);
+    },
+
+    goNext: function() {
+        if (app.previousPage() == consts.PAGE_SETTINGS) {
+            utils.navigateBack();
+        }
+        else {
+            utils.navigateTo(consts.PAGE_HOME);
+        }
     }
 };

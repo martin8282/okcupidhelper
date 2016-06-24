@@ -34,12 +34,17 @@ var app = {
 
     currentPage: function(pageName) {
         if (isDef(pageName)) {
+            app.set(consts.KEY_PREVIOUS_PAGE, app.get(consts.KEY_CURRENT_PAGE));
             app.set(consts.KEY_CURRENT_PAGE, pageName);
             return pageName;
         }
         else {
             return app.get(consts.KEY_CURRENT_PAGE);
         }
+    },
+
+    previousPage: function() {
+        return app.get(consts.KEY_PREVIOUS_PAGE);
     },
 
     get: function(key) {

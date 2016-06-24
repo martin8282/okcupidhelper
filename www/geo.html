@@ -12,40 +12,35 @@
 
 		<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
         <script type="text/javascript" src="js/jquery.waiting.js"></script>
-		<script type="text/javascript" src="js/bootstrap.js"></script>
 	</head>
 	<body class="with-bottom-nav">
 		<nav class="navbar navbar-default navbar-fixed-bottom">
             <div class="container-fluid">
-                <button type="button" id="btnGeoContinue" class="btn btn-primary navbar-btn pull-right">Continue</button>
+                <button id="btnBack" data-role="none" type="button" class="btn btn-default navbar-btn pull-left">Back</button>
             </div>
 		</nav>
 
 		<div class="table">
-			<div id="divContent" class="row cells min">
-				<div class="col-lg-12 cell">
+			<div id="divContent" class="row cells">
+				<div class="col-lg-12 cell content">
 					<div class="alerts"></div>
-					<div class="panel">
-						<label for="ddlCountry">Choose Your country, please</label>
-						<div class="form-group">
-							<select class="form-control" id="ddlCountry" placeholder="Location" name="ddlCountry"></select>
-						</div>
-						<label id="lbLocation" for="tbLocation"></label>
-						<div class="form-group">
-							<input type="text" class="form-control" id="tbLocation" placeholder="Location" name="tbLocation">
-						</div>
-						<div class="hidden">
-							<label id="lbMultiple" for="ddlLocation"></label>
-							<div class="form-group">
-								<select class="form-control" id="ddlLocation" placeholder="Location" name="ddlLocation"></select>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 
-			<div id="divGeoScreen" class="row cells hidden">
-				<div class="col-lg-12 cell"></div>
+                    <label for="ddlCountry">Choose Your country, please</label>
+                    <div class="form-group">
+                        <select class="form-control" id="ddlCountry" placeholder="Location" name="ddlCountry"></select>
+                    </div>
+                    <hr />
+                    <label id="lbLocation" for="tbLocation"></label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="tbLocation" placeholder="Location" name="tbLocation">
+                    </div>
+                    <div class="hidden">
+                        <label id="lbMultiple" for="ddlLocation"></label>
+                        <div class="form-group">
+                            <select class="form-control" id="ddlLocation" placeholder="Location" name="ddlLocation"></select>
+                        </div>
+                    </div>
+				</div>
 			</div>
 		</div>
 
@@ -56,6 +51,7 @@
 		<script type="text/javascript" src="js/pages/flash.js"></script>
 
 		<script type="text/javascript" src="js/pages/data/countries.js"></script>
+        <script type="text/javascript" src="js/pages/settings.js"></script>
 		<script type="text/javascript" src="js/pages/geo.js"></script>
 	</body>
 </html>

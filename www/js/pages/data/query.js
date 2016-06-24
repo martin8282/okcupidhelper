@@ -13,7 +13,7 @@ var query = {
     "located_anywhere": 0,
     "last_login": 2678400,
     "i_want": "women",
-    "they_want": "men",
+    "they_want": null,
     "minimum_height": 15100,
     "maximum_height": 99999,
     "languages": 0,

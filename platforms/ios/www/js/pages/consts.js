@@ -5,16 +5,24 @@ var consts = {
     PAGE_HOME: 'home.html',
     PAGE_GEO: 'geo.html',
     PAGE_RESULTS: 'results.html',
+    PAGE_SETTINGS: 'settings.html',
 
     KEY_GOOGLE_API: 'AIzaSyDathjZMlxipK8CpB2JsIiYyp6PGcNJxAI',
     KEY_CURRENT_PAGE: 'current_page',
-    KEY_ACCESS_TOKEN: 'oauth_accesstoken',
-    KEY_USER_ID: 'userid',
-    KEY_DISPLAY_NAME: 'screenname',
-    KEY_LOCATION: 'locid',
-    KEY_CITY: 'city_name',
-    KEY_COUNTRY: 'country_name',
-    KEY_RESULTS: 'results',
+    KEY_PREVIOUS_PAGE: 'prev_page',
+
+    SETTING_PROFILE: 'profile',
+    SETTING_LOCATION: 'locid',
+    SETTING_USER_ID: 'userid',
+    SETTING_GENDER: 'usergender',
+    SETTING_ACCESS_TOKEN: 'oauth_accesstoken',
+    SETTING_CITY: 'city_name',
+    SETTING_COUNTRY: 'country_name',
+    SETTING_DISTANCE: 'distance',
+    SETTING_AGE_FROM: 'age_from',
+    SETTING_AGE_TO: 'age_to',
+    SETTING_NUMBER: 'find_number',
+    SETTING_FIND_WHO: 'find_who',
 
     MESSAGE_SORRY_REQUEST: 'Sorry, error occurred while requesting Okcupid.com',
     MESSAGE_SORRY: 'Sorry, error occurred',
@@ -26,10 +34,13 @@ var consts = {
 
     COUNTRY_USA: 'United States',
     COUNTRY_USA_CODE: 'US',
-    SEARCH_COUNT: 300,
 
     optionsLogin: function(login, password) {
         return { method: 'GET', url: 'login', data: { username: login, password: password, okc_api: 1 } }
+    },
+
+    optionsProfile: function() {
+        return { method: 'GET', url: 'profile', data: { okc_api: 1 } }
     },
 
     optionsSearch: function(data) {

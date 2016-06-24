@@ -2,10 +2,10 @@ var home = {
     persons: null,
 
     init: function() {
-        query.locid = app.get(consts.KEY_LOCATION);
         $('#btnSearch').click(function() { home.search(null) });
         $('#btnLike').click(function() { home.likeAll(0) });
-        $('#lbLocation').html(app.get(consts.KEY_CITY) + ', ' + app.get(consts.KEY_COUNTRY));
+        $('#btnSettings').click(function() { utils.navigateTo(consts.PAGE_SETTINGS); });
+        $('#lbLocation').html(settings.locationName());
     },
 
     animateButton: function() {
@@ -24,6 +24,8 @@ var home = {
             home.persons = [];
         }
 
+        query.locid = settings.locationId();
+
         var options = consts.optionsSearch(JSON.stringify(query));
 
         options.success = function(response) {
@@ -37,13 +39,14 @@ var home = {
     },
 
     processResults: function(data) {
+        var maxCount = settings.number();
         var records = utils.getJsonValue(data.data);
-        utils.progress(home.persons.length / consts.SEARCH_COUNT * 100, 'Searching...');
+        utils.progress(home.persons.length / settings.number() * 100, 'Searching...');
 
         for (var index in records) {
             var raw_person = records[index];
 
-            if (home.persons.length >= consts.SEARCH_COUNT) {
+            if (home.persons.length >= maxCount) {
                 home.finalizeResults();
                 return;
             }
@@ -63,7 +66,7 @@ var home = {
             home.persons.push(person);
         }
 
-        utils.progress(home.persons.length / consts.SEARCH_COUNT * 100, 'Searching...');
+        utils.progress(home.persons.length / maxCount * 100, 'Searching...');
 
         var nextPage = utils.getJsonValue(data.paging.cursors.after);
         if (nextPage == null) {
@@ -82,6 +85,8 @@ var home = {
         utils.unmask();
 
         flash.info('Found ' + home.persons.length + ' users', 2000);
+
+        // write to db
     },
 
     likeAll: function(cursor) {
@@ -98,6 +103,7 @@ var home = {
         options.success = function(response) {
             var data = utils.parseJSON(response.data);
             if (data != null && data.success == 'true') {
+                // write to history
             }
             utils.progress(cursor / home.persons.length * 100, 'Like...');
             home.likeAll(cursor + 1);

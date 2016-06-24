@@ -122,6 +122,14 @@ var utils = {
         }
     },
 
+    navigateBack: function() {
+        var prevPage = app.get(consts.KEY_PREVIOUS_PAGE);
+        if (prevPage != null && app.currentPage() != prevPage) {
+            app.currentPage(prevPage);
+            document.location = prevPage;
+        }
+    },
+
     getJsonValue: function(value) {
         var result = null;
         var exception = null;

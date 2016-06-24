@@ -32,15 +32,19 @@ var index = {
                 flash.error(utils.getJsonValue(data.status_str));
             }
             else {
-                var keys = [ consts.KEY_ACCESS_TOKEN, consts.KEY_DISPLAY_NAME, consts.KEY_USER_ID ];
-                for (var idx in keys) {
-                    var key = keys[idx];
-                    app.set(key, utils.getJsonValue(data[key]));
-                }
-                navigator.geolocation.getCurrentPosition(index.onCoords, function(error) { utils.navigateTo(consts.PAGE_GEO) });
+                index.loadProfile();
             }
         }
 
+        utils.request(options);
+    },
+
+    loadProfile: function() {
+        var options = consts.optionsProfile();
+        options.success = function(response) {
+            settings.initSettings(utils.parseJSON(response.data));
+            navigator.geolocation.getCurrentPosition(index.onCoords, function(error) { utils.navigateTo(consts.PAGE_GEO) });
+        }
         utils.request(options);
     },
 
@@ -62,10 +66,10 @@ var index = {
                 if (location == null && $.inArray('locality', component.types) >= 0) {
                     location = component.long_name;
                 }
-                if (postal_code == null && $.inArray('postal_code', component.types)>= 0) {
+                if (postal_code == null && $.inArray('postal_code', component.types) >= 0) {
                     postal_code = component.long_name;
                 }
-                if (country == null && $.inArray('country', component.types)>= 0) {
+                if (country == null && $.inArray('country', component.types) >= 0) {
                     country = component.long_name;
                     country_short = component.short_name;
                 }
@@ -74,14 +78,16 @@ var index = {
             geo.doRequest(
                 country_short == consts.COUNTRY_USA_CODE ? null : country,
                 country_short == consts.COUNTRY_USA_CODE ? postal_code : location,
-                function(records) {
+                function(message, records) {
                     if (records.length == 0) {
                         utils.navigateTo(consts.PAGE_GEO);
                     }
                     else if (records.length >= 1) {
-                        app.set(consts.KEY_LOCATION, utils.getJsonValue(records[0][consts.KEY_LOCATION]));
-                        app.set(consts.KEY_CITY, utils.getJsonValue(records[0][consts.KEY_CITY]));
-                        app.set(consts.KEY_COUNTRY, utils.getJsonValue(records[0][consts.KEY_COUNTRY]));
+                        settings.locationId(records[0][consts.SETTING_LOCATION]);
+                        settings.locationName(
+                            utils.getJsonValue(records[0][consts.SETTING_COUNTRY]),
+                            utils.getJsonValue(records[0][consts.SETTING_CITY])
+                        );
                         utils.navigateTo(consts.PAGE_HOME);
                     }
                 });
