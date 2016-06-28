@@ -53,8 +53,8 @@ var consts = {
         return { method: 'GET', url: url }
     },
 
-    optionsLike: function(userId) {
-        var data = JSON.stringify({ access_token: app.get(consts.KEY_ACCESS_TOKEN) });
+    optionsLike: function(userId, auth_token) {
+        var data = JSON.stringify({ access_token: auth_token });
         return { method: 'POST', url: '1/apitun/profile/' + userId + '/like', data: data }
     },
 
@@ -67,4 +67,4 @@ var consts = {
                 '&key=' + consts.KEY_GOOGLE_API
         }
     }
-}
+};

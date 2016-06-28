@@ -1,7 +1,13 @@
 var settings = {
     init: function() {
         $('#btnLocation').click(function() { utils.navigateTo(consts.PAGE_GEO); })
-        $('#btnBack').click(function() { utils.navigateTo(consts.PAGE_HOME); });
+        $('#btnBack').click(function() {
+            if (settings.findWho().length == 0) {
+                flash.error('Please, check who you want to find', 3000);
+                return;
+            }
+            utils.navigateTo(consts.PAGE_HOME);
+        });
 
         settings.initControls();
     },
@@ -24,22 +30,25 @@ var settings = {
         $('#lbLocation').html('Location: ' + settings.locationName());
 
         // distance
-        $('#sldDistance').on('change', settings.changeDistance).val(settings.distance());
+        $('#sldDistance').on('change', settings.changeDistance).val(settings.distance()).slider('refresh');
         settings.changeDistance();
 
         // number of matches
-        $('#sldNumber').on('change', settings.changeNumber).val(settings.number());
-
-        // age from
-        $('#sldAgeFrom').on('change', settings.changeAgeFrom).val(settings.ageFrom());
+        $('#sldNumber').on('change', settings.changeNumber).val(settings.number()).slider('refresh');
 
         // age to
-        $('#sldAgeTo').on('change', settings.changeAgeTo).val(settings.ageTo());
+        $('#sldAgeTo').on('change', settings.changeAgeTo).val(settings.ageTo()).slider('refresh');
+
+        // age from
+        $('#sldAgeFrom').on('change', settings.changeAgeFrom).val(settings.ageFrom()).slider('refresh');
 
         // find who
         var findWho = settings.findWho();
-        $('#cbWomen').on('click', settings.changeFindWho).prop('checked', $.inArray('women', findWho));
-        $('#cbMen').on('click', settings.changeFindWho).prop('checked', $.inArray('men', findWho));
+        $('#cbWomen').on('change', settings.changeFindWho)
+            .prop('checked', $.inArray('women', findWho) >= 0).checkboxradio('refresh');
+
+        $('#cbMen').on('change', settings.changeFindWho)
+            .prop('checked', $.inArray('men', findWho) >= 0).checkboxradio('refresh');
     },
 
     changeDistance: function() {
@@ -53,17 +62,17 @@ var settings = {
     },
 
     changeAgeFrom: function() {
-        settings.number($('#sldAgeFrom').val());
+        settings.ageFrom($('#sldAgeFrom').val());
     },
 
     changeAgeTo: function() {
-        settings.number($('#sldAgeFrom').val());
+        settings.ageTo($('#sldAgeTo').val());
     },
 
     changeFindWho: function() {
         var findWho = [];
         if ($('#cbWomen').prop('checked')) findWho.push('women');
-        if ($('#cbmen').prop('checked')) findWho.push('men')
+        if ($('#cbMen').prop('checked')) findWho.push('men');
         settings.findWho(findWho);
     },
 

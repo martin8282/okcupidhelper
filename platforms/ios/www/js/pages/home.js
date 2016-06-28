@@ -25,6 +25,10 @@ var home = {
         }
 
         query.locid = settings.locationId();
+        query.minimum_age = settings.ageFrom();
+        query.maximum_age = settings.ageTo();
+        query.radius = settings.distance();
+        query.i_want = settings.findWho();
 
         var options = consts.optionsSearch(JSON.stringify(query));
 
@@ -41,7 +45,7 @@ var home = {
     processResults: function(data) {
         var maxCount = settings.number();
         var records = utils.getJsonValue(data.data);
-        utils.progress(home.persons.length / settings.number() * 100, 'Searching...');
+        utils.progress(home.persons.length / maxCount * 100, 'Searching...');
 
         for (var index in records) {
             var raw_person = records[index];
@@ -98,7 +102,7 @@ var home = {
         }
 
         var userId = home.persons[cursor].userid;
-        var options = consts.optionsLike(userId);
+        var options = consts.optionsLike(userId, settings.authCode());
 
         options.success = function(response) {
             var data = utils.parseJSON(response.data);
