@@ -18,10 +18,10 @@ var settings = {
         settings.userId(utils.getJsonValue(profile.userid));
         settings.userGender(utils.getJsonValue(profile.gender_str));
         settings.distance(utils.getJsonValue(profile.searchprefs.radius));
-        settings.number(300);
+        settings.number(20);
         settings.ageFrom(utils.getJsonValue(profile.searchprefs.MATCH_FILTER_AGE));
         settings.ageTo(utils.getJsonValue(profile.searchprefs.MATCH_FILTER_AGE_val2));
-        settings.findWho(settings.userGender() == 'M' ? ['women'] : ['men'])
+        settings.findWho(settings.userGender() == 'M' ? [ consts.GENDER_WOMEN ] : [ consts.GENDER_MEN ]);
         app.set(consts.SETTING_PROFILE, JSON.stringify(profile));
     },
 
@@ -45,10 +45,10 @@ var settings = {
         // find who
         var findWho = settings.findWho();
         $('#cbWomen').on('change', settings.changeFindWho)
-            .prop('checked', $.inArray('women', findWho) >= 0).checkboxradio('refresh');
+            .prop('checked', $.inArray(consts.GENDER_WOMEN, findWho) >= 0).checkboxradio('refresh');
 
         $('#cbMen').on('change', settings.changeFindWho)
-            .prop('checked', $.inArray('men', findWho) >= 0).checkboxradio('refresh');
+            .prop('checked', $.inArray(consts.GENDER_MEN, findWho) >= 0).checkboxradio('refresh');
     },
 
     changeDistance: function() {
@@ -71,8 +71,8 @@ var settings = {
 
     changeFindWho: function() {
         var findWho = [];
-        if ($('#cbWomen').prop('checked')) findWho.push('women');
-        if ($('#cbMen').prop('checked')) findWho.push('men');
+        if ($('#cbWomen').prop('checked')) findWho.push(consts.GENDER_WOMEN);
+        if ($('#cbMen').prop('checked')) findWho.push(consts.GENDER_MEN);
         settings.findWho(findWho);
     },
 

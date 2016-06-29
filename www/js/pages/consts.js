@@ -10,6 +10,7 @@ var consts = {
     KEY_GOOGLE_API: 'AIzaSyDathjZMlxipK8CpB2JsIiYyp6PGcNJxAI',
     KEY_CURRENT_PAGE: 'current_page',
     KEY_PREVIOUS_PAGE: 'prev_page',
+    KEY_RESULTS: 'results',
 
     SETTING_PROFILE: 'profile',
     SETTING_LOCATION: 'locid',
@@ -24,13 +25,15 @@ var consts = {
     SETTING_NUMBER: 'find_number',
     SETTING_FIND_WHO: 'find_who',
 
+    GENDER_ALL: 0,
+    GENDER_WOMEN: 1,
+    GENDER_MEN: 2,
+
     MESSAGE_SORRY_REQUEST: 'Sorry, error occurred while requesting Okcupid.com',
     MESSAGE_SORRY: 'Sorry, error occurred',
     MESSAGE_WAIT: 'Please, wait...',
     MESSAGE_ENTER_CITY: 'Enter Your city, please',
     MESSAGE_ENTER_ZIP: 'Enter Zip code, please',
-    SORRY_REQ_MESSAGE: 'Sorry, error occurred while requesting Okcupid.com',
-    SORRY_MESSAGE: 'Sorry, error occurred',
 
     COUNTRY_USA: 'United States',
     COUNTRY_USA_CODE: 'US',

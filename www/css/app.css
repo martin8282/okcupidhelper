@@ -149,3 +149,17 @@ fieldset legend, h3 {
     -moz-box-shadow: 5px 5px 10px -6px rgba(0,0,0,0.39);
     box-shadow: 5px 5px 5px -6px rgba(0,0,0,0.39);
 }
+
+#divResults {
+    padding-top: 1em;
+    padding-bottom: 3em;
+}
+
+.unlike:after {
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    color: blue;
+    content: '\2661';
+    font-size: 2em;
+}

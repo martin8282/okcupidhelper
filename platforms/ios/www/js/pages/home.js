@@ -5,6 +5,7 @@ var home = {
         $('#btnSearch').click(function() { home.search(null) });
         $('#btnLike').click(function() { home.likeAll(0) });
         $('#btnSettings').click(function() { utils.navigateTo(consts.PAGE_SETTINGS); });
+        $('#btnSeeAll').click(function() { utils.navigateTo(consts.PAGE_RESULTS); });
         $('#lbLocation').html(settings.locationName());
     },
 
@@ -28,7 +29,9 @@ var home = {
         query.minimum_age = settings.ageFrom();
         query.maximum_age = settings.ageTo();
         query.radius = settings.distance();
-        query.i_want = settings.findWho();
+
+        var findWho = settings.findWho();
+        query.gender_tags = findWho.length == 1 ? findWho[0] : consts.GENDER_ALL;
 
         var options = consts.optionsSearch(JSON.stringify(query));
 
@@ -56,16 +59,23 @@ var home = {
             }
 
             var person = {};
-            person.userid = utils.getJsonValue(raw_person.userid);
-            person.username = utils.getJsonValue(raw_person.username);
+            person.userId = utils.getJsonValue(raw_person.userid);
+            person.userName = utils.getJsonValue(raw_person.username);
 
             var userInfo = utils.getJsonValue(raw_person.userinfo);
-            person.gender_letter = utils.getJsonValue(userInfo.gender_letter);
-            person.gender = utils.getJsonValue(userInfo.gender);
+            person.gender = utils.getJsonValue(userInfo.gender_letter);
             person.age = utils.getJsonValue(userInfo.age);
-            person.rel_status = utils.getJsonValue(userInfo.rel_status);
             person.location = utils.getJsonValue(userInfo.location);
             person.orientation = utils.getJsonValue(userInfo.orientation);
+            person.like = false;
+
+            var thumbs = utils.getJsonValue(raw_person.thumbs);
+            if (thumbs.length > 0) {
+                person.img_url = utils.getJsonValue(thumbs[0]['225x225']);
+            }
+            else {
+                person.img_url = null;
+            }
 
             home.persons.push(person);
         }
@@ -90,6 +100,7 @@ var home = {
 
         flash.info('Found ' + home.persons.length + ' users', 2000);
 
+        app.set(consts.KEY_RESULTS, JSON.stringify(home.persons));
         // write to db
     },
 
