@@ -115,6 +115,7 @@ fieldset legend, h3 {
     left: 0px;
     top: -0.8em;
     padding: 0.8em;
+    z-index: 1000;
 }
 
 .progress {
@@ -155,11 +156,28 @@ fieldset legend, h3 {
     padding-bottom: 3em;
 }
 
-.unlike:after {
-    position: absolute;
-    top: 5px;
-    left: 15px;
-    color: blue;
-    content: '\2661';
-    font-size: 2em;
+#divResults div.person {
+    background: white;
+    border: 1px solid silver;
+    text-underline: none;
+}
+
+#divResults span.heart {
+    float: right;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+#divResults span.like:after {
+    top: -0.3em;
+    position: relative;
+    content: '\2665';
+    color: #ff483f;
+}
+
+#divResults span.unlike:after {
+    top: -0.3em;
+    position: relative;
+    content: '\2665';
+    color: #f1f1ff;
 }

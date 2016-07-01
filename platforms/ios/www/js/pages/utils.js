@@ -140,11 +140,18 @@ var utils = {
             catch(ex) { exception = ex; }
         }
         else {
-            // caller?
             throw 'Cannot resolve value ' + arguments.callee.caller;
         }
 
         if (exception != null) throw exception;
         return result;
+    },
+
+    saveSettings: function(keys, complete) {
+        if (typeof keys != 'array') keys = [ keys ];
+
+        var index = 0;
+        while (index < keys.length) {
+        }
     }
 }

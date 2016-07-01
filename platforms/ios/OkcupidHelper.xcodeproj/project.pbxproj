@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
@@ -29,6 +28,8 @@
 		E392445178044E05B5EEA853 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FFA954533F4920A6FBB4CA /* CDVLocation.m */; };
 		E3A337DA8EE44B21B67C9B6D /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE76F86B4554E099B1D7F37 /* CDVFile.m */; };
 		E6491C4631EB4B5DB9C2F25F /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D1931CED46422381071ADF /* CDVAssetLibraryFilesystem.m */; };
+		58945CAA1E5642F58158C343 /* SQLitePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 96653D97AE0F4D6AAB17540B /* SQLitePlugin.m */; };
+		6955F76CEE6744F0AEB6426F /* sqlite3.c in Resources */ = {isa = PBXBuildFile; fileRef = 112D1E221A554DE3A2EFBE61 /* sqlite3.c */; settings = {COMPILER_FLAGS = "-DSQLITE_TEMP_STORE=2 -DSQLITE_THREADSAFE=2 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_RTREE -DSQLITE_LOCKING_STYLE=1 -DSQLITE_OMIT_BUILTIN_TEST -DSQLITE_OMIT_LOAD_EXTENSION"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,11 +51,11 @@
 
 /* Begin PBXFileReference section */
 		0207DA571B56EA530066E2B4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = OkcupidHelper/Images.xcassets; sourceTree = SOURCE_ROOT; };
-		095A8D39F7A34A92901A5E7B /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9223372036854775808; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		095A8D39F7A34A92901A5E7B /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9223372036854776000; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* OkcupidHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkcupidHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		208D9A39D427438CBA555A00 /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9223372036854775808; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		208D9A39D427438CBA555A00 /* Security.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9223372036854776000; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		26E9523B03B445DCBDA5B451 /* AFURLSessionManager.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = "cordova-plugin-http/AFURLSessionManager.h"; sourceTree = "<group>"; };
 		282BCD216C7E49DEAF741C3D /* Cache.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = Cache.m; path = org.apache.cordova.plugin.cache/Cache.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -82,7 +83,7 @@
 		8D1107310486CEB800E47090 /* OkcupidHelper-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OkcupidHelper-Info.plist"; path = "OkcupidHelper/OkcupidHelper-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = SOURCE_ROOT; };
 		91F55E88707944B3A70A1B2F /* CordovaHttpPlugin.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CordovaHttpPlugin.m; path = "cordova-plugin-http/CordovaHttpPlugin.m"; sourceTree = "<group>"; };
 		9A8FC633A6E6438492F8C4DC /* AFNetworking.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = AFNetworking.h; path = "cordova-plugin-http/AFNetworking.h"; sourceTree = "<group>"; };
-		A8F603CAE9614B9391C4B7C8 /* CoreLocation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9223372036854775808; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A8F603CAE9614B9391C4B7C8 /* CoreLocation.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9223372036854776000; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B1CFAF24749F46CFADFD290B /* Cache.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = Cache.h; path = org.apache.cordova.plugin.cache/Cache.h; sourceTree = "<group>"; };
 		BC8D9C89EEBD47E6866B93A9 /* AFURLSessionManager.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = "cordova-plugin-http/AFURLSessionManager.m"; sourceTree = "<group>"; };
 		C60ECF8B3BD148C2A5E7104A /* AFSecurityPolicy.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = AFSecurityPolicy.m; path = "cordova-plugin-http/AFSecurityPolicy.m"; sourceTree = "<group>"; };
@@ -98,6 +99,10 @@
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		ED6CEE7857B849E48FB1611C /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = AFNetworkReachabilityManager.h; path = "cordova-plugin-http/AFNetworkReachabilityManager.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = OkcupidHelper/config.xml; sourceTree = "<group>"; };
+		96653D97AE0F4D6AAB17540B /* SQLitePlugin.m */ = {isa = PBXFileReference; name = "SQLitePlugin.m"; path = "cordova-sqlite-storage/SQLitePlugin.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		112D1E221A554DE3A2EFBE61 /* sqlite3.c */ = {isa = PBXFileReference; name = "sqlite3.c"; path = "cordova-sqlite-storage/sqlite3.c"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1DE65D4A57C94539A18F62BC /* SQLitePlugin.h */ = {isa = PBXFileReference; name = "SQLitePlugin.h"; path = "cordova-sqlite-storage/SQLitePlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		A9F47F7B224B4E87B073BDF7 /* sqlite3.h */ = {isa = PBXFileReference; name = "sqlite3.h"; path = "cordova-sqlite-storage/sqlite3.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +238,10 @@
 				26E9523B03B445DCBDA5B451 /* AFURLSessionManager.h */,
 				E4FFA954533F4920A6FBB4CA /* CDVLocation.m */,
 				DFB10163AEB3442C81368424 /* CDVLocation.h */,
+				96653D97AE0F4D6AAB17540B /* SQLitePlugin.m */,
+				112D1E221A554DE3A2EFBE61 /* sqlite3.c */,
+				1DE65D4A57C94539A18F62BC /* SQLitePlugin.h */,
+				A9F47F7B224B4E87B073BDF7 /* sqlite3.h */,
 			);
 			name = Plugins;
 			path = OkcupidHelper/Plugins;
@@ -375,6 +384,8 @@
 				23AE9232029F4068A70455A5 /* AFURLResponseSerialization.m in Sources */,
 				62B8A773392E4D069D1C84C9 /* AFURLSessionManager.m in Sources */,
 				E392445178044E05B5EEA853 /* CDVLocation.m in Sources */,
+				58945CAA1E5642F58158C343 /* SQLitePlugin.m in Sources */,
+				6955F76CEE6744F0AEB6426F /* sqlite3.c in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

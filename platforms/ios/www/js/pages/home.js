@@ -7,6 +7,11 @@ var home = {
         $('#btnSettings').click(function() { utils.navigateTo(consts.PAGE_SETTINGS); });
         $('#btnSeeAll').click(function() { utils.navigateTo(consts.PAGE_RESULTS); });
         $('#lbLocation').html(settings.locationName());
+
+        home.persons = JSON.parse(app.get(consts.KEY_RESULTS));
+        var noResults = home.persons == null || home.persons.length == 0;
+        $('#btnLike').prop('disabled', noResults);
+        $('#btnSeeAll').prop('disabled', noResults);
     },
 
     animateButton: function() {
@@ -112,7 +117,7 @@ var home = {
             return;
         }
 
-        var userId = home.persons[cursor].userid;
+        var userId = home.persons[cursor].userId;
         var options = consts.optionsLike(userId, settings.authCode());
 
         options.success = function(response) {

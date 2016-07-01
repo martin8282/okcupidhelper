@@ -1,18 +1,33 @@
 var app = {
     init: function () {
         window.onerror = app.onError;
-
-        if (!app.currentPage()) {
-            app.currentPage(consts.PAGE_INDEX);
-            app.onAppStart();
-        }
         document.addEventListener('deviceready', app.onPageStart, false);
     },
 
     onAppStart: function() {
+        var db = window.sqlitePlugin.openDatabase({ name: 'okc.db', location: 'default' },
+            function() {
+                db.executeSql("CREATE TABLE IF NOT EXISTS settings (key VARCHAR(255) primary key, value TEXT);" +
+                    "CREATE TABLE IF NOT EXISTS results (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "user_id VARCHAR(255))," +
+                    "user_name VARCHAR(255)," +
+                    "gender VARCHAR(1)," +
+                    "age INTEGER," +
+                    "location VARCHAR(255)," +
+                    "orientation VARCHAR(255)," +
+                    "like TINYINT");
+            },
+            function(error) {
+                app.onError(error);
+            }
+        );
     },
 
     onPageStart: function() {
+        if (!app.currentPage()) {
+            app.currentPage(consts.PAGE_INDEX);
+            app.onAppStart();
+        }
         var pageObjectName = app.currentPage();
         var pageObject = eval(pageObjectName.substr(0, pageObjectName.length - 5));
         pageObject.init();

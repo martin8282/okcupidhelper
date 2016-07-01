@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>068EEFB9-54E4-4893-9A55-B34B96F74FF3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>OkcupidHelper</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4128D3027D03034190F3EBD25446F30D4C816ECF</key>
+		<string>https://github.com/martin8282/okcupidhelper</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>platforms/ios/OkcupidHelper.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4128D3027D03034190F3EBD25446F30D4C816ECF</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/martin8282/okcupidhelper</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4128D3027D03034190F3EBD25446F30D4C816ECF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4128D3027D03034190F3EBD25446F30D4C816ECF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>okcupidhelper</string>
+		</dict>
+	</array>
+</dict>
+</plist>
