@@ -3,6 +3,7 @@ function isDef(object) {
 }
 
 var utils = {
+    db: null,
     request: function(options) {
         if (!isDef(options.method)) throw ('Method is not defined')
         if (!isDef(options.url) || $.trim(options.url) == '') throw ('Request url is not defined');
@@ -84,14 +85,6 @@ var utils = {
         }
     },
 
-    viewH: function() {
-        return $(window).outerHeight()
-    },
-
-    viewW: function() {
-        return $(window).outerWidth()
-    },
-
     progress: function(percent, label) {
         if (isDef(percent) && !isNaN(percent) && $('.progress').length) {
             $('.progress').removeClass('hidden');
@@ -147,11 +140,21 @@ var utils = {
         return result;
     },
 
-    saveSettings: function(keys, complete) {
-        if (typeof keys != 'array') keys = [ keys ];
+    execSql: function(sql, complete) {
+        var execute = function(sql, complete) {
+            var onComplete = isDef(complete) ? complete : function(results) {
+                if (app.isDebug()) alert(JSON.stringify(results));
+            };
+            utils.db.executeSql(sql, [], onComplete, app.onError);
+        };
 
-        var index = 0;
-        while (index < keys.length) {
+        if (utils.db == null) {
+            utils.db = window.sqlitePlugin.openDatabase({ name: 'okc.db', location: 'default' },
+                function () { execute(sql, complete); },
+                function (error) { app.onError(error); });
+        }
+        else {
+            execute(sql, complete);
         }
     }
 }

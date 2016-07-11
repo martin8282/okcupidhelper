@@ -5,22 +5,15 @@ var app = {
     },
 
     onAppStart: function() {
-        var db = window.sqlitePlugin.openDatabase({ name: 'okc.db', location: 'default' },
-            function() {
-                db.executeSql("CREATE TABLE IF NOT EXISTS settings (key VARCHAR(255) primary key, value TEXT);" +
-                    "CREATE TABLE IF NOT EXISTS results (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "user_id VARCHAR(255))," +
-                    "user_name VARCHAR(255)," +
-                    "gender VARCHAR(1)," +
-                    "age INTEGER," +
-                    "location VARCHAR(255)," +
-                    "orientation VARCHAR(255)," +
-                    "like TINYINT");
-            },
-            function(error) {
-                app.onError(error);
-            }
-        );
+        utils.execSql("CREATE TABLE IF NOT EXISTS settings (key VARCHAR(255) primary key, value TEXT NULL);" +
+        "CREATE TABLE IF NOT EXISTS results (id INTEGER PRIMARY KEY AUTOINCREMENT," +
+        "user_id VARCHAR(255))," +
+        "user_name VARCHAR(255)," +
+        "gender VARCHAR(1)," +
+        "age INTEGER NULL," +
+        "location VARCHAR(255) NULL," +
+        "orientation VARCHAR(255) NULL," +
+        "like TINYINT NULL");
     },
 
     onPageStart: function() {
@@ -39,7 +32,6 @@ var app = {
         }
         else {
             flash.error(consts.MESSAGE_SORRY);
-            flash.error(consts.SORRY_MESSAGE);
         }
     },
 
