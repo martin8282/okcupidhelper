@@ -140,12 +140,11 @@ var utils = {
         return result;
     },
 
-    execSql: function(sql, complete) {
+    execSql: function(sql, complete, params) {
         var execute = function(sql, complete) {
-            var onComplete = isDef(complete) ? complete : function(results) {
-                if (app.isDebug()) alert(JSON.stringify(results));
-            };
-            utils.db.executeSql(sql, [], onComplete, app.onError);
+            if (!isDef(complete)) complete = function(results) {};
+            if (!isDef(params)) params = [];
+            utils.db.executeSql(sql, params, complete, function(error) { app.onError(error.message) });
         };
 
         if (utils.db == null) {
@@ -156,5 +155,11 @@ var utils = {
         else {
             execute(sql, complete);
         }
+    },
+
+    intOrNull: function(value) {
+        var result = parseInt(value);
+        if (isNaN(result)) result = null;
+        return result;
     }
 }

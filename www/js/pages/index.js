@@ -42,13 +42,21 @@ var index = {
     loadProfile: function() {
         var options = consts.optionsProfile();
         options.success = function(response) {
-            settings.initSettings(utils.parseJSON(response.data));
-            navigator.geolocation.getCurrentPosition(index.onCoords, function(error) { utils.navigateTo(consts.PAGE_GEO) });
+            settings.initSettings(utils.parseJSON(response.data), index.loadProfileComplete);
         }
         utils.request(options);
     },
 
+    loadProfileComplete: function() {
+        navigator.geolocation.getCurrentPosition(index.onCoords, function(error) { utils.navigateTo(consts.PAGE_GEO) });
+    },
+
     onCoords: function(position) {
+        if (settings.locationId() != null) {
+            utils.navigateTo(consts.PAGE_HOME);
+            return;
+        }
+
         var options = consts.optionsGeocode(position.coords.latitude, position.coords.longitude);
         options.success = function(response) {
             var data = utils.parseJSON(response.data);
