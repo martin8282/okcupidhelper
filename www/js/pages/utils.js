@@ -150,10 +150,26 @@ var utils = {
         if (utils.db == null) {
             utils.db = window.sqlitePlugin.openDatabase({ name: 'okc.db', location: 'default' },
                 function () { execute(sql, complete); },
-                function (error) { app.onError(error); });
+                function (error) { app.onError(error.message); });
         }
         else {
             execute(sql, complete);
+        }
+    },
+
+    execSqlBatch: function(sqlArr, complete) {
+        var execute = function(sqlArr, complete) {
+            if (!isDef(complete)) complete = function(results) {};
+            utils.db.sqlBatch(sqlArr, complete, function(error) { app.onError(error.message) });
+        };
+
+        if (utils.db == null) {
+            utils.db = window.sqlitePlugin.openDatabase({ name: 'okc.db', location: 'default' },
+                function () { execute(sqlArr, complete); },
+                function (error) { app.onError(error.message); });
+        }
+        else {
+            execute(sqlArr, complete);
         }
     },
 

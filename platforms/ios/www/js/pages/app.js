@@ -5,15 +5,30 @@ var app = {
     },
 
     onAppStart: function() {
-        utils.execSql("CREATE TABLE IF NOT EXISTS settings (key VARCHAR(255) primary key, value TEXT NULL);" +
-        "CREATE TABLE IF NOT EXISTS results (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-        "user_id VARCHAR(255))," +
-        "user_name VARCHAR(255)," +
-        "gender VARCHAR(1)," +
-        "age INTEGER NULL," +
-        "location VARCHAR(255) NULL," +
-        "orientation VARCHAR(255) NULL," +
-        "like TINYINT NULL");
+        var sql = [];
+        if (app.isDebug()) {
+            sql.push("DROP TABLE IF EXISTS persons;");
+            sql.push("DROP TABLE IF EXISTS searches;");
+            sql.push("DROP TABLE IF EXISTS search_persons;");
+        }
+        sql.push("CREATE TABLE IF NOT EXISTS settings (key VARCHAR(255) PRIMARY KEY, value TEXT NULL)");
+        sql.push("CREATE TABLE IF NOT EXISTS persons (id INT PRIMARY KEY," +
+            "user_id VARCHAR(255)," +
+            "user_name VARCHAR(255)," +
+            "gender VARCHAR(1)," +
+            "age INTEGER NULL," +
+            "location VARCHAR(255) NULL," +
+            "orientation VARCHAR(255) NULL," +
+            "img_url VARCHAR(1024) NULL," +
+            "like TINYINT NULL)");
+        sql.push("CREATE INDEX IF NOT EXISTS persons_user_id ON persons (user_id)");
+
+        sql.push("CREATE TABLE IF NOT EXISTS searches (id INT PRIMARY KEY, location VARCHAR(255), location_name VARCHAR(255), search_date INT)");
+
+        sql.push("CREATE TABLE IF NOT EXISTS search_persons (id INT PRIMARY KEY, person_id INT, search_id INT)");
+        sql.push("CREATE INDEX IF NOT EXISTS search_persons_person_id_search_id ON search_persons (person_id, search_id)");
+
+        utils.execSqlBatch(sql);
     },
 
     onPageStart: function() {
@@ -27,6 +42,7 @@ var app = {
     },
 
     onError: function(message, url, line, col, error) {
+        utils.unmask();
         if (app.isDebug()) {
             flash.error(message);
         }

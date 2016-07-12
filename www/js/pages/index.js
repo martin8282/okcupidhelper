@@ -34,7 +34,7 @@ var index = {
             else {
                 index.loadProfile();
             }
-        }
+        };
 
         utils.request(options);
     },
@@ -43,7 +43,7 @@ var index = {
         var options = consts.optionsProfile();
         options.success = function(response) {
             settings.initSettings(utils.parseJSON(response.data), index.loadProfileComplete);
-        }
+        };
         utils.request(options);
     },
 

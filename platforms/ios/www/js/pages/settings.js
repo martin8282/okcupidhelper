@@ -37,18 +37,20 @@ var settings = {
     },
 
     getSettingsKeys: function() {
-        return [ settings.locationId(consts),
+        var result = [ settings.locationId(consts),
             settings.distance(consts),
             settings.number(consts),
             settings.ageFrom(consts),
             settings.ageTo(consts),
-            settings.findWho(consts) ]
+            settings.findWho(consts) ];
+        result = result.concat(settings.locationName(consts, consts));
+        return result;
     },
 
     saveSettings: function(complete) {
         var keys = settings.getSettingsKeys();
         var index = -1;
-        var nextSetting = function(results) {
+        var nextSetting = function(resultSet) {
             index++;
             if (index < keys.length) {
                 settings.saveSetting(keys[index], app.get(keys[index]), nextSetting);
@@ -61,8 +63,8 @@ var settings = {
     },
 
     saveSetting: function(key, value, complete) {
-        var onLoadComplete = function(results) {
-            if (results.rows.length > 0) {
+        var onLoadComplete = function(resultSet) {
+            if (resultSet.rows.length > 0) {
                 utils.execSql("UPDATE settings SET value = ? WHERE key = ?", complete, [ value, key ]);
             }
             else {
@@ -104,8 +106,8 @@ var settings = {
     },
 
     loadSetting: function(key, complete) {
-        var onComplete = function(results) {
-            var value = results.rows.length > 0 ? results.rows.item(0).value : null;
+        var onComplete = function(resultSet) {
+            var value = resultSet.rows.length > 0 ? resultSet.rows.item(0).value : null;
             complete(value);
         };
         utils.execSql("SELECT value FROM settings WHERE key = ?", onComplete, [ key ]);

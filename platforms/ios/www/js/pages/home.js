@@ -1,17 +1,14 @@
 var home = {
-    persons: null,
+    persons_count: 0,
+    search_id: -1,
 
     init: function() {
-        $('#btnSearch').click(function() { home.search(null) });
-        $('#btnLike').click(function() { home.likeAll(0) });
+        $('#btnSearch').click(home.startSearch);
         $('#btnSettings').click(function() { utils.navigateTo(consts.PAGE_SETTINGS); });
-        $('#btnSeeAll').click(function() { utils.navigateTo(consts.PAGE_RESULTS); });
         $('#lbLocation').html(settings.locationName());
 
-        home.persons = JSON.parse(app.get(consts.KEY_RESULTS));
-        var noResults = home.persons == null || home.persons.length == 0;
-        $('#btnLike').prop('disabled', noResults);
-        $('#btnSeeAll').prop('disabled', noResults);
+        $('#btnLike').click(function() { home.likeAll(0) }).prop('disabled', true);
+        $('#btnSeeAll').click(function() { utils.navigateTo(consts.PAGE_RESULTS); }).prop('disabled', true);
     },
 
     animateButton: function() {
@@ -19,24 +16,28 @@ var home = {
         setTimeout(function() { $('#btnSearch').removeClass('pushed'); }, 100);
     },
 
-    search: function(nextPage) {
+    startSearch: function() {
         home.animateButton();
+        home.persons_count = 0;
+        utils.mask();
 
-        if (nextPage != null) {
-            query.after = nextPage;
-        }
-        else {
-            utils.mask();
-            home.persons = [];
-        }
+        var complete = function(resultSet) {
+            home.search_id = resultSet.insertId;
+            home.search(null);
+        };
 
+        utils.execSql('INSERT INTO searches (id, location, location_name, search_date) VALUES (NULL, ?, ?, ?);', complete,
+            [ settings.locationId(), settings.locationName(), Date.now() ]
+        );
+    },
+
+    search: function(nextPage) {
+        if (nextPage != null) query.after = nextPage;
         query.locid = settings.locationId();
         query.minimum_age = settings.ageFrom();
         query.maximum_age = settings.ageTo();
         query.radius = settings.distance();
-
-        var findWho = settings.findWho();
-        query.gender_tags = findWho.length == 1 ? findWho[0] : consts.GENDER_ALL;
+        query.gender_tags = settings.findWho();
 
         var options = consts.optionsSearch(JSON.stringify(query));
 
@@ -45,7 +46,8 @@ var home = {
             if (data == null) return;
 
             home.processResults(data);
-        }
+        };
+
         options.show_mask = false;
         utils.request(options);
     },
@@ -53,60 +55,91 @@ var home = {
     processResults: function(data) {
         var maxCount = settings.number();
         var records = utils.getJsonValue(data.data);
-        utils.progress(home.persons.length / maxCount * 100, 'Searching...');
+        var index = -1;
 
-        for (var index in records) {
-            var raw_person = records[index];
+        var nextData = function() {
+            var nextPage = utils.getJsonValue(data.paging.cursors.after);
+            if (nextPage == null) {
+                home.finalizeResults();
+            }
+            else {
+                home.search(nextPage);
+            }
+        };
 
-            if (home.persons.length >= maxCount) {
+        var nextPerson = function() {
+            index++;
+
+            if (home.persons_count >= maxCount) {
                 home.finalizeResults();
                 return;
             }
+            home.persons_count++;
 
-            var person = {};
-            person.userId = utils.getJsonValue(raw_person.userid);
-            person.userName = utils.getJsonValue(raw_person.username);
+            utils.progress(home.persons_count / maxCount * 100, 'Searching...');
 
-            var userInfo = utils.getJsonValue(raw_person.userinfo);
-            person.gender = utils.getJsonValue(userInfo.gender_letter);
-            person.age = utils.getJsonValue(userInfo.age);
-            person.location = utils.getJsonValue(userInfo.location);
-            person.orientation = utils.getJsonValue(userInfo.orientation);
-            person.like = false;
+            if (index < records.length) {
+                var raw_person = records[index];
+                var person = {};
+                person.user_id = utils.getJsonValue(raw_person.userid);
+                person.user_name = utils.getJsonValue(raw_person.username);
 
-            var thumbs = utils.getJsonValue(raw_person.thumbs);
-            if (thumbs.length > 0) {
-                person.img_url = utils.getJsonValue(thumbs[0]['225x225']);
+                var userInfo = utils.getJsonValue(raw_person.userinfo);
+                person.gender = utils.getJsonValue(userInfo.gender_letter);
+                person.age = utils.getJsonValue(userInfo.age);
+                person.location = utils.getJsonValue(userInfo.location);
+                person.orientation = utils.getJsonValue(userInfo.orientation);
+                person.like = false;
+
+                var thumbs = utils.getJsonValue(raw_person.thumbs);
+                if (thumbs.length > 0) {
+                    person.img_url = utils.getJsonValue(thumbs[0]['225x225']);
+                }
+                else {
+                    person.img_url = null;
+                }
+
+                home.savePerson(person, nextPerson);
             }
             else {
-                person.img_url = null;
+                nextData();
             }
+        };
 
-            home.persons.push(person);
-        }
-
-        utils.progress(home.persons.length / maxCount * 100, 'Searching...');
-
-        var nextPage = utils.getJsonValue(data.paging.cursors.after);
-        if (nextPage == null) {
-            home.finalizeResults();
-        }
-        else {
-            home.search(nextPage);
-        }
+        nextPerson();
     },
 
     finalizeResults: function() {
         $('#btnSeeAll').removeAttr('disabled');
-        $('#btnLike').removeAttr('disabled').html('Like ' + home.persons.length + ' users');
+        $('#btnLike').removeAttr('disabled').html('Like ' + home.persons_count + ' users');
 
         utils.progressHide();
         utils.unmask();
 
-        flash.info('Found ' + home.persons.length + ' users', 2000);
+        flash.info('Found ' + home.persons_count + ' users', 2000);
+    },
 
-        app.set(consts.KEY_RESULTS, JSON.stringify(home.persons));
-        // write to db
+    savePerson: function(person, complete) {
+        var onLoadComplete = function(resultSet) {
+            if (resultSet.rows.length > 0) {
+                utils.execSql("UPDATE persons SET " +
+                    "user_name = ?, " +
+                    "gender = ?, " +
+                    "age = ?, " +
+                    "location = ?, " +
+                    "orientation = ?, " +
+                    "img_url = ? " +
+                    "WHERE user_id = ?", complete,
+                    [ person.user_name, person.gender, person.age, person.location, person.orientation, person.img_url, person.user_id ]);
+            }
+            else {
+                utils.execSql("INSERT INTO persons " +
+                    "(id, user_id, user_name, gender, age, location, orientation, img_url, like) " +
+                    "values (NULL, ?, ?, ?, ?, ?, ?, ?, ?)", complete,
+                    [ person.user_id, person.user_name, person.gender, person.age, person.location, person.orientation, person.img_url, false ]);
+            }
+        };
+        utils.execSql("SELECT id FROM persons WHERE user_id = ?", onLoadComplete, [ person.user_id ]);
     },
 
     likeAll: function(cursor) {
