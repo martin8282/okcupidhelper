@@ -48,15 +48,19 @@ var index = {
     },
 
     loadProfileComplete: function() {
-        navigator.geolocation.getCurrentPosition(index.onCoords, function(error) { utils.navigateTo(consts.PAGE_GEO) });
+        var onGeoError = function(error) {
+            if (settings.locationId() != null) {
+                utils.navigateTo(consts.PAGE_HOME);
+                return;
+            }
+            else {
+                utils.navigateTo(consts.PAGE_GEO)
+            }
+        };
+        navigator.geolocation.getCurrentPosition(index.onCoords, onGeoError);
     },
 
     onCoords: function(position) {
-        if (settings.locationId() != null) {
-            utils.navigateTo(consts.PAGE_HOME);
-            return;
-        }
-
         var options = consts.optionsGeocode(position.coords.latitude, position.coords.longitude);
         options.success = function(response) {
             var data = utils.parseJSON(response.data);

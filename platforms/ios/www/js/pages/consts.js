@@ -10,9 +10,8 @@ var consts = {
     KEY_GOOGLE_API: 'AIzaSyDathjZMlxipK8CpB2JsIiYyp6PGcNJxAI',
     KEY_CURRENT_PAGE: 'current_page',
     KEY_PREVIOUS_PAGE: 'prev_page',
-    KEY_RESULTS: 'results',
+    KEY_SEARCH_ID: 'search_id',
 
-    SETTING_PROFILE: 'profile',
     SETTING_LOCATION: 'locid',
     SETTING_USER_ID: 'userid',
     SETTING_GENDER: 'usergender',
@@ -57,8 +56,8 @@ var consts = {
     },
 
     optionsLike: function(userId, auth_token) {
-        var data = JSON.stringify({ access_token: auth_token });
-        return { method: 'POST', url: '1/apitun/profile/' + userId + '/like', data: data }
+        //var data = JSON.stringify({ access_token: auth_token });
+        return { method: 'POST', url: '1/apitun/profile/' + userId + '/like' }
     },
 
     optionsGeocode: function(latitude, longitude) {

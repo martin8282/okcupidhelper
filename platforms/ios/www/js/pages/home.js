@@ -3,12 +3,25 @@ var home = {
     search_id: -1,
 
     init: function() {
-        $('#btnSearch').click(home.startSearch);
-        $('#btnSettings').click(function() { utils.navigateTo(consts.PAGE_SETTINGS); });
-        $('#lbLocation').html(settings.locationName());
+        var selectComplete = function(resultSet) {
+            var hasResults = resultSet != null && resultSet.rows.length > 0;
+            $('#btnSearch').click(home.startSearch);
+            $('#btnSettings').click(function() { utils.navigateTo(consts.PAGE_SETTINGS); });
+            $('#lbLocation').html(settings.locationName());
 
-        $('#btnLike').click(function() { home.likeAll(0) }).prop('disabled', true);
-        $('#btnSeeAll').click(function() { utils.navigateTo(consts.PAGE_RESULTS); }).prop('disabled', true);
+            $('#btnLike').click(function() { home.likeAll(0) }).prop('disabled', !hasResults);
+            $('#btnSeeAll').click(function() { utils.navigateTo(consts.PAGE_RESULTS); }).prop('disabled', !hasResults);
+        };
+
+        var searchId = parseInt(app.get(consts.KEY_SEARCH_ID));
+        if (searchId > 0) {
+            utils.execSql('SELECT persons.* FROM persons ' +
+                'JOIN search_persons ON search_persons.person_id = persons.id ' +
+                'WHERE search_persons.search_id = ?', selectComplete, [searchId]);
+        }
+        else {
+            selectComplete(null);
+        }
     },
 
     animateButton: function() {
@@ -20,15 +33,46 @@ var home = {
         home.animateButton();
         home.persons_count = 0;
         utils.mask();
+        var nextPage = null;
 
-        var complete = function(resultSet) {
-            home.search_id = resultSet.insertId;
-            home.search(null);
+        var insertComplete = function(resultSet) {
+            home.search(nextPage);
         };
 
-        utils.execSql('INSERT INTO searches (id, location, location_name, search_date) VALUES (NULL, ?, ?, ?);', complete,
-            [ settings.locationId(), settings.locationName(), Date.now() ]
-        );
+        var selectComplete = function(resultSet) {
+            if (resultSet.rows.length > 0) nextPage = resultSet.rows.item(0).after;
+
+            home.search_id = Date.now();
+
+            utils.execSql('INSERT INTO searches (id, location, location_name, after) VALUES (?, ?, ?, NULL)',
+                insertComplete, [ home.search_id, settings.locationId(), settings.locationName() ]
+            );
+        };
+
+        utils.execSql('SELECT after FROM searches ' +
+            'WHERE location = ? AND id > ? ' +
+            'ORDER BY id DESC LIMIT 1', selectComplete, [ settings.locationId(), Date.now() - 10 * 3600 * 1000 ]);
+    },
+
+    finishSearch: function(nextPage) {
+        var updateComplete = function() {
+            $('#btnSeeAll').removeAttr('disabled');
+            $('#btnLike').removeAttr('disabled').html('Like ' + home.persons_count + ' users');
+
+            utils.progressHide();
+            utils.unmask();
+
+            app.set(consts.KEY_SEARCH_ID, home.search_id);
+
+            flash.info('Found ' + home.persons_count + ' users', 2000);
+        };
+
+        if (nextPage != null) {
+            utils.execSql('UPDATE searches SET after = ? WHERE id = ?', updateComplete, [ nextPage, home.search_id ]);
+        }
+        else {
+            updateComplete();
+        }
     },
 
     search: function(nextPage) {
@@ -56,11 +100,11 @@ var home = {
         var maxCount = settings.number();
         var records = utils.getJsonValue(data.data);
         var index = -1;
+        var nextPage = utils.getJsonValue(data.paging.cursors.after);
 
         var nextData = function() {
-            var nextPage = utils.getJsonValue(data.paging.cursors.after);
             if (nextPage == null) {
-                home.finalizeResults();
+                home.finishSearch(nextPage);
             }
             else {
                 home.search(nextPage);
@@ -71,7 +115,7 @@ var home = {
             index++;
 
             if (home.persons_count >= maxCount) {
-                home.finalizeResults();
+                home.finishSearch(nextPage);
                 return;
             }
             home.persons_count++;
@@ -81,7 +125,7 @@ var home = {
             if (index < records.length) {
                 var raw_person = records[index];
                 var person = {};
-                person.user_id = utils.getJsonValue(raw_person.userid);
+                person.id = utils.getJsonValue(raw_person.userid);
                 person.user_name = utils.getJsonValue(raw_person.username);
 
                 var userInfo = utils.getJsonValue(raw_person.userinfo);
@@ -93,7 +137,7 @@ var home = {
 
                 var thumbs = utils.getJsonValue(raw_person.thumbs);
                 if (thumbs.length > 0) {
-                    person.img_url = utils.getJsonValue(thumbs[0]['225x225']);
+                    person.img_url = utils.getJsonValue(thumbs[0]['82x82']);
                 }
                 else {
                     person.img_url = null;
@@ -109,18 +153,13 @@ var home = {
         nextPerson();
     },
 
-    finalizeResults: function() {
-        $('#btnSeeAll').removeAttr('disabled');
-        $('#btnLike').removeAttr('disabled').html('Like ' + home.persons_count + ' users');
-
-        utils.progressHide();
-        utils.unmask();
-
-        flash.info('Found ' + home.persons_count + ' users', 2000);
-    },
-
     savePerson: function(person, complete) {
-        var onLoadComplete = function(resultSet) {
+        var insertComplete = function(resultSet) {
+            utils.execSql("INSERT INTO search_persons (search_id, person_id) VALUES (?, ?)",
+                complete, [home.search_id, person.id]);
+        };
+
+        var selectComplete = function(resultSet) {
             if (resultSet.rows.length > 0) {
                 utils.execSql("UPDATE persons SET " +
                     "user_name = ?, " +
@@ -129,17 +168,18 @@ var home = {
                     "location = ?, " +
                     "orientation = ?, " +
                     "img_url = ? " +
-                    "WHERE user_id = ?", complete,
-                    [ person.user_name, person.gender, person.age, person.location, person.orientation, person.img_url, person.user_id ]);
+                    "WHERE id = ?", insertComplete,
+                    [ person.user_name, person.gender, person.age, person.location, person.orientation, person.img_url, person.id ]);
             }
             else {
                 utils.execSql("INSERT INTO persons " +
-                    "(id, user_id, user_name, gender, age, location, orientation, img_url, like) " +
-                    "values (NULL, ?, ?, ?, ?, ?, ?, ?, ?)", complete,
-                    [ person.user_id, person.user_name, person.gender, person.age, person.location, person.orientation, person.img_url, false ]);
+                    "(id, user_name, gender, age, location, orientation, img_url, like) " +
+                    "values (?, ?, ?, ?, ?, ?, ?, ?)", insertComplete,
+                    [ person.id, person.user_name, person.gender, person.age, person.location, person.orientation, person.img_url, 0 ]);
             }
         };
-        utils.execSql("SELECT id FROM persons WHERE user_id = ?", onLoadComplete, [ person.user_id ]);
+
+        utils.execSql("SELECT id FROM persons WHERE id = ?", selectComplete, [ person.id ]);
     },
 
     likeAll: function(cursor) {
@@ -153,6 +193,7 @@ var home = {
         var userId = home.persons[cursor].userId;
         var options = consts.optionsLike(userId, settings.authCode());
 
+        options.headers = { authorization: 'Bearer ' + settings.authCode() }
         options.success = function(response) {
             var data = utils.parseJSON(response.data);
             if (data != null && data.success == 'true') {

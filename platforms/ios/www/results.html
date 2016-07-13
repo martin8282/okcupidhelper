@@ -14,6 +14,7 @@
     <script type="text/javascript" src="js/jquery.waiting.js"></script>
 </head>
 <body class="with-bottom-nav">
+    <div class="alerts"></div>
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <button id="btnBack" data-role="none" type="button" class="btn btn-default navbar-btn pull-left">Back</button>
@@ -21,10 +22,9 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row" id="divResults">
-            <div class="alerts"></div>
-        </div>
+    <div class="container" id="divResults">
+        <table class="table table-striped" id="tblResults">
+        </table>
     </div>
 
     <script type="text/javascript" src="cordova.js"></script>
