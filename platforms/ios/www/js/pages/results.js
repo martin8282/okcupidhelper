@@ -86,7 +86,6 @@ var results = {
                 complete();
             }
         };
-        $(window).scrollTop(0);
         utils.mask();
         results.count = 0;
         nextPerson();

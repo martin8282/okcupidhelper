@@ -6,11 +6,12 @@ var app = {
 
     onAppStart: function() {
         var sql = [];
+        /*
         if (app.isDebug()) {
             sql.push("DROP TABLE IF EXISTS persons;");
             sql.push("DROP TABLE IF EXISTS searches;");
             sql.push("DROP TABLE IF EXISTS search_persons;");
-        }
+        }*/
         sql.push("CREATE TABLE IF NOT EXISTS settings (key VARCHAR(255) PRIMARY KEY, value TEXT NULL)");
         sql.push("CREATE TABLE IF NOT EXISTS persons (id VARCHAR(255) PRIMARY KEY," +
             "user_name VARCHAR(255)," +

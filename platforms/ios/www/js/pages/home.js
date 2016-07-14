@@ -5,6 +5,7 @@ var home = {
     init: function() {
         $('#btnSearch').click(home.startSearch);
         $('#btnSettings').click(function() { utils.navigateTo(consts.PAGE_SETTINGS); });
+        $('#btnMatches').click(function() { utils.navigateTo(consts.PAGE_MATCHES); });
         $('#lbLocation').html(settings.locationName());
         $('#btnLike').click(home.likeAll);
         $('#btnSeeAll').click(function() { utils.navigateTo(consts.PAGE_RESULTS); });
@@ -77,6 +78,7 @@ var home = {
         query.maximum_age = settings.ageTo();
         query.radius = settings.distance();
         query.gender_tags = settings.findWho();
+        query.limit = consts.KEY_BATCH_COUNT;
 
         var options = consts.optionsSearch(JSON.stringify(query));
 
@@ -96,6 +98,7 @@ var home = {
         var records = utils.getJsonValue(data.data);
         var index = -1;
         var nextPage = utils.getJsonValue(data.paging.cursors.after);
+        var currentPage = utils.getJsonValue(data.paging.cursors.current);
 
         var nextData = function() {
             if (nextPage == null) {
@@ -113,9 +116,7 @@ var home = {
                 home.finishSearch(nextPage);
                 return;
             }
-
             utils.progress(home.persons_count / maxCount * 100, 'Searching...');
-
             if (index < records.length) {
                 var raw_person = records[index];
                 var person = {};
@@ -144,7 +145,10 @@ var home = {
                 home.savePerson(person, function() { home.persons_count++; nextPerson() });
             }
             else {
-                nextData();
+                if (records.length < consts.KEY_BATCH_COUNT) {
+                    home.finishSearch(nextPage);
+                }
+                else nextData();
             }
         };
 

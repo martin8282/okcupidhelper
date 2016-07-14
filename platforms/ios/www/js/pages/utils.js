@@ -48,6 +48,7 @@ var utils = {
     },
 
     mask: function(message) {
+        $(window).scrollTop(0);
         if (!isDef(message)) message  = consts.MESSAGE_WAIT;
         $('body').waiting({
             size: 30,
@@ -225,6 +226,21 @@ var utils = {
 
         options.show_mask = false;
         utils.request(options);
+    },
+
+    getPersons: function(complete, options) {
+        if (!isDef(options)) options = {};
+        if (!isDef(options.select_count)) options.select_count = false;
+        if (!isDef(options.condition)) options.condition = null;
+
+        var sql = options.select_count ?
+            'SELECT count(id) as count FROM persons ' :
+            'SELECT * FROM persons ';
+
+        if (options.condition) sql += ' WHERE ' + options.condition;
+        sql += ' ORDER BY like, age';
+
+        utils.execSql(sql, complete);
     },
 
     getPersonsForSearch: function(searchId, complete, options) {

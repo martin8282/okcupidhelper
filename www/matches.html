@@ -12,18 +12,32 @@
     <link rel="stylesheet" type="text/css" href="css/app.css" />
 
     <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/jquery.waiting.js"></script>
 </head>
-<body class="with-bottom-nav">
+<body class="with-bottom-nav" data-role="none">
     <div class="alerts"></div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid" data-role="page">
+            <div data-role="navbar" data-iconpos="left">
+            <ul>
+                <li><a id="aAll" href="#" class="ui-btn-active nav-height" data-icon="grid">I liked</a></li>
+                <li><a id="aMatches" href="#" data-icon="star" class="nav-height">Matches</a></li>
+            </ul>
+            </div>
+        </div>
+        <div class="alerts"></div>
+        <div class="progress hidden"></div>
+    </nav>
+
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <button id="btnBack" data-role="none" type="button" class="btn btn-default navbar-btn pull-left">Back</button>
-            <button type="button" id="btnLike" class="btn btn-warning navbar-btn pull-right col-xs-5">Like selected</button>
         </div>
     </nav>
 
-    <div class="container bottom-nav" id="divResults">
+    <div class="container top-nav bottom-nav" id="divResults">
         <table class="table table-striped" id="tblResults">
         </table>
     </div>
@@ -35,6 +49,6 @@
     <script type="text/javascript" src="js/pages/flash.js"></script>
 
     <script type="text/javascript" src="js/pages/settings.js"></script>
-    <script type="text/javascript" src="js/pages/results.js"></script>
+    <script type="text/javascript" src="js/pages/matches.js"></script>
 </body>
 </html>

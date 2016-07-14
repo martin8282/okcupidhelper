@@ -6,12 +6,14 @@ var consts = {
     PAGE_GEO: 'geo.html',
     PAGE_RESULTS: 'results.html',
     PAGE_SETTINGS: 'settings.html',
+    PAGE_MATCHES: 'matches.html',
 
     KEY_GOOGLE_API: 'AIzaSyDathjZMlxipK8CpB2JsIiYyp6PGcNJxAI',
     KEY_CURRENT_PAGE: 'current_page',
     KEY_PREVIOUS_PAGE: 'prev_page',
     KEY_SEARCH_ID: 'search_id',
     KEY_SEARCH_PAGE: 'next_search',
+    KEY_BATCH_COUNT: 50,
 
     SETTING_LOCATION: 'locid',
     SETTING_USER_ID: 'userid',
