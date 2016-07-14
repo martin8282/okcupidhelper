@@ -156,28 +156,26 @@ fieldset legend, h3 {
     padding-bottom: 3em;
 }
 
-#divResults div.person {
-    background: white;
-    border: 1px solid silver;
-    text-underline: none;
+#divResults td {
+    vertical-align: middle;
+}
+
+#divResults span.person {
+    color: #777;
+    font-size: 1.2em;
 }
 
 #divResults span.heart {
-    float: right;
-    font-size: 1.8em;
+    font-size: 2em;
     font-weight: bold;
 }
 
 #divResults span.like:after {
-    top: -0.3em;
-    position: relative;
     content: '\2665';
     color: #ff483f;
 }
 
 #divResults span.unlike:after {
-    top: -0.3em;
-    position: relative;
     content: '\2665';
     color: #f1f1ff;
 }

@@ -1,40 +1,55 @@
 var results = {
-    persons: null,
+    updated: {},
     count: 0,
 
     init: function() {
-        $('#btnBack').click(function() { app.set(consts.KEY_RESULTS, JSON.stringify(results.persons)); utils.navigateBack(); } );
-        $('#btnLike').click(function() { results.likeSelected(0) });
-        results.persons = JSON.parse(app.get(consts.KEY_RESULTS));
-        results.drawResults();
+        utils.mask();
+        $('#btnBack').click(results.exit);
+        $('#btnLike').click(results.likeSelected);
+
+        var selectComplete = function(resultSet) {
+            results.drawResults(resultSet.rows, resultSet.rows.length);
+        };
+
+        var searchId = parseInt(app.get(consts.KEY_SEARCH_ID));
+
+        utils.execSql('SELECT persons.* FROM persons ' +
+            'JOIN search_persons ON search_persons.person_id = persons.id ' +
+            'WHERE search_persons.search_id = ?', selectComplete, [ searchId ]);
     },
 
-    drawResults: function() {
-        var divResults = $('#divResults');
+    exit: function() {
+        utils.mask();
+        utils.navigateBack();
+    },
 
-        for (var index = 0; index < results.persons.length; index++) {
-            var person = results.persons[index];
+    drawResults: function(rows, length) {
+        var tblResult = $('#tblResults');
+        for (var index = 0; index < length; index++) {
+            var person = rows.item(index);
+            var tr = $('<tr></tr>');
+            var td = $('<td></td>');
+            var img = $('<img class="img-responsive" />"').attr('src', person.img_url);
+            td.append(img);
+            tr.append(td);
 
-            var divPerson = $('<div class="col-lg-3 col-md-4 col-xs-6 thumb"></div>');
-            var aPerson = $('<a class="thumbnail" href="#"></a>').click(results.markLike).data('index', index);
-            var imgPerson = $('<img class="img-responsive" />"').attr('src', person.img_url);
+            td = $('<td><span class="person>">' + person.user_name + ' (' + person.age + ')</span></td>');
+            tr.append(td);
 
-            var divBottom = $('<div></div>');
-            divBottom.append('<span class="age">Age: ' + person.age + '</span>');
-            divBottom.append('<span class="heart ' + (person.like ? 'like' : 'unlike') + '"></span>');
+            td = $('<td><span class="heart ' + (person.like == 1 ? 'like' : 'unlike') + '"></span></td>');
+            tr.append(td);
 
-            aPerson.append(imgPerson);
-            aPerson.append(divBottom);
-            divPerson.append(aPerson);
-            divResults.append(divPerson);
+            tr.data('id', person.id).click(results.markLike);
+            tblResult.append(tr);
         }
+        utils.unmask();
     },
 
     markLike: function() {
-        var index = $(this).data('index');
-        var person = results.persons[index];
+        var id = $(this).data('id');
         var span = $(this).find('span.heart');
-        if (person.like) {
+        var wasLike = span.hasClass('like');
+        if (wasLike) {
             span.removeClass('like');
             span.addClass('unlike');
         }
@@ -42,34 +57,48 @@ var results = {
             span.removeClass('unlike');
             span.addClass('like');
         }
-        person.like = !person.like;
+        results.updated[id] = !wasLike;
         return false;
     },
 
-    likeSelected: function(cursor) {
-        if (cursor == 0) {
-            $(window).scrollTop(0);
-            results.count = 0;
-            utils.mask();
-        }
-        if (cursor >= results.persons.length) {
-            utils.unmask(0);
+    likeSelected: function() {
+        var complete = function() {
+            utils.unmask();
             if (results.count) {
                 flash.info('Completed! (' + results.count + ' users)' , 2000);
             }
             else {
                 flash.info('No users selected', 2000);
             }
-            return;
-        }
+        };
 
-        if (!results.persons[cursor].like) {
-            results.likeSelected(cursor + 1);
-            return;
-        }
+        var index = -1;
+        var ids = Object.keys(results.updated);
+        var nextPerson = function() {
+            index++;
+            if (index < ids.length) {
+                var id = ids[index];
+                var like = results.updated[id];
+                if (like) {
+                    results.like(id, nextPerson);
+                }
+                else {
+                    nextPerson();
+                }
+            }
+            else {
+                complete();
+            }
+        };
 
-        var userId = results.persons[cursor].userId;
-        var options = consts.optionsLike(userId, settings.authCode());
+        //utils.mask();
+        results.count = 0;
+        nextPerson();
+    },
+
+    like: function(id, complete) {
+        var options = consts.optionsLike(id);
+        options.headers = { authorization: 'Bearer ' + settings.authCode() };
 
         options.success = function(response) {
             var data = utils.parseJSON(response.data);
@@ -77,11 +106,10 @@ var results = {
                 // write to history
             }
             results.count += 1;
-            results.likeSelected(cursor + 1);
+            complete();
         };
 
-        options.show_mask = false;
-
+        //options.show_mask = false;
         utils.request(options);
     }
 };
