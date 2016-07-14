@@ -18,13 +18,12 @@ var settings = {
 
         // find who
         var findWho = settings.findWho();
-        $('#cbWomen').on('change', settings.changeFindWho)
-            .prop('checked', findWho == consts.GENDER_WOMEN || findWho == consts.GENDER_ALL).checkboxradio('refresh');
+        var isWomen = findWho == consts.GENDER_WOMEN || findWho == consts.GENDER_ALL;
+        var isMen = findWho == consts.GENDER_MEN || findWho == consts.GENDER_ALL;
+        $('#cbWomen').on('change', settings.changeFindWho).prop('checked', isWomen).checkboxradio('refresh');
+        $('#cbMen').on('change', settings.changeFindWho).prop('checked', isMen).checkboxradio('refresh');
 
-        $('#cbMen').on('change', settings.changeFindWho)
-            .prop('checked', findWho == consts.GENDER_MEN || findWho == consts.GENDER_ALL).checkboxradio('refresh');
-
-        $('#btnLocation').click(function() { utils.navigateTo(consts.PAGE_GEO); })
+        $('#btnLocation').click(function() { utils.navigateTo(consts.PAGE_GEO); });
         $('#btnBack').click(settings.exit);
     },
 
@@ -78,7 +77,6 @@ var settings = {
         settings.authCode(utils.getJsonValue(profile.authcode));
         settings.userId(utils.getJsonValue(profile.userid));
         settings.userGender(utils.getJsonValue(profile.gender_str));
-        settings.profile(profile);
 
         var keys = settings.getSettingsKeys();
 
@@ -117,18 +115,22 @@ var settings = {
         var distance = $('#sldDistance').val()
         settings.distance(distance);
         $('#lbDistance').html('Distance: ' + distance + ' miles');
+        utils.resetSearch();
     },
 
     changeNumber: function() {
         settings.number($('#sldNumber').val());
+        utils.resetSearch();
     },
 
     changeAgeFrom: function() {
         settings.ageFrom($('#sldAgeFrom').val());
+        utils.resetSearch();
     },
 
     changeAgeTo: function() {
         settings.ageTo($('#sldAgeTo').val());
+        utils.resetSearch();
     },
 
     changeFindWho: function() {
@@ -141,16 +143,10 @@ var settings = {
         else if (isMen) { findWho = consts.GENDER_MEN }
 
         settings.findWho(findWho);
+        utils.resetSearch();
     },
 
     // settings properties
-    profile: function(profile) {
-        if (isDef(profile)) {
-            app.set(consts.SETTING_PROFILE, JSON.stringify(profile));
-        }
-        return JSON.parse(app.get(consts.SETTING_PROFILE));
-    },
-
     authCode: function(authCode) {
         if (isDef(authCode)) {
             if (authCode == consts) return consts.SETTING_ACCESS_TOKEN;
@@ -188,6 +184,7 @@ var settings = {
             if (country == consts) return [ consts.SETTING_COUNTRY, consts.SETTING_CITY ];
             app.set(consts.SETTING_COUNTRY, country);
             app.set(consts.SETTING_CITY, city);
+            utils.resetSearch();
         }
         return app.get(consts.SETTING_CITY) + ', ' + app.get(consts.SETTING_COUNTRY);
     },

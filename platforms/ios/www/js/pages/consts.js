@@ -11,6 +11,7 @@ var consts = {
     KEY_CURRENT_PAGE: 'current_page',
     KEY_PREVIOUS_PAGE: 'prev_page',
     KEY_SEARCH_ID: 'search_id',
+    KEY_SEARCH_PAGE: 'next_search',
 
     SETTING_LOCATION: 'locid',
     SETTING_USER_ID: 'userid',
@@ -56,8 +57,9 @@ var consts = {
     },
 
     optionsLike: function(userId, auth_token) {
-        //var data = JSON.stringify({ access_token: auth_token });
-        return { method: 'POST', url: '1/apitun/profile/' + userId + '/like' }
+        var options = { method: 'POST', url: '1/apitun/profile/' + userId + '/like' }
+        options.headers = { authorization: 'Bearer ' + auth_token };
+        return options;
     },
 
     optionsGeocode: function(latitude, longitude) {

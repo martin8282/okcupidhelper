@@ -18,12 +18,14 @@ var app = {
             "age INTEGER NULL," +
             "location VARCHAR(255) NULL," +
             "orientation VARCHAR(255) NULL," +
+            "rel_status VARCHAR(255) NULL," +
             "img_url VARCHAR(1024) NULL," +
-            "like TINYINT NULL)");
+            "like TINYINT NULL," +
+            "mutual_like TINYINT NULL)");
 
         sql.push("CREATE TABLE IF NOT EXISTS searches (id INT PRIMARY KEY, " +
-            "location VARCHAR(255), location_name VARCHAR(255), " +
-            "after VARCHAR(255))");
+            "location VARCHAR(255), " +
+            "location_name VARCHAR(255))");
 
         sql.push("CREATE TABLE IF NOT EXISTS search_persons (search_id INT, person_id INT)");
         sql.push("CREATE INDEX IF NOT EXISTS search_persons_search_id ON search_persons (search_id)");

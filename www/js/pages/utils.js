@@ -177,5 +177,83 @@ var utils = {
         var result = parseInt(value);
         if (isNaN(result)) result = null;
         return result;
+    },
+
+    getIntbool: function(value) {
+        var result = 0;
+        var error = null;
+        if (value != null) {
+            if (typeof value == 'number') {
+                if (value == 1) result = 1;
+                else if (value == 0) result = 0;
+                else error = 'Unexpected bool value (int)' + value;
+            }
+            else if (typeof value == 'boolean') {
+                result = value ? 1 : 0;
+            }
+            else if (typeof value == 'string') {
+                if (value == '1' || value == 'true') result = 1;
+                if (value == '0' || value == 'false') result = 0;
+                else error = 'Unexpected bool value (string)' + value;
+            }
+            else error = 'Unexpected bool value ' + value;
+        }
+        if (error) throw (error + ' ' + arguments.callee.caller);
+        return result;
+    },
+
+    json: function(object) {
+        alert(JSON.stringify(object));
+    },
+
+    like: function(id, complete) {
+        var options = consts.optionsLike(id, settings.authCode());
+        options.success = function(response) {
+            var data = utils.parseJSON(response.data);
+            if (data != null && data.success) {
+                var like = utils.getIntbool(utils.getJsonValue(data.liked));
+                var mutual_like = utils.getIntbool(utils.getJsonValue(data.mutual_like));
+                utils.execSql('UPDATE persons SET ' +
+                    'like = ?, ' +
+                    'mutual_like = ? ' +
+                    'WHERE id = ?', complete, [ like, mutual_like, id ]);
+            }
+            else {
+                complete();
+            }
+        };
+
+        options.show_mask = false;
+        utils.request(options);
+    },
+
+    getPersonsForSearch: function(searchId, complete, options) {
+        if (!isDef(options)) options = {};
+        if (!isDef(options.select_count)) options.select_count = false;
+        if (!isDef(options.condition)) options.condition = null;
+
+        var id = parseInt(searchId);
+        if (isNaN(id)) {
+            if (options.select_count) {
+                complete(null);
+                return;
+            }
+            else {
+                throw 'Undefined searchId ' + searchId + ' ' + arguments.callee.caller;
+            }
+        }
+
+        var sql = (options.select_count ? 'SELECT count(persons.id) as count FROM persons ' : 'SELECT persons.* FROM persons ') +
+            'JOIN search_persons ON search_persons.person_id = persons.id ' +
+            'WHERE search_persons.search_id = ?';
+
+        if (options.condition) sql += ' AND ' + options.condition;
+        sql += ' ORDER BY persons.like, persons.age';
+
+        utils.execSql(sql, complete, [ id ]);
+    },
+
+    resetSearch: function() {
+        app.set(consts.KEY_SEARCH_PAGE, null);
     }
 }

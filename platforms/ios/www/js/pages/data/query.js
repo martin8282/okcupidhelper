@@ -35,8 +35,9 @@ var query = {
     "tagOrder": ["minimum_height", "maximum_height"],
     "save_search": false,
     "limit": 50,
-    "fields": "userinfo,thumbs"
+    "fields": "userinfo,thumbs,likes"
 };
+
 /*{
  "order_by": "SPECIAL_BLEND",
  "gentation": [34],

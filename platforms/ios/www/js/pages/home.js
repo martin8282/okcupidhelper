@@ -3,25 +3,13 @@ var home = {
     search_id: -1,
 
     init: function() {
-        var selectComplete = function(resultSet) {
-            var hasResults = resultSet != null && resultSet.rows.length > 0;
-            $('#btnSearch').click(home.startSearch);
-            $('#btnSettings').click(function() { utils.navigateTo(consts.PAGE_SETTINGS); });
-            $('#lbLocation').html(settings.locationName());
+        $('#btnSearch').click(home.startSearch);
+        $('#btnSettings').click(function() { utils.navigateTo(consts.PAGE_SETTINGS); });
+        $('#lbLocation').html(settings.locationName());
+        $('#btnLike').click(home.likeAll);
+        $('#btnSeeAll').click(function() { utils.navigateTo(consts.PAGE_RESULTS); });
 
-            $('#btnLike').click(function() { home.likeAll(0) }).prop('disabled', !hasResults);
-            $('#btnSeeAll').click(function() { utils.navigateTo(consts.PAGE_RESULTS); }).prop('disabled', !hasResults);
-        };
-
-        var searchId = parseInt(app.get(consts.KEY_SEARCH_ID));
-        if (searchId > 0) {
-            utils.execSql('SELECT persons.* FROM persons ' +
-                'JOIN search_persons ON search_persons.person_id = persons.id ' +
-                'WHERE search_persons.search_id = ?', selectComplete, [searchId]);
-        }
-        else {
-            selectComplete(null);
-        }
+        home.initLikeButtons();
     },
 
     animateButton: function() {
@@ -29,50 +17,57 @@ var home = {
         setTimeout(function() { $('#btnSearch').removeClass('pushed'); }, 100);
     },
 
+    initLikeButtons: function(complete) {
+        var allCount = 0;
+        var newCount = 0;
+
+        var selectNewComplete = function(resultSet) {
+            newCount = resultSet != null ? resultSet.rows.item(0).count : 0;
+            $('#btnLike').prop('disabled', newCount == 0)
+                .html(newCount > 0 ? ('Like ' + newCount + ' users') : 'Like them all');
+
+            if (isDef(complete)) complete(allCount, newCount);
+        };
+
+        var selectAllComplete = function(resultSet) {
+            allCount = resultSet != null ? resultSet.rows.item(0).count : 0;
+            $('#btnSeeAll').prop('disabled', allCount == 0);
+
+            utils.getPersonsForSearch(app.get(consts.KEY_SEARCH_ID), selectNewComplete,
+                { select_count: true, condition: 'persons.like = 0' });
+        };
+
+        utils.getPersonsForSearch(app.get(consts.KEY_SEARCH_ID), selectAllComplete, { select_count: true });
+    },
+
     startSearch: function() {
         home.animateButton();
         home.persons_count = 0;
+        home.search_id = Date.now();
+
         utils.mask();
-        var nextPage = null;
 
         var insertComplete = function(resultSet) {
-            home.search(nextPage);
+            home.search(app.get(consts.KEY_SEARCH_PAGE));
         };
 
-        var selectComplete = function(resultSet) {
-            if (resultSet.rows.length > 0) nextPage = resultSet.rows.item(0).after;
-
-            home.search_id = Date.now();
-
-            utils.execSql('INSERT INTO searches (id, location, location_name, after) VALUES (?, ?, ?, NULL)',
-                insertComplete, [ home.search_id, settings.locationId(), settings.locationName() ]
-            );
-        };
-
-        utils.execSql('SELECT after FROM searches ' +
-            'WHERE location = ? AND id > ? ' +
-            'ORDER BY id DESC LIMIT 1', selectComplete, [ settings.locationId(), Date.now() - 10 * 3600 * 1000 ]);
+        utils.execSql('INSERT INTO searches (id, location, location_name) VALUES (?, ?, ?)',
+            insertComplete, [ home.search_id, settings.locationId(), settings.locationName() ]
+        );
     },
 
     finishSearch: function(nextPage) {
-        var updateComplete = function() {
-            $('#btnSeeAll').removeAttr('disabled');
-            $('#btnLike').removeAttr('disabled').html('Like ' + home.persons_count + ' users');
-
+        var initComplete = function(allCount, newCount) {
             utils.progressHide();
             utils.unmask();
 
-            app.set(consts.KEY_SEARCH_ID, home.search_id);
-
-            flash.info('Found ' + home.persons_count + ' users', 2000);
+            flash.info('Found ' + allCount + ' users (' + newCount + ' new)' , 2000);
         };
 
-        if (nextPage != null) {
-            utils.execSql('UPDATE searches SET after = ? WHERE id = ?', updateComplete, [ nextPage, home.search_id ]);
-        }
-        else {
-            updateComplete();
-        }
+        app.set(consts.KEY_SEARCH_PAGE, nextPage)
+        app.set(consts.KEY_SEARCH_ID, home.search_id);
+
+        home.initLikeButtons(initComplete);
     },
 
     search: function(nextPage) {
@@ -118,7 +113,6 @@ var home = {
                 home.finishSearch(nextPage);
                 return;
             }
-            home.persons_count++;
 
             utils.progress(home.persons_count / maxCount * 100, 'Searching...');
 
@@ -133,7 +127,11 @@ var home = {
                 person.age = utils.getJsonValue(userInfo.age);
                 person.location = utils.getJsonValue(userInfo.location);
                 person.orientation = utils.getJsonValue(userInfo.orientation);
-                person.like = false;
+                person.rel_status = utils.getJsonValue(userInfo.rel_status);
+
+                var likes = utils.getJsonValue(raw_person.likes);
+                person.mutual_like = utils.getIntbool(utils.getJsonValue(likes.mutual_like));
+                person.like = utils.getIntbool(utils.getJsonValue(likes.you_like));
 
                 var thumbs = utils.getJsonValue(raw_person.thumbs);
                 if (thumbs.length > 0) {
@@ -143,7 +141,7 @@ var home = {
                     person.img_url = null;
                 }
 
-                home.savePerson(person, nextPerson);
+                home.savePerson(person, function() { home.persons_count++; nextPerson() });
             }
             else {
                 nextData();
@@ -167,44 +165,60 @@ var home = {
                     "age = ?, " +
                     "location = ?, " +
                     "orientation = ?, " +
-                    "img_url = ? " +
+                    "rel_status = ?, " +
+                    "img_url = ?, " +
+                    "like = ?, " +
+                    "mutual_like = ? " +
                     "WHERE id = ?", insertComplete,
-                    [ person.user_name, person.gender, person.age, person.location, person.orientation, person.img_url, person.id ]);
+                    [ person.user_name, person.gender, person.age, person.location,
+                        person.orientation, person.rel_status, person.img_url,
+                        person.like, person.mutual_like,
+                        person.id ]);
             }
             else {
                 utils.execSql("INSERT INTO persons " +
-                    "(id, user_name, gender, age, location, orientation, img_url, like) " +
-                    "values (?, ?, ?, ?, ?, ?, ?, ?)", insertComplete,
-                    [ person.id, person.user_name, person.gender, person.age, person.location, person.orientation, person.img_url, 0 ]);
+                    "(id, user_name, gender, age, location, orientation, rel_status, img_url, like, mutual_like) " +
+                    "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", insertComplete,
+                    [ person.id, person.user_name, person.gender, person.age, person.location,
+                        person.orientation, person.rel_status, person.img_url,
+                        person.like, person.mutual_like ]);
             }
         };
 
         utils.execSql("SELECT id FROM persons WHERE id = ?", selectComplete, [ person.id ]);
     },
 
-    likeAll: function(cursor) {
-        if (cursor == 0) utils.mask();
-        if (cursor >= home.persons.length) {
+    likeAll: function() {
+        var likeComplete = function() {
             utils.progressHide();
             utils.unmask();
-            return;
-        }
-
-        var userId = home.persons[cursor].userId;
-        var options = consts.optionsLike(userId, settings.authCode());
-
-        options.headers = { authorization: 'Bearer ' + settings.authCode() }
-        options.success = function(response) {
-            var data = utils.parseJSON(response.data);
-            if (data != null && data.success == 'true') {
-                // write to history
-            }
-            utils.progress(cursor / home.persons.length * 100, 'Like...');
-            home.likeAll(cursor + 1);
         };
 
-        options.show_mask = false;
+        var selectComplete = function(resultSet) {
+            var index = -1;
+            var rows = resultSet.rows;
+            var nextPerson = function() {
+                index++;
 
-        utils.request(options);
+                utils.progress((index + 1) / rows.length * 100, 'Like...');
+                if (index < rows.length) {
+                    var person = rows.item(index);
+                    if (person.like == 0) {
+                        utils.like(rows.item(index).id, nextPerson);
+                    }
+                    else {
+                        likeComplete();
+                    }
+                }
+                else {
+                    likeComplete();
+                }
+            };
+
+            utils.mask();
+            nextPerson();
+        };
+
+        utils.getPersonsForSearch(app.get(consts.KEY_SEARCH_ID), selectComplete);
     }
 }

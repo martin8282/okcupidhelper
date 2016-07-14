@@ -7,15 +7,9 @@ var results = {
         $('#btnBack').click(results.exit);
         $('#btnLike').click(results.likeSelected);
 
-        var selectComplete = function(resultSet) {
+        utils.getPersonsForSearch(app.get(consts.KEY_SEARCH_ID), function(resultSet) {
             results.drawResults(resultSet.rows, resultSet.rows.length);
-        };
-
-        var searchId = parseInt(app.get(consts.KEY_SEARCH_ID));
-
-        utils.execSql('SELECT persons.* FROM persons ' +
-            'JOIN search_persons ON search_persons.person_id = persons.id ' +
-            'WHERE search_persons.search_id = ?', selectComplete, [ searchId ]);
+        });
     },
 
     exit: function() {
@@ -29,11 +23,11 @@ var results = {
             var person = rows.item(index);
             var tr = $('<tr></tr>');
             var td = $('<td></td>');
-            var img = $('<img class="img-responsive" />"').attr('src', person.img_url);
+            var img = $('<img />"').attr('src', person.img_url);
             td.append(img);
             tr.append(td);
 
-            td = $('<td><span class="person>">' + person.user_name + ' (' + person.age + ')</span></td>');
+            td = $('<td><span class="person>"><b>' + person.user_name + ' (' + person.age + ')</b><br />' + person.rel_status +'</span></td>');
             tr.append(td);
 
             td = $('<td><span class="heart ' + (person.like == 1 ? 'like' : 'unlike') + '"></span></td>');
@@ -42,7 +36,7 @@ var results = {
             tr.data('id', person.id).click(results.markLike);
             tblResult.append(tr);
         }
-        utils.unmask();
+        setTimeout(utils.unmask, 1000);
     },
 
     markLike: function() {
@@ -64,6 +58,8 @@ var results = {
     likeSelected: function() {
         var complete = function() {
             utils.unmask();
+            results.updated = {};
+
             if (results.count) {
                 flash.info('Completed! (' + results.count + ' users)' , 2000);
             }
@@ -80,7 +76,7 @@ var results = {
                 var id = ids[index];
                 var like = results.updated[id];
                 if (like) {
-                    results.like(id, nextPerson);
+                    utils.like(id, function() { results.count += 1; nextPerson(); });
                 }
                 else {
                     nextPerson();
@@ -90,26 +86,9 @@ var results = {
                 complete();
             }
         };
-
-        //utils.mask();
+        $(window).scrollTop(0);
+        utils.mask();
         results.count = 0;
         nextPerson();
-    },
-
-    like: function(id, complete) {
-        var options = consts.optionsLike(id);
-        options.headers = { authorization: 'Bearer ' + settings.authCode() };
-
-        options.success = function(response) {
-            var data = utils.parseJSON(response.data);
-            if (data != null && data.success == 'true') {
-                // write to history
-            }
-            results.count += 1;
-            complete();
-        };
-
-        //options.show_mask = false;
-        utils.request(options);
     }
 };
