@@ -78,6 +78,7 @@ var utils = {
     },
 
     onRequestError: function(response) {
+        utils.unmask();
         if (app.isDebug()) {
             utils.showXhrDebug(response.status, response.error, response.headers);
         }
