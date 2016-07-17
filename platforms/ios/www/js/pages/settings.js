@@ -115,22 +115,18 @@ var settings = {
         var distance = $('#sldDistance').val()
         settings.distance(distance);
         $('#lbDistance').html('Distance: ' + distance + ' miles');
-        utils.resetSearch();
     },
 
     changeNumber: function() {
         settings.number($('#sldNumber').val());
-        utils.resetSearch();
     },
 
     changeAgeFrom: function() {
         settings.ageFrom($('#sldAgeFrom').val());
-        utils.resetSearch();
     },
 
     changeAgeTo: function() {
         settings.ageTo($('#sldAgeTo').val());
-        utils.resetSearch();
     },
 
     changeFindWho: function() {
@@ -143,7 +139,6 @@ var settings = {
         else if (isMen) { findWho = consts.GENDER_MEN }
 
         settings.findWho(findWho);
-        utils.resetSearch();
     },
 
     // settings properties
@@ -184,7 +179,6 @@ var settings = {
             if (country == consts) return [ consts.SETTING_COUNTRY, consts.SETTING_CITY ];
             app.set(consts.SETTING_COUNTRY, country);
             app.set(consts.SETTING_CITY, city);
-            utils.resetSearch();
         }
         return app.get(consts.SETTING_CITY) + ', ' + app.get(consts.SETTING_COUNTRY);
     },

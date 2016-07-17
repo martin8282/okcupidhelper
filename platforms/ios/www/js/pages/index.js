@@ -51,13 +51,18 @@ var index = {
         var onGeoError = function(error) {
             if (settings.locationId() != null) {
                 utils.navigateTo(consts.PAGE_HOME);
-                return;
             }
             else {
                 utils.navigateTo(consts.PAGE_GEO)
             }
         };
-        navigator.geolocation.getCurrentPosition(index.onCoords, onGeoError);
+        //navigator.geolocation.getCurrentPosition(index.onCoords, onGeoError);
+        if (settings.locationId() != null) {
+            utils.navigateTo(consts.PAGE_HOME);
+        }
+        else {
+            navigator.geolocation.getCurrentPosition(index.onCoords, onGeoError);
+        }
     },
 
     onCoords: function(position) {

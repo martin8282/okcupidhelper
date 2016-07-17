@@ -1,6 +1,9 @@
 var home = {
     persons_count: 0,
+    total_count: 0,
     search_id: -1,
+    found_count: 0,
+    next_page: null,
 
     init: function() {
         $('#btnSearch').click(home.startSearch);
@@ -43,21 +46,38 @@ var home = {
 
     startSearch: function() {
         home.animateButton();
-        home.persons_count = 0;
-        home.search_id = Date.now();
-
         utils.mask();
 
-        var insertComplete = function(resultSet) {
-            home.search(app.get(consts.KEY_SEARCH_PAGE));
+        var selectComplete = function(resultSet) {
+            home.persons_count = 0;
+            if (resultSet.rows.length > 0) {
+                var record = resultSet.rows.item(0);
+                utils.json(record);
+                home.search_id = record.id;
+                home.next_page = record.next_page;
+                home.total_count = record.total_count;
+                home.found_count = record.found_count;
+                home.search();
+            }
+            else {
+                home.search_id = Date.now();
+                home.next_page = null;
+                home.total_count = 0;
+                home.found_count = 0;
+                utils.execSql('INSERT INTO searches (id, location, location_name, found_count, total_count, next_page, auth_token) ' +
+                    'VALUES (?, ?, ?, 0, 0, NULL, ?)',
+                    home.search,
+                    [ home.search_id, settings.locationId(), settings.locationName(), settings.authCode() ]
+                );
+            }
         };
 
-        utils.execSql('INSERT INTO searches (id, location, location_name) VALUES (?, ?, ?)',
-            insertComplete, [ home.search_id, settings.locationId(), settings.locationName() ]
-        );
+        utils.execSql('SELECT * FROM searches ' +
+            'WHERE auth_token = ? AND next_page IS NOT NULL ' +
+            'ORDER BY id DESC', selectComplete, [ settings.authCode() ] );
     },
 
-    finishSearch: function(nextPage) {
+    finishSearch: function() {
         var initComplete = function(allCount, newCount) {
             utils.progressHide();
             utils.unmask();
@@ -65,20 +85,28 @@ var home = {
             flash.info('Found ' + allCount + ' users (' + newCount + ' new)' , 2000);
         };
 
-        app.set(consts.KEY_SEARCH_PAGE, nextPage)
-        app.set(consts.KEY_SEARCH_ID, home.search_id);
+        var updateComplete = function(resultSet) {
+            app.set(consts.KEY_SEARCH_ID, home.search_id);
+            home.initLikeButtons(initComplete);
+        };
 
-        home.initLikeButtons(initComplete);
+        utils.execSql('UPDATE searches SET ' +
+            'found_count = ?, ' +
+            'total_count = ?,' +
+            'next_page = ? ' +
+            'WHERE id = ?', updateComplete,
+            [ home.found_count, home.total_count, home.next_page, home.search_id ]);
     },
 
-    search: function(nextPage) {
-        if (nextPage != null) query.after = nextPage;
+    search: function() {
+        if (home.next_page != null) query.after = home.next_page;
+
         query.locid = settings.locationId();
         query.minimum_age = settings.ageFrom();
         query.maximum_age = settings.ageTo();
         query.radius = settings.distance();
         query.gender_tags = settings.findWho();
-        query.limit = consts.KEY_BATCH_COUNT;
+        query.limit = consts.BATCH_COUNT;
 
         var options = consts.optionsSearch(JSON.stringify(query));
 
@@ -94,65 +122,66 @@ var home = {
     },
 
     processResults: function(data) {
-        var maxCount = settings.number();
+        if (home.total_count == 0) home.total_count = utils.getJsonValue(data.total_matches);
+        home.next_page = utils.getJsonValue(data.paging.cursors.after);
+
+        var settingsCount = settings.number();
         var records = utils.getJsonValue(data.data);
         var index = -1;
-        var nextPage = utils.getJsonValue(data.paging.cursors.after);
-        var currentPage = utils.getJsonValue(data.paging.cursors.current);
-
-        var nextData = function() {
-            if (nextPage == null) {
-                home.finishSearch(nextPage);
-            }
-            else {
-                home.search(nextPage);
-            }
-        };
 
         var nextPerson = function() {
             index++;
 
-            if (home.persons_count >= maxCount) {
-                home.finishSearch(nextPage);
+            var searchCompleted = home.found_count >= home.total_count;
+            if (searchCompleted) home.next_page = null;
+
+            if (searchCompleted || home.persons_count >= settingsCount) {
+                home.finishSearch();
                 return;
             }
-            utils.progress(home.persons_count / maxCount * 100, 'Searching...');
+
+            utils.progress(home.persons_count / settingsCount * 100, 'Searching...');
             if (index < records.length) {
-                var raw_person = records[index];
-                var person = {};
-                person.id = utils.getJsonValue(raw_person.userid);
-                person.user_name = utils.getJsonValue(raw_person.username);
+                var person = home.extractPerson(records[index]);
 
-                var userInfo = utils.getJsonValue(raw_person.userinfo);
-                person.gender = utils.getJsonValue(userInfo.gender_letter);
-                person.age = utils.getJsonValue(userInfo.age);
-                person.location = utils.getJsonValue(userInfo.location);
-                person.orientation = utils.getJsonValue(userInfo.orientation);
-                person.rel_status = utils.getJsonValue(userInfo.rel_status);
-
-                var likes = utils.getJsonValue(raw_person.likes);
-                person.mutual_like = utils.getIntbool(utils.getJsonValue(likes.mutual_like));
-                person.like = utils.getIntbool(utils.getJsonValue(likes.you_like));
-
-                var thumbs = utils.getJsonValue(raw_person.thumbs);
-                if (thumbs.length > 0) {
-                    person.img_url = utils.getJsonValue(thumbs[0]['82x82']);
-                }
-                else {
-                    person.img_url = null;
-                }
-
-                home.savePerson(person, function() { home.persons_count++; nextPerson() });
+                home.savePerson(person, function() {
+                    home.persons_count++;
+                    home.found_count++;
+                    nextPerson();
+                });
             }
             else {
-                if (records.length < consts.KEY_BATCH_COUNT) {
-                    home.finishSearch(nextPage);
-                }
-                else nextData();
+                home.search();
             }
         };
-
         nextPerson();
+    },
+
+    extractPerson: function(raw_person) {
+        var person = {};
+        person.id = utils.getJsonValue(raw_person.userid);
+        person.user_name = utils.getJsonValue(raw_person.username);
+
+        var userInfo = utils.getJsonValue(raw_person.userinfo);
+        person.gender = utils.getJsonValue(userInfo.gender_letter);
+        person.age = utils.getJsonValue(userInfo.age);
+        person.location = utils.getJsonValue(userInfo.location);
+        person.orientation = utils.getJsonValue(userInfo.orientation);
+        person.rel_status = utils.getJsonValue(userInfo.rel_status);
+
+        var likes = utils.getJsonValue(raw_person.likes);
+        person.mutual_like = utils.getIntbool(utils.getJsonValue(likes.mutual_like));
+        person.like = utils.getIntbool(utils.getJsonValue(likes.you_like));
+
+        var thumbs = utils.getJsonValue(raw_person.thumbs);
+        if (thumbs.length > 0) {
+            person.img_url = utils.getJsonValue(thumbs[0]['82x82']);
+        }
+        else {
+            person.img_url = null;
+        }
+
+        return person;
     },
 
     savePerson: function(person, complete) {
@@ -171,21 +200,19 @@ var home = {
                     "orientation = ?, " +
                     "rel_status = ?, " +
                     "img_url = ?, " +
-                    "like = ?, " +
-                    "mutual_like = ? " +
+                    "like = ? " +
                     "WHERE id = ?", insertComplete,
                     [ person.user_name, person.gender, person.age, person.location,
                         person.orientation, person.rel_status, person.img_url,
-                        person.like, person.mutual_like,
-                        person.id ]);
+                        person.like, person.id ]);
             }
             else {
                 utils.execSql("INSERT INTO persons " +
-                    "(id, user_name, gender, age, location, orientation, rel_status, img_url, like, mutual_like) " +
-                    "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", insertComplete,
+                    "(id, user_name, gender, age, location, orientation, rel_status, img_url, like) " +
+                    "values (?, ?, ?, ?, ?, ?, ?, ?, ?)", insertComplete,
                     [ person.id, person.user_name, person.gender, person.age, person.location,
                         person.orientation, person.rel_status, person.img_url,
-                        person.like, person.mutual_like ]);
+                        person.like ]);
             }
         };
 

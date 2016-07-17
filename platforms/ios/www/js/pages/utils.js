@@ -267,9 +267,5 @@ var utils = {
         sql += ' ORDER BY persons.like, persons.age';
 
         utils.execSql(sql, complete, [ id ]);
-    },
-
-    resetSearch: function() {
-        app.set(consts.KEY_SEARCH_PAGE, null);
     }
 }

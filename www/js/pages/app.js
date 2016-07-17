@@ -6,12 +6,12 @@ var app = {
 
     onAppStart: function() {
         var sql = [];
-        /*
         if (app.isDebug()) {
             sql.push("DROP TABLE IF EXISTS persons;");
             sql.push("DROP TABLE IF EXISTS searches;");
             sql.push("DROP TABLE IF EXISTS search_persons;");
-        }*/
+        }
+
         sql.push("CREATE TABLE IF NOT EXISTS settings (key VARCHAR(255) PRIMARY KEY, value TEXT NULL)");
         sql.push("CREATE TABLE IF NOT EXISTS persons (id VARCHAR(255) PRIMARY KEY," +
             "user_name VARCHAR(255)," +
@@ -21,15 +21,20 @@ var app = {
             "orientation VARCHAR(255) NULL," +
             "rel_status VARCHAR(255) NULL," +
             "img_url VARCHAR(1024) NULL," +
-            "like TINYINT NULL," +
-            "mutual_like TINYINT NULL)");
+            "like TINYINT NULL)");
 
         sql.push("CREATE TABLE IF NOT EXISTS searches (id INT PRIMARY KEY, " +
             "location VARCHAR(255), " +
-            "location_name VARCHAR(255))");
+            "location_name VARCHAR(255), " +
+            "total_count INT NULL, " +
+            "found_count INT NULL, " +
+            "next_page VARCHAR(255) NULL," +
+            "auth_token VARCHAR(255) NULL)");
+        sql.push("CREATE INDEX IF NOT EXISTS searches_auth_token ON searches (auth_token)");
 
         sql.push("CREATE TABLE IF NOT EXISTS search_persons (search_id INT, person_id INT)");
         sql.push("CREATE INDEX IF NOT EXISTS search_persons_search_id ON search_persons (search_id)");
+        sql.push("CREATE INDEX IF NOT EXISTS search_persons_person_id ON search_persons (person_id)");
 
         utils.execSqlBatch(sql);
     },
