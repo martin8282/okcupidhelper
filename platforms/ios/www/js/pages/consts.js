@@ -16,6 +16,8 @@ var consts = {
     KEY_SEARCH_ID: 'search_id',
     KEY_SEARCH_PAGE: 'next_search',
 
+    SETTING_LOGIN: 'login',
+    SETTING_PASSWORD: 'password',
     SETTING_LOCATION: 'locid',
     SETTING_USER_ID: 'userid',
     SETTING_GENDER: 'usergender',

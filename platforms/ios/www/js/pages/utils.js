@@ -86,11 +86,11 @@ var utils = {
 
         if (isDef(response.error) && response.error.indexOf(consts.ERROR_1000) > 0) {
             app.set(consts.KEY_ERROR_MAX, true);
-            alert('1000');
             if (isDef(home) && home.search_id > 0) {
                 flash.info('Reached max count of persons found.', 2000);
                 home.finishSearch();
             }
+            return;
         }
 
         if (app.isDebug()) {

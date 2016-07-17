@@ -6,9 +6,22 @@ var app = {
 
     relogin: function() {
         var logoutOptions = consts.optionsLogout();
+        logoutOptions.error = function(response) { utils.navigateTo(consts.PAGE_INDEX) };
         logoutOptions.success = function(response) {
-            utils.navigateTo(consts.PAGE_INDEX);
+            var loginOptions = consts.optionsLogin(app.get(consts.SETTING_LOGIN), app.set(consts.SETTING_PASSWORD));
+            loginOptions.success = function(response) {
+                var data = utils.parseJSON(response.data);
+                alert(JSON.stringify(data));
+                if (data == null || data.status != 0) {
+                    utils.navigateTo(consts.PAGE_INDEX);
+                }
+                else {
+                    app.set(consts.KEY_ERROR_MAX, null);
+                }
+            };
+            utils.request(loginOptions);
         };
+
         utils.request(logoutOptions);
     },
 
