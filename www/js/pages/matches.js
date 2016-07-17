@@ -20,9 +20,6 @@ var matches = {
 
     showMatches: function() {
         $('#btnRefresh').show();
-        utils.getPersons(function(resultSet) {
-            matches.drawResults(resultSet.rows, resultSet.rows.length, true);
-        }, { condition: 'mutual_like = 1' });
     },
 
     refreshMatches: function() {

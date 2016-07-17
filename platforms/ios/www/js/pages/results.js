@@ -6,6 +6,7 @@ var results = {
         utils.mask();
         $('#btnBack').click(results.exit);
         $('#btnLike').click(results.likeSelected);
+        $('a.like').click(results.selectAll).prop('disabled', true);
 
         utils.getPersonsForSearch(app.get(consts.KEY_SEARCH_ID), function(resultSet) {
             results.drawResults(resultSet.rows, resultSet.rows.length);
@@ -36,6 +37,7 @@ var results = {
             tr.data('id', person.id).click(results.markLike);
             tblResult.append(tr);
         }
+        if (length > 0) $('a.like').prop('disabled', false);
         setTimeout(utils.unmask, 1000);
     },
 
@@ -44,15 +46,38 @@ var results = {
         var span = $(this).find('span.heart');
         var wasLike = span.hasClass('like');
         if (wasLike) {
-            span.removeClass('like');
-            span.addClass('unlike');
+            span.removeClass('like').addClass('unlike');
         }
         else {
-            span.removeClass('unlike');
-            span.addClass('like');
+            span.removeClass('unlike').addClass('like');
         }
         results.updated[id] = !wasLike;
         return false;
+    },
+
+    selectAll: function() {
+        var wasLike = $(this).hasClass('like-all');
+        if (wasLike) {
+            $(this).removeClass('like-all').addClass('unlike-all').html('Unlike All');
+        }
+        else {
+            $(this).removeClass('unlike-all').addClass('like-all').html('Like All');
+        }
+
+        utils.mask();
+        results.updated = {};
+        $('#tblResults').find('tr').each(function(index) {
+            var id = $(this).data('id');
+            var span = $(this).find('span.heart');
+            if (wasLike) {
+                span.removeClass('like').addClass('unlike');
+            }
+            else {
+                span.removeClass('unlike').addClass('like');
+            }
+            results.updated[id] = !wasLike;
+        });
+        utils.unmask();
     },
 
     likeSelected: function() {

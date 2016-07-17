@@ -32,7 +32,6 @@ var index = {
                 flash.error(utils.getJsonValue(data.status_str));
             }
             else {
-                app.set(consts.KEY_ERROR_MAX, true);
                 app.set(consts.SETTING_LOGIN, login);
                 app.set(consts.SETTING_PASSWORD, password);
                 index.loadProfile();

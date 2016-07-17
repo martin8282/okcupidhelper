@@ -100,7 +100,19 @@ var settings = {
             }
             else completeSettings();
         };
-        nextSetting();
+
+        var selectComplete = function(resultSet) {
+            if (resultSet.rows.length > 0) {
+                utils.execSql('UPDATE searches SET next_page == NULL WHERE id = ?', nextSetting, [ resultSet.rows.item(0).id ]);
+            }
+            else {
+                nextSetting();
+            }
+        };
+
+        utils.execSql('SELECT * FROM searches ' +
+            'WHERE auth_token = ? AND next_page IS NOT NULL ' +
+            'ORDER BY id DESC', selectComplete, [ settings.authCode() ] );
     },
 
     loadSetting: function(key, complete) {

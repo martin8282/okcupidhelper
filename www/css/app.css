@@ -159,14 +159,14 @@ fieldset legend, h3 {
     -moz-box-shadow: 5px 5px 10px -6px rgba(0,0,0,0.39);
     box-shadow: 5px 5px 5px -6px rgba(0,0,0,0.39);
 }
-
+/*
 #divResults.top-nav {
     padding-top: 50px;
 }
 
 #divResults.bottom-nav {
     padding-bottom: 50px;
-}
+}*/
 
 #divResults td {
     vertical-align: middle;
@@ -189,10 +189,32 @@ fieldset legend, h3 {
 
 #divResults span.unlike:after {
     content: '\2665';
-    color: #f1f1ff;
+    color: #ddebff;
 }
 
 #tblResults {
     margin-top: 10px;
     width: 100%;
+}
+
+a.like, a.like:visited {
+    text-decoration: none;
+}
+
+a.like-all:after {
+    content: '\2665\2665';
+    font-size: 2em;
+    color: #ff483f;
+    position: relative;
+    top: 0.2em;
+    margin-left: 0.2em;
+}
+
+a.unlike-all:after {
+    content: '\2665\2665';
+    font-size: 2em;
+    color: #ddebff;
+    position: relative;
+    top: 0.2em;
+    margin-left: 0.2em;
 }

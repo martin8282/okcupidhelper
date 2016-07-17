@@ -14,8 +14,16 @@
     <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.waiting.js"></script>
 </head>
-<body class="with-bottom-nav">
-    <div class="alerts"></div>
+<body class="with-top-nav with-bottom-nav">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid text-right">
+            <a class="like unlike-all navbar-btn">Like All</a>
+        </div>
+        <div class="alerts"></div>
+        <div class="progress hidden"></div>
+    </nav>
+
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <button id="btnBack" data-role="none" type="button" class="btn btn-default navbar-btn pull-left">Back</button>

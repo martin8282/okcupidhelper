@@ -45,7 +45,7 @@ var home = {
     },
 
     startSearch: function() {
-        if (app.get(consts.KEY_ERROR_MAX)) {
+        if (app.get(consts.KEY_ERROR_MAX) == 'true') {
             utils.onSessionMaxCount();
             return;
         }

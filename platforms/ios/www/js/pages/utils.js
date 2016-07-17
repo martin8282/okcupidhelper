@@ -228,11 +228,9 @@ var utils = {
             var data = utils.parseJSON(response.data);
             if (data != null && data.success) {
                 var like = utils.getIntbool(utils.getJsonValue(data.liked));
-                var mutual_like = utils.getIntbool(utils.getJsonValue(data.mutual_like));
                 utils.execSql('UPDATE persons SET ' +
-                    'like = ?, ' +
-                    'mutual_like = ? ' +
-                    'WHERE id = ?', complete, [ like, mutual_like, id ]);
+                    'like = ? ' +
+                    'WHERE id = ?', complete, [ like, id ]);
             }
             else {
                 complete();

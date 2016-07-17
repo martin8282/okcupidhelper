@@ -8,30 +8,42 @@ var app = {
         var logoutOptions = consts.optionsLogout();
         logoutOptions.error = function(response) { utils.navigateTo(consts.PAGE_INDEX) };
         logoutOptions.success = function(response) {
-            var loginOptions = consts.optionsLogin(app.get(consts.SETTING_LOGIN), app.set(consts.SETTING_PASSWORD));
+            /*var loginOptions = consts.optionsLogin(app.get(consts.SETTING_LOGIN), app.get(consts.SETTING_PASSWORD));
+            loginOptions.error = function(response) { utils.navigateTo(consts.PAGE_INDEX) };
             loginOptions.success = function(response) {
                 var data = utils.parseJSON(response.data);
-                alert(JSON.stringify(data));
                 if (data == null || data.status != 0) {
                     utils.navigateTo(consts.PAGE_INDEX);
                 }
                 else {
-                    app.set(consts.KEY_ERROR_MAX, null);
+                    var profileOptions = consts.optionsProfile();
+                    profileOptions.error = function(response) { utils.navigateTo(consts.PAGE_INDEX) };
+                    profileOptions.success = function(response) {
+                        settings.initSettings(utils.parseJSON(response.data), function() {
+                            app.set(consts.KEY_ERROR_MAX, false);
+                            location.reload();
+                        });
+                    };
+                    utils.request(profileOptions);
                 }
             };
             utils.request(loginOptions);
-        };
+            */
 
+            app.set(consts.KEY_ERROR_MAX, false);
+            utils.navigateTo(consts.PAGE_INDEX);
+        };
         utils.request(logoutOptions);
     },
 
     onAppStart: function() {
         var sql = [];
+        /*
         if (app.isDebug()) {
             sql.push("DROP TABLE IF EXISTS persons;");
             sql.push("DROP TABLE IF EXISTS searches;");
             sql.push("DROP TABLE IF EXISTS search_persons;");
-        }
+        }*/
 
         sql.push("CREATE TABLE IF NOT EXISTS settings (key VARCHAR(255) PRIMARY KEY, value TEXT NULL)");
         sql.push("CREATE TABLE IF NOT EXISTS persons (id VARCHAR(255) PRIMARY KEY," +
