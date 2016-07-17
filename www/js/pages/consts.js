@@ -1,7 +1,6 @@
 var consts = {
     ROOT_URL: 'http://www.okcupid.com',
     PAGE_INDEX: 'index.html',
-    PAGE_LOGIN: 'login.html',
     PAGE_HOME: 'home.html',
     PAGE_GEO: 'geo.html',
     PAGE_RESULTS: 'results.html',
@@ -9,9 +8,9 @@ var consts = {
     PAGE_MATCHES: 'matches.html',
 
     BATCH_COUNT: 50,
-    MAX_SEARCH_COUNT: 1000,
+    ERROR_1000: 'max 1000',
 
-    KEY_GOOGLE_API: 'AIzaSyDathjZMlxipK8CpB2JsIiYyp6PGcNJxAI',
+    KEY_ERROR_MAX: 'error_max',
     KEY_CURRENT_PAGE: 'current_page',
     KEY_PREVIOUS_PAGE: 'prev_page',
     KEY_SEARCH_ID: 'search_id',
@@ -44,6 +43,10 @@ var consts = {
 
     optionsLogin: function(login, password) {
         return { method: 'GET', url: 'login', data: { username: login, password: password, okc_api: 1 } }
+    },
+
+    optionsLogout: function() {
+        return { method: 'GET', url: 'logout' }
     },
 
     optionsProfile: function() {

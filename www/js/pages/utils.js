@@ -77,8 +77,22 @@ var utils = {
         flash.error('Status: ' + status + '<br />Message: ' + message + '<br />Headers:' + headersStr);
     },
 
+    onSessionMaxCount: function() {
+        if (confirm('Reached max count of found users for the session. Would you like to re-login?')) app.relogin();
+    },
+
     onRequestError: function(response) {
         utils.unmask();
+
+        if (isDef(response.error) && response.error.indexOf(consts.ERROR_1000) > 0) {
+            app.set(consts.KEY_ERROR_MAX, true);
+            if (isDef(home) && home.search_id > 0) {
+                flash.info('Reached max count of persons found.', 2000);
+                home.finishSearch();
+            }
+            return;
+        }
+
         if (app.isDebug()) {
             utils.showXhrDebug(response.status, response.error, response.headers);
         }

@@ -4,6 +4,14 @@ var app = {
         document.addEventListener('deviceready', app.onPageStart, false);
     },
 
+    relogin: function() {
+        var logoutOptions = consts.optionsLogout();
+        logoutOptions.success = function(response) {
+            utils.navigateTo(consts.PAGE_INDEX);
+        };
+        utils.request(logoutOptions);
+    },
+
     onAppStart: function() {
         var sql = [];
         if (app.isDebug()) {

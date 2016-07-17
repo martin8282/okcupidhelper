@@ -45,6 +45,10 @@ var home = {
     },
 
     startSearch: function() {
+        if (app.get(consts.KEY_ERROR_MAX)) {
+            utils.onSessionMaxCount();
+            return;
+        }
         home.animateButton();
         utils.mask();
 
@@ -52,7 +56,6 @@ var home = {
             home.persons_count = 0;
             if (resultSet.rows.length > 0) {
                 var record = resultSet.rows.item(0);
-                utils.json(record);
                 home.search_id = record.id;
                 home.next_page = record.next_page;
                 home.total_count = record.total_count;
