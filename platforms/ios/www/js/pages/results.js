@@ -58,10 +58,10 @@ var results = {
     selectAll: function() {
         var wasLike = $(this).hasClass('like-all');
         if (wasLike) {
-            $(this).removeClass('like-all').addClass('unlike-all').html('Unlike All');
+            $(this).removeClass('like-all').addClass('unlike-all').html('Like All');
         }
         else {
-            $(this).removeClass('unlike-all').addClass('like-all').html('Like All');
+            $(this).removeClass('unlike-all').addClass('like-all').html('Unlike All');
         }
 
         utils.mask();
@@ -83,6 +83,7 @@ var results = {
     likeSelected: function() {
         var complete = function() {
             utils.unmask();
+            utils.progressHide();
             results.updated = {};
 
             if (results.count) {
@@ -98,6 +99,8 @@ var results = {
         var nextPerson = function() {
             index++;
             if (index < ids.length) {
+                if (ids.length > 10) utils.progress((index + 1) / ids.length * 100, 'Like...');
+
                 var id = ids[index];
                 var like = results.updated[id];
                 if (like) {
