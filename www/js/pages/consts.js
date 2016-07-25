@@ -71,13 +71,9 @@ var consts = {
         return options;
     },
 
-    optionsGeocode: function(latitude, longitude) {
-        return {
-            method: 'GET',
-            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude +
-                ',' + longitude +
-                '&language=en' +
-                '&key=' + consts.KEY_GOOGLE_API
-        }
+    optionsMutualLike: function(auth_token) {
+        var options = { method: 'GET', url: '1/apitun/likes/mutual?limit=100&fields=likes%2Cthumbs%2Cuserinfo%2Clocation' }
+        options.headers = { authorization: 'Bearer ' + auth_token };
+        return options;
     }
 };

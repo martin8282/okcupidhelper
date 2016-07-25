@@ -222,6 +222,62 @@ var utils = {
         alert(JSON.stringify(object));
     },
 
+    extractPerson: function(raw_person) {
+        var person = {};
+        person.id = utils.getJsonValue(raw_person.userid);
+        person.user_name = utils.getJsonValue(raw_person.username);
+        var userInfo = utils.getJsonValue(raw_person.userinfo);
+        person.gender = utils.getJsonValue(userInfo.gender_letter);
+        person.age = utils.getJsonValue(userInfo.age);
+        person.location = utils.getJsonValue(userInfo.location);
+        person.orientation = utils.getJsonValue(userInfo.orientation);
+        person.rel_status = utils.getJsonValue(userInfo.rel_status);
+
+        var likes = utils.getJsonValue(raw_person.likes);
+        person.mutual_like = utils.getIntbool(utils.getJsonValue(likes.mutual_like));
+        person.like = utils.getIntbool(utils.getJsonValue(likes.you_like));
+
+        var thumbs = utils.getJsonValue(raw_person.thumbs);
+        if (thumbs.length > 0) {
+            person.img_url = utils.getJsonValue(thumbs[0]['82x82']);
+        }
+        else {
+            person.img_url = null;
+        }
+
+        return person;
+    },
+
+    savePerson: function(person, complete) {
+        var selectComplete = function(resultSet) {
+            if (resultSet.rows.length > 0) {
+                utils.execSql("UPDATE persons SET " +
+                    "user_name = ?, " +
+                    "gender = ?, " +
+                    "age = ?, " +
+                    "location = ?, " +
+                    "orientation = ?, " +
+                    "rel_status = ?, " +
+                    "img_url = ?, " +
+                    "like = ? " +
+                    "WHERE id = ?", complete,
+                    [ person.user_name, person.gender, person.age, person.location,
+                        person.orientation, person.rel_status, person.img_url,
+                        person.like, person.id ]);
+            }
+            else {
+                utils.execSql("INSERT INTO persons " +
+                    "(id, user_name, gender, age, location, orientation, rel_status, img_url, like) " +
+                    "values (?, ?, ?, ?, ?, ?, ?, ?, ?)", complete,
+                    [ person.id, person.user_name, person.gender, person.age, person.location,
+                        person.orientation, person.rel_status, person.img_url,
+                        person.like ]);
+            }
+        };
+
+        utils.execSql("SELECT id FROM persons WHERE id = ?", selectComplete, [ person.id ]);
+    },
+
     like: function(id, complete) {
         var options = consts.optionsLike(id, settings.authCode());
         options.success = function(response) {
