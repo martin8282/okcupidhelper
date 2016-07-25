@@ -58,10 +58,10 @@ var results = {
     selectAll: function() {
         var wasLike = $(this).hasClass('like-all');
         if (wasLike) {
-            $(this).removeClass('like-all').addClass('unlike-all').html('Like All');
+            $(this).removeClass('like-all').addClass('unlike-all').html('Select All');
         }
         else {
-            $(this).removeClass('unlike-all').addClass('like-all').html('Unlike All');
+            $(this).removeClass('unlike-all').addClass('like-all').html('Unselect All');
         }
 
         utils.mask();
