@@ -108,7 +108,13 @@
    
     manager.responseSerializer = [TextResponseSerializer serializer];
     [manager GET:url parameters:parameters success:^(NSURLSessionTask *task, id responseObject) {
-        
+        if ([url rangeOfString:@"logout"].location != NSNotFound) {
+            [[NSURLCache sharedURLCache] removeAllCachedResponses];
+            NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+            for (NSHTTPCookie *cookie in [storage cookies]) {
+                [storage deleteCookie:cookie];
+            }
+        }
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         [self setResults: dictionary withTask: task];
         [dictionary setObject:responseObject forKey:@"data"];

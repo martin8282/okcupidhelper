@@ -15,6 +15,7 @@ var consts = {
     KEY_PREVIOUS_PAGE: 'prev_page',
     KEY_SEARCH_ID: 'search_id',
     KEY_SEARCH_PAGE: 'next_search',
+    KEY_SEARCH_RESET: 'reset_search',
 
     SETTING_LOGIN: 'login',
     SETTING_PASSWORD: 'password',

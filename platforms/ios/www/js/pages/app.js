@@ -8,7 +8,7 @@ var app = {
         var logoutOptions = consts.optionsLogout();
         logoutOptions.error = function(response) { utils.navigateTo(consts.PAGE_INDEX) };
         logoutOptions.success = function(response) {
-            /*var loginOptions = consts.optionsLogin(app.get(consts.SETTING_LOGIN), app.get(consts.SETTING_PASSWORD));
+            var loginOptions = consts.optionsLogin(app.get(consts.SETTING_LOGIN), app.get(consts.SETTING_PASSWORD));
             loginOptions.error = function(response) { utils.navigateTo(consts.PAGE_INDEX) };
             loginOptions.success = function(response) {
                 var data = utils.parseJSON(response.data);
@@ -28,10 +28,8 @@ var app = {
                 }
             };
             utils.request(loginOptions);
-            */
 
             app.set(consts.KEY_ERROR_MAX, false);
-            utils.navigateTo(consts.PAGE_INDEX);
         };
         utils.request(logoutOptions);
     },
@@ -93,7 +91,7 @@ var app = {
     },
 
     isDebug: function() {
-        return true;
+        return false;
     },
 
     currentPage: function(pageName) {

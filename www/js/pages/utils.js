@@ -336,5 +336,21 @@ var utils = {
         sql += ' ORDER BY persons.like, persons.age';
 
         utils.execSql(sql, complete, [ id ]);
+    },
+
+    resetSearch: function(complete) {
+        var searchId = app.get(consts.KEY_SEARCH_ID);
+        if (searchId != null && searchId > 0) {
+
+            app.set(consts.KEY_SEARCH_ID, -1);
+            app.get(consts.KEY_SEARCH_RESET, null);
+
+            utils.execSql('UPDATE searches SET ' +
+                'next_page = NULL ' +
+                'WHERE id = ?', complete, [searchId]);
+        }
+        else {
+            complete();
+        }
     }
 }

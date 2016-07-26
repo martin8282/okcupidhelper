@@ -6,7 +6,7 @@ var home = {
     next_page: null,
 
     init: function() {
-        $('#btnSearch').click(home.startSearch);
+        $('#btnSearch').unbind('click').click(home.startSearch);
         $('#btnSettings').click(function() { utils.navigateTo(consts.PAGE_SETTINGS); });
         $('#btnMatches').click(function() { utils.navigateTo(consts.PAGE_MATCHES); });
         $('#lbLocation').html(settings.locationName());
@@ -49,7 +49,6 @@ var home = {
             utils.onSessionMaxCount();
             return;
         }
-        home.animateButton();
         utils.mask();
 
         var selectComplete = function(resultSet) {
@@ -174,6 +173,7 @@ var home = {
         var likeComplete = function() {
             utils.progressHide();
             utils.unmask();
+            home.initLikeButtons();
         };
 
         var selectComplete = function(resultSet) {

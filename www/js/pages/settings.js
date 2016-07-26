@@ -1,4 +1,5 @@
 var settings = {
+
     init: function() {
         // location
         $('#lbLocation').html('Location: ' + settings.locationName());
@@ -25,6 +26,8 @@ var settings = {
 
         $('#btnLocation').click(function() { utils.navigateTo(consts.PAGE_GEO); });
         $('#btnBack').click(settings.exit);
+
+        if (app.previousPage() == consts.PAGE_HOME) app.set(consts.KEY_SEARCH_RESET, null);
     },
 
     exit: function() {
@@ -32,7 +35,16 @@ var settings = {
             flash.error('Please, check who you want to find', 3000);
             return;
         }
-        settings.saveSettings(function() { utils.navigateTo(consts.PAGE_HOME); });
+        var saveComplete = function() {
+            var resetSearch = app.get(consts.KEY_SEARCH_RESET) == 'true';
+            if (resetSearch) {
+                utils.resetSearch(function() { utils.navigateTo(consts.PAGE_HOME); })
+            }
+            else {
+                utils.navigateTo(consts.PAGE_HOME);
+            }
+        };
+        settings.saveSettings(saveComplete);
     },
 
     getSettingsKeys: function() {
@@ -126,19 +138,23 @@ var settings = {
     changeDistance: function() {
         var distance = $('#sldDistance').val()
         settings.distance(distance);
+        app.set(consts.KEY_SEARCH_RESET, true);
         $('#lbDistance').html('Distance: ' + distance + ' miles');
     },
 
     changeNumber: function() {
         settings.number($('#sldNumber').val());
+        app.set(consts.KEY_SEARCH_RESET, true);
     },
 
     changeAgeFrom: function() {
         settings.ageFrom($('#sldAgeFrom').val());
+        app.set(consts.KEY_SEARCH_RESET, true);
     },
 
     changeAgeTo: function() {
         settings.ageTo($('#sldAgeTo').val());
+        app.set(consts.KEY_SEARCH_RESET, true);
     },
 
     changeFindWho: function() {
@@ -151,6 +167,7 @@ var settings = {
         else if (isMen) { findWho = consts.GENDER_MEN }
 
         settings.findWho(findWho);
+        app.set(consts.KEY_SEARCH_RESET, true);
     },
 
     // settings properties
@@ -181,6 +198,7 @@ var settings = {
     locationId: function(locationId) {
         if (isDef(locationId)) {
             if (locationId == consts) return consts.SETTING_LOCATION;
+            if (app.get(consts.SETTING_LOCATION) != String(locationId)) app.set(consts.KEY_SEARCH_RESET, true);
             app.set(consts.SETTING_LOCATION, locationId);
         }
         return app.get(consts.SETTING_LOCATION);

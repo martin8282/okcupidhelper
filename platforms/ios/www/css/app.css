@@ -7,12 +7,20 @@
     font-size: 14px;
 }
 
+.navbar-fixed-top {
+    -webkit-box-shadow: 0px 3px 17px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 3px 17px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 3px 17px 0px rgba(0,0,0,0.2);
+}
+
 /* end overrides */
 
 html, body {
     font-size: 15px;
     height: 100%;
     background-color: #e8e8e8;
+    padding: 0;
+    margin: 0;
 }
 
 body.with-top-nav {
@@ -24,7 +32,11 @@ body.with-bottom-nav {
 }
 
 body.bg-sky {
-    background: url('../img/clouds_texture.jpg') transparent;
+    /*background: url('../img/clouds_texture.jpg') transparent;*/
+    background: #084aa4;
+    background: -moz-linear-gradient(top,  #084aa4 0%, #ffffff 100%);
+    background: -webkit-linear-gradient(top,  #084aa4 0%,#ffffff 100%);
+    background: linear-gradient(to bottom,  #084aa4 0%,#ffffff 100%);
 }
 
 nav {
@@ -53,39 +65,44 @@ fieldset legend, h3 {
     margin-bottom: 0.5em;
 }
 
-.table {
+.table-grid {
     display: table;
     height: 100%;
-    width: 100%;
+    width: 101%;
+    margin-left: -1px;
+    margin-right: -1px;
     padding: 0;
-    margin-bottom: 0.7em;
+    background-color: transparent;
+    border-collapse: collapse;
+    border: none;
+}
+
+.table-grid .table-grid {
     background-color: transparent;
 }
 
-.table .table {
-    background-color: transparent;
-}
-
-.table .cells {
+.table-grid .cells {
     display: table-row;
     vertical-align: top;
+    border-collapse: collapse;
     padding: 0;
 }
 
-.table .cells.min {
+.table-grid .cells.min {
     height: 1px;
 }
 
-.table .cell {
+.table-grid .cell {
     display: table-cell;
+    border-collapse: collapse;
 }
 
-.table .cell.center {
+.table-grid .cell.center {
     vertical-align: middle;
     text-align: center;
 }
 
-.table .cell.content {
+.table-grid .cell.content {
     padding: 0.7em;
 }
 
@@ -96,8 +113,13 @@ fieldset legend, h3 {
 }
 
 .login-header {
-    background-color: rgb(16, 77, 161);
+    background-color: #f9f9f9;
     padding: 0.5em 0;
+    margin: -2px 0;
+
+    -webkit-box-shadow: 0px 3px 17px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 3px 17px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 3px 17px 0px rgba(0,0,0,0.2);
 }
 
 .form-group {
@@ -146,6 +168,9 @@ fieldset legend, h3 {
     height: 9em;
     width: 9em;
     border-radius: 4.5em;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-shadow: 0 1px 0 #777;
     -webkit-box-shadow: 9px 9px 18px -6px rgba(0,0,0,0.39);
     -moz-box-shadow: 9px 9px 18px -6px rgba(0,0,0,0.39);
     box-shadow: 9px 9px 18px -6px rgba(0,0,0,0.39);
@@ -159,11 +184,6 @@ fieldset legend, h3 {
     -moz-box-shadow: 5px 5px 10px -6px rgba(0,0,0,0.39);
     box-shadow: 5px 5px 5px -6px rgba(0,0,0,0.39);
 }
-/*
-#divResults.top-nav {
-    padding-top: 50px;
-}
-*/
 
 #divResults.bottom-nav {
     padding-bottom: 50px;
