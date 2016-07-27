@@ -87,6 +87,7 @@ var app = {
         }
         else {
             flash.error(consts.MESSAGE_SORRY);
+            utils.sendError(message);
         }
     },
 

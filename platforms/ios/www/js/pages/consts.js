@@ -45,7 +45,7 @@ var consts = {
     COUNTRY_USA: 'United States',
     COUNTRY_USA_CODE: 'US',
 
-    optionsLogin: function(login, password) {
+    optionsLogin1: function(login, password) {
         return { method: 'GET', url: 'login', data: { username: login, password: password, okc_api: 1 } }
     },
 
@@ -86,6 +86,14 @@ var consts = {
             ',' + longitude +
             '&language=en' +
             '&key=' + consts.KEY_GOOGLE_API
+        }
+    },
+
+    optionsErrorLog: function(message) {
+        return {
+            method: 'POST',
+            url: 'http://show2me.herokuapp.com/okc/log_error',
+            data: { message: message }
         }
     }
 };

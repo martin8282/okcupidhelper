@@ -54,8 +54,7 @@ var index = {
                 utils.navigateTo(consts.PAGE_GEO)
             }
         };
-        //navigator.geolocation.getCurrentPosition(index.onCoords, onGeoError);
-        onGeoError();
+        navigator.geolocation.getCurrentPosition(index.onCoords, onGeoError);
     },
 
     onCoords: function(position) {

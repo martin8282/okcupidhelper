@@ -81,6 +81,16 @@ var utils = {
         if (confirm('Reached max count of found users for the session. Would you like to re-login?')) app.relogin();
     },
 
+    sendError: function(message) {
+        try {
+            var options = consts.optionsErrorLog(message);
+            options.success = function(response) { };
+            utils.request(options);
+        }
+        catch (ex) {
+        }
+    },
+
     onRequestError: function(response) {
         utils.unmask();
 
@@ -98,6 +108,7 @@ var utils = {
         }
         else {
             flash.error(consts.MESSAGE_SORRY_REQUEST);
+            utils.sendError(JSON.stringify(response));
         }
     },
 
@@ -301,13 +312,17 @@ var utils = {
         if (!isDef(options)) options = {};
         if (!isDef(options.select_count)) options.select_count = false;
         if (!isDef(options.condition)) options.condition = null;
+        if (!isDef(options.limit)) options.limit = null;
 
         var sql = options.select_count ?
             'SELECT count(id) as count FROM persons ' :
             'SELECT * FROM persons ';
 
         if (options.condition) sql += ' WHERE ' + options.condition;
+
         sql += ' ORDER BY like, age';
+
+        if (options.limit) sql += ' LIMIT ' + options.limit;
 
         utils.execSql(sql, complete);
     },

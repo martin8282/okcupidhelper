@@ -13,7 +13,7 @@ var matches = {
     showAll: function() {
         utils.getPersons(function(resultSet) {
             matches.drawResults(resultSet.rows, resultSet.rows.length);
-        }, { condition: 'like = 1' });
+        }, { condition: 'like = 1', limit: 400 });
     },
 
     showMatches: function() {
