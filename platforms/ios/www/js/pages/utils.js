@@ -82,12 +82,9 @@ var utils = {
     },
 
     sendError: function(message) {
-        alert(message);
         try {
             var options = consts.optionsErrorLog(message);
-            options.success = function(response) {
-                alert(response);
-            }
+            options.success = function(response) { };
             utils.request(options);
         }
         catch (ex) {

@@ -1,8 +1,8 @@
 var home = {
-    persons_count: 0,
-    total_count: 0,
+    persons_count: 0, // Current click search count - expected to be < Settings count (400)
+    total_count: 0, // Max count for current search - usually 1000
+    found_count: 0, // Current search count - expected to be < total_count (1000)
     search_id: -1,
-    found_count: 0,
     next_page: null,
 
     init: function() {
@@ -164,7 +164,7 @@ var home = {
         var saveComplete = function() {
             utils.execSql("INSERT INTO search_persons (search_id, person_id) VALUES (?, ?)",
                 insertComplete, [home.search_id, person.id]);
-        }
+        };
 
         utils.savePerson(person, saveComplete);
     },
