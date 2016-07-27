@@ -45,7 +45,7 @@ var consts = {
     COUNTRY_USA: 'United States',
     COUNTRY_USA_CODE: 'US',
 
-    optionsLogin1: function(login, password) {
+    optionsLogin: function(login, password) {
         return { method: 'GET', url: 'login', data: { username: login, password: password, okc_api: 1 } }
     },
 
