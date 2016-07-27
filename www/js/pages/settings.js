@@ -136,7 +136,7 @@ var settings = {
     },
 
     changeDistance: function() {
-        var distance = $('#sldDistance').val()
+        var distance = $('#sldDistance').val();
         settings.distance(distance);
         app.set(consts.KEY_SEARCH_RESET, true);
         $('#lbDistance').html('Distance: ' + distance + ' miles');

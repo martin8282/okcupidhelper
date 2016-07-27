@@ -3,14 +3,11 @@ var results = {
     count: 0,
 
     init: function() {
-        utils.mask();
         $('#btnBack').click(results.exit);
         $('#btnLike').click(results.likeSelected);
-        $('a.like').click(results.selectAll).prop('disabled', true);
+        $('a.like').click(results.selectAll);
 
-        utils.getPersonsForSearch(app.get(consts.KEY_SEARCH_ID), function(resultSet) {
-            results.drawResults(resultSet.rows, resultSet.rows.length);
-        });
+        results.show();
     },
 
     exit: function() {
@@ -18,8 +15,25 @@ var results = {
         utils.navigateBack();
     },
 
+    show: function() {
+        utils.mask();
+        utils.getPersonsForSearch(app.get(consts.KEY_SEARCH_ID), function(resultSet) {
+            results.drawResults(resultSet.rows, resultSet.rows.length);
+        }, { condition: 'like = 0' });
+    },
+
     drawResults: function(rows, length) {
+        $('a.like').hide();
+        $('#btnLike').prop('disabled', true);
+
         var tblResult = $('#tblResults');
+        tblResult.empty();
+        if (length == 0) {
+            flash.info('No new users found', 1000);
+            utils.unmask();
+            return;
+        }
+
         for (var index = 0; index < length; index++) {
             var person = rows.item(index);
             var tr = $('<tr></tr>');
@@ -37,8 +51,11 @@ var results = {
             tr.data('id', person.id).click(results.markLike);
             tblResult.append(tr);
         }
-        if (length > 0) $('a.like').prop('disabled', false);
-        setTimeout(utils.unmask, 1000);
+        if (length > 0) {
+            $('a.like').show();
+            $('#btnLike').prop('disabled', false);
+        }
+        utils.unmask();
     },
 
     markLike: function() {
@@ -86,7 +103,8 @@ var results = {
             utils.progressHide();
             results.updated = {};
 
-            if (results.count) {
+            if (results.count > 0) {
+                results.show();
                 flash.info('Completed! (' + results.count + ' users)' , 2000);
             }
             else {

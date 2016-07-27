@@ -24,27 +24,37 @@ var utils = {
         if (!isDef(options.error)) options.error = utils.onRequestError;
         if (!isDef(options.show_mask)) options.show_mask = true;
 
+        var doRequest = function(url, requestOptions, requestSuccess, requestError) {
+            if (requestOptions.show_mask) utils.mask();
+            if (requestOptions.method.toLowerCase() == 'get') {
+                cordovaHTTP.get(url, requestOptions.data, requestOptions.headers, requestSuccess, requestError);
+            }
+            else if (requestOptions.method.toLowerCase() == 'post') {
+                cordovaHTTP.post(url, requestOptions.data, requestOptions.headers, requestSuccess, requestError);
+            }
+            else {
+                throw 'Method unknown';
+            }
+        };
+
         var success = function(response) {
             if (options.show_mask) utils.unmask();
             options.success(response);
         };
 
+        var count = 0;
         var error = function(response) {
-            if (options.show_mask) utils.unmask();
-            options.error(response);
+            if (count < 3) {
+                count++;
+                utils.doRequest(requestUrl, options, success, error);
+            }
+            else {
+                if (options.show_mask) utils.unmask();
+                options.error(response);
+            }
         };
 
-        if (options.show_mask) utils.mask();
-
-        if (options.method.toLowerCase() == 'get') {
-            cordovaHTTP.get(requestUrl, options.data, options.headers, success, error);
-        }
-        else if (options.method.toLowerCase() == 'post') {
-            cordovaHTTP.post(requestUrl, options.data, options.headers, success, error);
-        }
-        else {
-            throw 'Method unknown';
-        }
+        doRequest(requestUrl, options, success, error);
     },
 
     mask: function(message) {
