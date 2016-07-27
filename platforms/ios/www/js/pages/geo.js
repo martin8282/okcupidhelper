@@ -8,8 +8,15 @@ var geo = {
     },
 
     initCountries: function() {
+        var selectedCountry = null;
+        var locationName = settings.locationName();
+        if (locationName && locationName.indexOf(', ') > 2) {
+            selectedCountry = locationName.substr(locationName.indexOf(', ') + 2);
+        }
+
         $.each(countries, function(index, data) {
             var option = $('<option></option>').val(data.value).html(data.name);
+            if (selectedCountry && selectedCountry == data.name) option.prop('selected', true);
             $('#ddlCountry').append(option);
         });
 
@@ -75,7 +82,7 @@ var geo = {
             var data = utils.parseJSON(response.data);
             if (data == null) return;
             complete(data.message, utils.getJsonValue(data.results))
-        }
+        };
 
         utils.request(options);
     },

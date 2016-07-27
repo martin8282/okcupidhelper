@@ -1,10 +1,6 @@
 var index = {
     init: function() {
         $('#btnLogin').click(index.doLogin);
-        if (app.isDebug()) {
-            $('#tbLogin').val('bubonski');
-            $('#tbPassword').val('Merg1980');
-        }
     },
 
     doLogin: function() {
@@ -58,7 +54,8 @@ var index = {
                 utils.navigateTo(consts.PAGE_GEO)
             }
         };
-        navigator.geolocation.getCurrentPosition(index.onCoords, onGeoError);
+        //navigator.geolocation.getCurrentPosition(index.onCoords, onGeoError);
+        onGeoError();
     },
 
     onCoords: function(position) {
@@ -74,17 +71,23 @@ var index = {
             var postal_code = null;
             var country = null;
             var country_short = null;
+
             for (var idx = 0; idx < address.length; idx++) {
                 var component = address[idx];
                 if (location == null && $.inArray('locality', component.types) >= 0) {
                     location = component.long_name;
                 }
-                if (postal_code == null && $.inArray('postal_code', component.types) >= 0) {
-                    postal_code = component.long_name;
+
+                if ($.inArray('postal_town', component.types) >= 0) {
+                    location = component.long_name;
                 }
+
                 if (country == null && $.inArray('country', component.types) >= 0) {
                     country = component.long_name;
                     country_short = component.short_name;
+                }
+                if (postal_code == null && $.inArray('postal_code', component.types) >= 0) {
+                    postal_code = component.long_name;
                 }
             }
 
@@ -93,6 +96,7 @@ var index = {
                 country_short == consts.COUNTRY_USA_CODE ? postal_code : location,
                 function(message, records) {
                     if (records.length == 0) {
+                        settings.locationName(country, location);
                         utils.navigateTo(consts.PAGE_GEO);
                     }
                     else if (records.length >= 1) {
