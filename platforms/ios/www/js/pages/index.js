@@ -59,13 +59,6 @@ var index = {
             }
         };
         navigator.geolocation.getCurrentPosition(index.onCoords, onGeoError);
-        /*
-        if (settings.locationId() != null) {
-            utils.navigateTo(consts.PAGE_HOME);
-        }
-        else {
-            navigator.geolocation.getCurrentPosition(index.onCoords, onGeoError);
-        }*/
     },
 
     onCoords: function(position) {

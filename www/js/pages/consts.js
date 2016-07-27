@@ -9,6 +9,7 @@ var consts = {
 
     BATCH_COUNT: 50,
     ERROR_1000: 'max 1000',
+    KEY_GOOGLE_API: 'AIzaSyDathjZMlxipK8CpB2JsIiYyp6PGcNJxAI',
 
     KEY_ERROR_MAX: 'error_max',
     KEY_CURRENT_PAGE: 'current_page',
@@ -76,5 +77,15 @@ var consts = {
         var options = { method: 'GET', url: '1/apitun/likes/mutual?limit=100&fields=likes%2Cthumbs%2Cuserinfo%2Clocation' }
         options.headers = { authorization: 'Bearer ' + auth_token };
         return options;
+    },
+
+    optionsGeocode: function(latitude, longitude) {
+        return {
+            method: 'GET',
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude +
+            ',' + longitude +
+            '&language=en' +
+            '&key=' + consts.KEY_GOOGLE_API
+        }
     }
 };
