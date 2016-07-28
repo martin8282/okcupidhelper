@@ -5,7 +5,7 @@ var results = {
     init: function() {
         $('#btnBack').click(results.exit);
         $('#btnLike').click(results.likeSelected);
-        $('a.like').click(results.selectAll);
+        $('#btnLikeAll').click(results.selectAll);
 
         results.show();
     },
@@ -23,7 +23,7 @@ var results = {
     },
 
     drawResults: function(rows, length) {
-        $('a.like').hide();
+        $('btnLikeAll').prop('disabled', true);
         $('#btnLike').prop('disabled', true);
 
         var tblResult = $('#tblResults');
@@ -45,14 +45,14 @@ var results = {
             td = $('<td><span class="person>"><b>' + person.user_name + ' (' + person.age + ')</b><br />' + person.rel_status +'</span></td>');
             tr.append(td);
 
-            td = $('<td><span class="user-heart ' + (person.like == 1 ? 'like' : 'unlike') + '"></span></td>');
+            td = $('<td><span class="heart' + (person.like == 1 ? ' like' : '') + '"></span></td>');
             tr.append(td);
 
             tr.data('id', person.id).click(results.markLike);
             tblResult.append(tr);
         }
         if (length > 0) {
-            $('a.like').show();
+            $('btnLikeAll').prop('disabled', false);
             $('#btnLike').prop('disabled', false);
         }
         utils.unmask();
@@ -60,37 +60,32 @@ var results = {
 
     markLike: function() {
         var id = $(this).data('id');
-        var span = $(this).find('span.user-heart');
+        var span = $(this).find('span.heart');
         var wasLike = span.hasClass('like');
-        if (wasLike) {
-            span.removeClass('like').addClass('unlike');
-        }
-        else {
-            span.removeClass('unlike').addClass('like');
-        }
+        span.toggleClass('like');
         results.updated[id] = !wasLike;
         return false;
     },
 
     selectAll: function() {
-        var wasLike = $(this).hasClass('like-all');
+        var wasLike = $(this).hasClass('like');
         if (wasLike) {
-            $(this).removeClass('like-all').addClass('unlike-all').html('Select All');
+            $(this).removeClass('like').html('Select All');
         }
         else {
-            $(this).removeClass('unlike-all').addClass('like-all').html('Unselect All');
+            $(this).addClass('like').html('Unselect All');
         }
 
         utils.mask();
         results.updated = {};
         $('#tblResults').find('tr').each(function(index) {
             var id = $(this).data('id');
-            var span = $(this).find('span.user-heart');
+            var span = $(this).find('span.heart');
             if (wasLike) {
-                span.removeClass('like').addClass('unlike');
+                span.removeClass('like');
             }
             else {
-                span.removeClass('unlike').addClass('like');
+                span.addClass('like');
             }
             results.updated[id] = !wasLike;
         });

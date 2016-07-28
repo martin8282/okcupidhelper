@@ -86,7 +86,7 @@ var matches = {
         td = $('<td><span class="person>"><b>' + person.user_name + ' (' + person.age + ')</b><br />' + person.rel_status +'</span></td>');
         tr.append(td);
 
-        td = $('<td><span class="user-heart ' + (person.like == 1 ? 'like' : 'unlike') + '"></span></td>');
+        td = $('<td><span class="heart ' + (person.like == 1 ? 'like' : 'unlike') + '"></span></td>');
         tr.append(td);
 
         tr.data('id', person.id);
