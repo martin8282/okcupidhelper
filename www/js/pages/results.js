@@ -18,7 +18,6 @@ var results = {
     show: function() {
         utils.mask();
         utils.getPersonsForSearch(app.get(consts.KEY_SEARCH_ID), function(resultSet) {
-            alert('users size ' + resultSet.rows.length);
             results.drawResults(resultSet.rows, resultSet.rows.length);
         }, { condition: 'like = 0' });
     },
@@ -46,8 +45,7 @@ var results = {
             td = $('<td><span class="person>"><b>' + person.user_name + ' (' + person.age + ')</b><br />' + person.rel_status +'</span></td>');
             tr.append(td);
 
-            alert(person.like);
-            td = $('<td><span class="heart ' + (person.like == 1 ? 'like' : 'unlike') + '"></span></td>');
+            td = $('<td><span class="user-heart ' + (person.like == 1 ? 'like' : 'unlike') + '"></span></td>');
             tr.append(td);
 
             tr.data('id', person.id).click(results.markLike);
@@ -62,8 +60,7 @@ var results = {
 
     markLike: function() {
         var id = $(this).data('id');
-        alert(id);
-        var span = $(this).find('span.heart');
+        var span = $(this).find('span.user-heart');
         var wasLike = span.hasClass('like');
         if (wasLike) {
             span.removeClass('like').addClass('unlike');
@@ -88,7 +85,7 @@ var results = {
         results.updated = {};
         $('#tblResults').find('tr').each(function(index) {
             var id = $(this).data('id');
-            var span = $(this).find('span.heart');
+            var span = $(this).find('span.user-heart');
             if (wasLike) {
                 span.removeClass('like').addClass('unlike');
             }

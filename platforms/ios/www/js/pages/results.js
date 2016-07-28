@@ -45,7 +45,7 @@ var results = {
             td = $('<td><span class="person>"><b>' + person.user_name + ' (' + person.age + ')</b><br />' + person.rel_status +'</span></td>');
             tr.append(td);
 
-            td = $('<td><span class="heart ' + (person.like == 1 ? 'like' : 'unlike') + '"></span></td>');
+            td = $('<td><span class="user-heart ' + (person.like == 1 ? 'like' : 'unlike') + '"></span></td>');
             tr.append(td);
 
             tr.data('id', person.id).click(results.markLike);
@@ -60,7 +60,7 @@ var results = {
 
     markLike: function() {
         var id = $(this).data('id');
-        var span = $(this).find('span.heart');
+        var span = $(this).find('span.user-heart');
         var wasLike = span.hasClass('like');
         if (wasLike) {
             span.removeClass('like').addClass('unlike');
@@ -85,7 +85,7 @@ var results = {
         results.updated = {};
         $('#tblResults').find('tr').each(function(index) {
             var id = $(this).data('id');
-            var span = $(this).find('span.heart');
+            var span = $(this).find('span.user-heart');
             if (wasLike) {
                 span.removeClass('like').addClass('unlike');
             }

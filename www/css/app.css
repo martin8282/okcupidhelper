@@ -198,18 +198,18 @@ fieldset legend, h3 {
     font-size: 1.2em;
 }
 
-#divResults span.heart {
+#divResults span.user-heart {
     font-size: 2em;
     font-weight: bold;
 }
 
 #divResults span.like:after {
-    content: '\2665';
+    content: '\2764';
     color: #ff483f;
 }
 
 #divResults span.unlike:after {
-    content: '\2665';
+    content: '\2764';
     color: #ddebff;
 }
 
@@ -223,7 +223,7 @@ a.like, a.like:visited {
 }
 
 a.like-all:after {
-    content: '\2665\2665';
+    content: '\2764\2764';
     font-size: 2em;
     color: #ff483f;
     position: relative;
@@ -232,7 +232,7 @@ a.like-all:after {
 }
 
 a.unlike-all:after {
-    content: '\2665\2665';
+    content: '\2764\2764';
     font-size: 2em;
     color: #ddebff;
     position: relative;
