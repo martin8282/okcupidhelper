@@ -204,12 +204,12 @@ fieldset legend, h3 {
 }
 
 #divResults span.like:after {
-    content: '\2764';
+    content: '\2665';
     color: #ff483f;
 }
 
 #divResults span.unlike:after {
-    content: '\2764';
+    content: '\2661';
     color: #ddebff;
 }
 
@@ -223,7 +223,7 @@ a.like, a.like:visited {
 }
 
 a.like-all:after {
-    content: '\2764\2764';
+    content: '\2665\2665';
     font-size: 2em;
     color: #ff483f;
     position: relative;
@@ -232,7 +232,7 @@ a.like-all:after {
 }
 
 a.unlike-all:after {
-    content: '\2764\2764';
+    content: '\2661\2661';
     font-size: 2em;
     color: #ddebff;
     position: relative;
