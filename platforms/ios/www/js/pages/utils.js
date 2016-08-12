@@ -330,7 +330,7 @@ var utils = {
 
         if (options.condition) sql += ' WHERE ' + options.condition;
 
-        sql += ' ORDER BY like, age';
+        sql += ' ORDER BY id desc';
 
         if (options.limit) sql += ' LIMIT ' + options.limit;
 
