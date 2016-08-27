@@ -44,15 +44,7 @@ var home = {
         utils.getPersonsForSearch(app.get(consts.KEY_SEARCH_ID), selectAllComplete, { select_count: true });
     },
 
-    startSearch: function() {
-        var payCheckComplete = function(resSet){
-            var res = resSet.rows.item(0);
-            var numOfAttemps = res.number_of_uses;
-           flash.error(numOfAttemps, 2000);
-        }
-
-        utils.execSql('SELECT * FROM pay_identifier', payCheckComplete, null);
-
+    continueSearch: function() {
         if (app.get(consts.KEY_ERROR_MAX) == 'true') {
             utils.onSessionMaxCount();
             return;
@@ -85,6 +77,28 @@ var home = {
         utils.execSql('SELECT * FROM searches ' +
             'WHERE auth_token = ? AND next_page IS NOT NULL ' +
             'ORDER BY id DESC', selectComplete, [ settings.authCode() ] );
+    },
+
+    startSearch: function() {
+        var payCheckComplete = function(resSet){
+            var res = resSet.rows.item(0);
+            var numOfAttemps = res.number_of_uses;
+            var payIndicator = res.pay_indent;
+            if(numOfAttemps > 0 || payIndicator == 1){
+                flash.show('info', "your have " + numOfAttemps + " trial searches left", 2000);
+                var sqlcommand = 'UPDATE pay_identifier SET number_of_uses=' + (numOfAttemps - 1) + ' WHERE first_insert=0';
+                //flash.show('info',sqlcommand, 4000);
+                utils.execSql(sqlcommand, home.continueSearch, null);
+
+            }
+            else{
+                flash.error(numOfAttemps, 2000);
+            }
+        }
+
+        utils.execSql('SELECT * FROM pay_identifier', payCheckComplete, null);
+
+
     },
 
     finishSearch: function() {

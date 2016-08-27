@@ -41,6 +41,7 @@ var app = {
             sql.push("DROP TABLE IF EXISTS persons;");
             sql.push("DROP TABLE IF EXISTS searches;");
             sql.push("DROP TABLE IF EXISTS search_persons;");
+            sql.push("DROP TABLE IF EXISTS pay_identifier;");
         }
 
         sql.push("CREATE TABLE IF NOT EXISTS settings (key VARCHAR(255) PRIMARY KEY, value TEXT NULL)");
@@ -66,8 +67,8 @@ var app = {
         sql.push("CREATE TABLE IF NOT EXISTS search_persons (search_id INT, person_id INT)");
         sql.push("CREATE INDEX IF NOT EXISTS search_persons_search_id ON search_persons (search_id)");
         sql.push("CREATE INDEX IF NOT EXISTS search_persons_person_id ON search_persons (person_id)");
-        sql.push("CREATE TABLE IF NOT EXISTS pay_identifier (number_of_uses INT, pay_identifier INT, first_insert INT, UNIQUE(first_insert))");
-        sql.push("INSERT OR IGNORE INTO pay_identifier(number_of_uses, pay_identifier, first_insert) VALUES(4, 0, 0)");
+        sql.push("CREATE TABLE IF NOT EXISTS pay_identifier (number_of_uses INT, pay_indent INT, first_insert INT, UNIQUE(first_insert))");
+        sql.push("INSERT OR IGNORE INTO pay_identifier(number_of_uses, pay_indent, first_insert) VALUES(4, 0, 0)");
 
 
         utils.execSqlBatch(sql);
