@@ -1,0 +1,66 @@
+{
+  "name": "cordova-plugin-sqlite",
+  "version": "1.0.3",
+  "description": "Cordova SQLite Plugin",
+  "cordova": {
+    "id": "cordova-plugin-sqlite",
+    "platforms": [
+      "android",
+      "amazon-fireos",
+      "ios",
+      "wp7",
+      "wp8",
+      "windows"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypery2k/cordova-sqlite-plugin.git"
+  },
+  "keywords": [
+    "cordova",
+    "sqlite",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-amazon-fireos",
+    "cordova-ios",
+    "cordova-wp7",
+    "cordova-wp8",
+    "cordova-windows"
+  ],
+  "author": {
+    "name": "Martin Reinhardt"
+  },
+  "license": "MIT",
+  "gitHead": "781e246f88d306241fe7d5701592245f7cff7fbf",
+  "bugs": {
+    "url": "https://github.com/hypery2k/cordova-sqlite-plugin/issues"
+  },
+  "homepage": "https://github.com/hypery2k/cordova-sqlite-plugin#readme",
+  "_id": "cordova-plugin-sqlite@1.0.3",
+  "scripts": {},
+  "_shasum": "09ffac529e9045aabb0bf1e98f440f5a5ef1fc27",
+  "_from": "cordova-plugin-sqlite@latest",
+  "_npmVersion": "2.14.7",
+  "_nodeVersion": "4.2.2",
+  "_npmUser": {
+    "name": "hypery2k",
+    "email": "contact@martinreinhardt-online.de"
+  },
+  "dist": {
+    "shasum": "09ffac529e9045aabb0bf1e98f440f5a5ef1fc27",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-sqlite/-/cordova-plugin-sqlite-1.0.3.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "hypery2k",
+      "email": "npm@martinreinhardt-online.de"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-9-west.internal.npmjs.com",
+    "tmp": "tmp/cordova-plugin-sqlite-1.0.3.tgz_1454612994337_0.10792476031929255"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-sqlite/-/cordova-plugin-sqlite-1.0.3.tgz"
+}

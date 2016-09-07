@@ -87,18 +87,46 @@ var home = {
             if(numOfAttemps > 0 || payIndicator == 1){
                 flash.show('info', "your have " + numOfAttemps + " trial searches left", 2000);
                 var sqlcommand = 'UPDATE pay_identifier SET number_of_uses=' + (numOfAttemps - 1) + ' WHERE first_insert=0';
-                //flash.show('info',sqlcommand, 4000);
+
                 utils.execSql(sqlcommand, home.continueSearch, null);
 
             }
             else{
-                flash.error(numOfAttemps, 2000);
+                navigator.notification.confirm("Unlimited searches $2.99", home.onConfirm, "Purchase required", ["Ok","Cancel"]);
             }
         }
 
         utils.execSql('SELECT * FROM pay_identifier', payCheckComplete, null);
 
 
+    },
+
+    onConfirm: function(buttonIndex){
+        if(buttonIndex == 1){
+            // store.when("com.okcupid.okcupidhelper.1").approved(function(p) {
+
+            inAppPurchase
+                .buy("com.okcupid.okcupidhelper.1")
+                .then(function (data) {
+
+                    console.log(JSON.stringify(data));
+                    var sqlcommand = 'UPDATE pay_identifier SET pay_indent=1 WHERE first_insert=0';
+                    utils.execSql(sqlcommand, home.continueSearch, null);
+                    // The consume() function should only be called after purchasing consumable products
+                    // otherwise, you should skip this step
+                    return inAppPurchase.consume(data.type, data.receipt, data.signature);
+                })
+                .then(function () {
+                    console.log('consume done!');
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+
+                // p.finish(); some changes
+
+            // });
+        }
     },
 
     finishSearch: function() {
