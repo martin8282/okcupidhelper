@@ -33,10 +33,10 @@ body.with-bottom-nav {
 
 body.bg-sky {
     /*background: url('../img/clouds_texture.jpg') transparent;*/
-    background: #084aa4;
-    background: -moz-linear-gradient(top,  #084aa4 0%, #ffffff 100%);
-    background: -webkit-linear-gradient(top,  #084aa4 0%,#ffffff 100%);
-    background: linear-gradient(to bottom,  #084aa4 0%,#ffffff 100%);
+    background: #abe79c;
+    background: -moz-linear-gradient(top,  #abe79c 0%, #ffffff 100%);
+    background: -webkit-linear-gradient(top,  #abe79c 0%,#ffffff 100%);
+    background: linear-gradient(to bottom,  #abe79c 0%,#ffffff 100%);
 }
 
 nav {
@@ -113,7 +113,7 @@ fieldset legend, h3 {
 }
 
 .login-header {
-    background-color: #f9f9f9;
+    background-color: #abe79c;
     padding: 0.5em 0;
     margin: -2px 0;
 
@@ -154,7 +154,7 @@ fieldset legend, h3 {
 }
 
 .alert {
-    display: none
+    display: none;
     opacity: 0.8;
     font-size: 1em;
     min-height: 5em;
