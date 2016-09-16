@@ -44,15 +44,7 @@ var home = {
         utils.getPersonsForSearch(app.get(consts.KEY_SEARCH_ID), selectAllComplete, { select_count: true });
     },
 
-    startSearch: function() {
-        var payCheckComplete = function(resSet){
-            var res = resSet.rows.item(0);
-            var numOfAttemps = res.number_of_uses;
-           flash.error(numOfAttemps, 2000);
-        }
-
-        utils.execSql('SELECT * FROM pay_identifier', payCheckComplete, null);
-
+    continueSearch: function() {
         if (app.get(consts.KEY_ERROR_MAX) == 'true') {
             utils.onSessionMaxCount();
             return;
@@ -85,6 +77,56 @@ var home = {
         utils.execSql('SELECT * FROM searches ' +
             'WHERE auth_token = ? AND next_page IS NOT NULL ' +
             'ORDER BY id DESC', selectComplete, [ settings.authCode() ] );
+    },
+
+    startSearch: function() {
+        var payCheckComplete = function(resSet){
+            var res = resSet.rows.item(0);
+            var numOfAttemps = res.number_of_uses;
+            var payIndicator = res.pay_indent;
+            if(numOfAttemps > 0 || payIndicator == 1){
+                flash.show('info', "your have " + numOfAttemps + " trial searches left", 2000);
+                var sqlcommand = 'UPDATE pay_identifier SET number_of_uses=' + (numOfAttemps - 1) + ' WHERE first_insert=0';
+
+                utils.execSql(sqlcommand, home.continueSearch, null);
+
+            }
+            else{
+                navigator.notification.confirm("Unlimited searches $2.99", home.onConfirm, "Purchase required", ["Ok","Cancel"]);
+            }
+        }
+
+        utils.execSql('SELECT * FROM pay_identifier', payCheckComplete, null);
+
+
+    },
+
+    onConfirm: function(buttonIndex){
+        if(buttonIndex == 1){
+            // store.when("com.okcupid.okcupidhelper.1").approved(function(p) {
+
+            inAppPurchase
+                .buy("com.okcupid.okcupidhelper.1")
+                .then(function (data) {
+
+                    console.log(JSON.stringify(data));
+                    var sqlcommand = 'UPDATE pay_identifier SET pay_indent=1 WHERE first_insert=0';
+                    utils.execSql(sqlcommand, home.continueSearch, null);
+                    // The consume() function should only be called after purchasing consumable products
+                    // otherwise, you should skip this step
+                    return inAppPurchase.consume(data.type, data.receipt, data.signature);
+                })
+                .then(function () {
+                    console.log('consume done!');
+                })
+                .catch(function (err) {
+                    console.log(err);
+                });
+
+                // p.finish(); some changes
+
+            // });
+        }
     },
 
     finishSearch: function() {

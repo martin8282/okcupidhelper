@@ -46,7 +46,7 @@ var utils = {
         var error = function(response) {
             if (count < 3) {
                 count++;
-                utils.doRequest(requestUrl, options, success, error);
+                doRequest(requestUrl, options, success, error);
             }
             else {
                 if (options.show_mask) utils.unmask();

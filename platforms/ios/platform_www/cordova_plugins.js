@@ -228,6 +228,30 @@ module.exports = [
         "clobbers": [
             "SQLitePlugin"
         ]
+    },
+    {
+        "file": "plugins/cc.fovea.cordova.purchase/www/store-ios.js",
+        "id": "cc.fovea.cordova.purchase.InAppPurchase",
+        "pluginId": "cc.fovea.cordova.purchase",
+        "clobbers": [
+            "store"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "id": "cordova-plugin-dialogs.notification",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inapppurchase/www/index-ios.js",
+        "id": "cordova-plugin-inapppurchase.PaymentsPlugin",
+        "pluginId": "cordova-plugin-inapppurchase",
+        "clobbers": [
+            "inAppPurchase"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -239,7 +263,10 @@ module.exports.metadata =
     "cordova-plugin-file": "4.2.0",
     "cordova-plugin-http": "1.1.0",
     "cordova-plugin-geolocation": "2.2.0",
-    "cordova-sqlite-storage": "1.4.3"
+    "cordova-sqlite-storage": "1.4.7",
+    "cc.fovea.cordova.purchase": "6.0.0",
+    "cordova-plugin-dialogs": "1.2.1",
+    "cordova-plugin-inapppurchase": "1.0.0"
 }
 // BOTTOM OF METADATA
 });

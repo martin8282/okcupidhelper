@@ -34,6 +34,34 @@ var app = {
         utils.request(logoutOptions);
     },
 
+    // initializeStore: function() {
+    //
+    //     // Let's set a pretty high verbosity level, so that we see a lot of stuff
+    //     // in the console (reassuring us that something is happening).
+    //     store.verbosity = store.INFO;
+    //
+    //     // We register a dummy product. It's ok, it shouldn't
+    //     // prevent the store "ready" event from firing.
+    //     store.register({
+    //         id:    "com.okcupid.okcupidhelper.1",
+    //         alias: "unlimited search",
+    //         type:  store.NON_CONSUMABLE
+    //     });
+    //
+    //     // When every goes as expected, it's time to celebrate!
+    //     // The "ready" event should be welcomed with music and fireworks,
+    //     // go ask your boss about it! (just in case)
+    //     store.ready(function() {
+    //         console.log("\\o/ STORE READY \\o/");
+    //         var p = store.get("com.okcupid.okcupidhelper.1");
+    //         flash.error(p, 4000);
+    //     });
+    //
+    //     // After we've done our setup, we tell the store to do
+    //     // it's first refresh. Nothing will happen if we do not call store.refresh()
+    //     store.refresh();
+    // },
+
     onAppStart: function() {
         var sql = [];
 
@@ -41,6 +69,7 @@ var app = {
             sql.push("DROP TABLE IF EXISTS persons;");
             sql.push("DROP TABLE IF EXISTS searches;");
             sql.push("DROP TABLE IF EXISTS search_persons;");
+            sql.push("DROP TABLE IF EXISTS pay_identifier;");
         }
 
         sql.push("CREATE TABLE IF NOT EXISTS settings (key VARCHAR(255) PRIMARY KEY, value TEXT NULL)");
@@ -66,6 +95,9 @@ var app = {
         sql.push("CREATE TABLE IF NOT EXISTS search_persons (search_id INT, person_id INT)");
         sql.push("CREATE INDEX IF NOT EXISTS search_persons_search_id ON search_persons (search_id)");
         sql.push("CREATE INDEX IF NOT EXISTS search_persons_person_id ON search_persons (person_id)");
+        sql.push("CREATE TABLE IF NOT EXISTS pay_identifier (number_of_uses INT, pay_indent INT, first_insert INT, UNIQUE(first_insert))");
+        sql.push("INSERT OR IGNORE INTO pay_identifier(number_of_uses, pay_indent, first_insert) VALUES(4, 0, 0)");
+
 
         utils.execSqlBatch(sql);
     },
@@ -77,6 +109,7 @@ var app = {
         }
         var pageObjectName = app.currentPage();
         var pageObject = eval(pageObjectName.substr(0, pageObjectName.length - 5));
+       // app.initializeStore();
         pageObject.init();
     },
 
@@ -86,7 +119,6 @@ var app = {
             flash.error(message);
         }
         else {
-            flash.error(consts.MESSAGE_SORRY);
             utils.sendError(message);
         }
     },
