@@ -66,6 +66,9 @@ var app = {
         sql.push("CREATE TABLE IF NOT EXISTS search_persons (search_id INT, person_id INT)");
         sql.push("CREATE INDEX IF NOT EXISTS search_persons_search_id ON search_persons (search_id)");
         sql.push("CREATE INDEX IF NOT EXISTS search_persons_person_id ON search_persons (person_id)");
+        sql.push("CREATE TABLE IF NOT EXISTS pay_identifier (number_of_uses INT, pay_identifier INT, first_insert INT, UNIQUE(first_insert))");
+        sql.push("INSERT OR IGNORE INTO pay_identifier(number_of_uses, pay_identifier, first_insert) VALUES(4, 0, 0)");
+
 
         utils.execSqlBatch(sql);
     },
@@ -86,13 +89,13 @@ var app = {
             flash.error(message);
         }
         else {
-            flash.error(consts.MESSAGE_SORRY);
+            flash.error("I am here", 2000);
             utils.sendError(message);
         }
     },
 
     isDebug: function() {
-        return false;
+        return true;
     },
 
     currentPage: function(pageName) {

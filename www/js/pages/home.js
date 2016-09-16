@@ -45,6 +45,14 @@ var home = {
     },
 
     startSearch: function() {
+        var payCheckComplete = function(resSet){
+            var res = resSet.rows.item(0);
+            var numOfAttemps = res.number_of_uses;
+           flash.error(numOfAttemps, 2000);
+        }
+
+        utils.execSql('SELECT * FROM pay_identifier', payCheckComplete, null);
+
         if (app.get(consts.KEY_ERROR_MAX) == 'true') {
             utils.onSessionMaxCount();
             return;
