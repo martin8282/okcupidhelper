@@ -2,54 +2,269 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a972706d-f383-41e7-a103-edafed970187" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/xcuserdata/admin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/xcuserdata/admin.xcuserdatad/xcschemes/OkcupidHelper.xcscheme" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/xcuserdata/admin.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/cordova/build-extras.xcconfig" afterPath="$PROJECT_DIR$/platforms/ios/cordova/build-extras.xcconfig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/okcupidhelper.iml" afterPath="$PROJECT_DIR$/.idea/okcupidhelper.iml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/npm-debug.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/project.pbxproj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/project.xcworkspace/contents.xcworkspacedata" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/project.xcworkspace/xcshareddata/OkcupidHelper.xccheckout" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/project.xcworkspace/xcuserdata/admin.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/project.xcworkspace/xcuserdata/admin.xcuserdatad/WorkspaceSettings.xcsettings" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/project.xcworkspace/xcuserdata/valmartinchik.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/project.xcworkspace/xcuserdata/valmartinchik.xcuserdatad/WorkspaceSettings.xcsettings" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/xcshareddata/xcschemes/OkcupidHelper.xcscheme" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/xcuserdata/valmartinchik.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Images.xcassets/AppIcon.appiconset/Contents.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Images.xcassets/AppIcon.appiconset/icon-60@3x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cc.fovea.cordova.purchase/FileUtility.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cc.fovea.cordova.purchase/FileUtility.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cc.fovea.cordova.purchase/InAppPurchase.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cc.fovea.cordova.purchase/InAppPurchase.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cc.fovea.cordova.purchase/SKProduct+LocalizedPrice.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cc.fovea.cordova.purchase/SKProduct+LocalizedPrice.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cordova-plugin-dialogs/CDVNotification.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cordova-plugin-dialogs/CDVNotification.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cordova-plugin-inapppurchase/PaymentsPlugin.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cordova-plugin-inapppurchase/PaymentsPlugin.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cordova-plugin-inapppurchase/RMStore.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cordova-plugin-inapppurchase/RMStore.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/config.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/cordova/build-extras.xcconfig" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/frameworks.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/ios.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/platform_www/cordova_plugins.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/platform_www/plugins/cc.fovea.cordova.purchase/www/store-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/platform_www/plugins/cordova-plugin-dialogs/www/notification.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/platform_www/plugins/cordova-plugin-inapppurchase/www/index-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/cordova-js-src/exec.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/cordova-js-src/platform.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/cordova.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/cordova_plugins.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/css/jquery.mobile-1.4.5.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/geo.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/img/heart-icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/jquery-1.12.3.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/jquery.mobile-1.4.5.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/jquery.waiting.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/locationpicker.jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/consts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/data/countries.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/data/profile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/data/query.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/data/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/flash.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/geo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/home.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/matches.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/results.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/settings.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/utils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/matches.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cc.fovea.cordova.purchase/www/store-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-dialogs/www/notification.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/DirectoryEntry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/DirectoryReader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/Entry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/File.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/FileEntry.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/FileError.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/FileReader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/FileSystem.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/FileUploadOptions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/FileUploadResult.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/FileWriter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/Flags.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/LocalFileSystem.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/Metadata.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/ProgressEvent.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/browser/isChrome.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/fileSystemPaths.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/fileSystems-roots.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/fileSystems.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/ios/FileSystem.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/requestFileSystem.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-file/www/resolveLocalFileSystemURI.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-geolocation/www/Coordinates.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-geolocation/www/Position.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-geolocation/www/PositionError.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-geolocation/www/geolocation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-http/www/cordovaHTTP.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-plugin-inapppurchase/www/index-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-sqlite-storage/www/SQLitePlugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/org.apache.cordova.plugin.cache/www/Cache.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/results.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/settings.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/themes/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/themes/jquery.mobile.icons.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/ios/www/themes/jquery.mobile.structure-1.4.0.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/doc/android-test-user.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/doc/android.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/doc/api.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/doc/contributor-guide.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/doc/example.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/doc/ios.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/doc/minimal-example.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/doc/windows.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/plugin.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/request.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/billing_key_param.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/com/smartmobilesoftware/inappbilling/InAppBillingPlugin.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/com/smartmobilesoftware/util/Base64.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/com/smartmobilesoftware/util/Base64DecoderException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/com/smartmobilesoftware/util/IabException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/com/smartmobilesoftware/util/IabHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/com/smartmobilesoftware/util/IabResult.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/com/smartmobilesoftware/util/Inventory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/com/smartmobilesoftware/util/Purchase.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/com/smartmobilesoftware/util/Security.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/android/com/smartmobilesoftware/util/SkuDetails.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/ios/FileUtility.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/ios/FileUtility.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/ios/InAppPurchase.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/ios/InAppPurchase.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/ios/SKProduct+LocalizedPrice.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/ios/SKProduct+LocalizedPrice.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/constants.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/copyright.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/error-callbacks.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/error.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/get.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/log.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/off.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/once.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/order.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/platforms/android-productdata.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/platforms/ios-adapter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/platforms/ios-bridge.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/platforms/plugin-adapter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/platforms/plugin-bridge.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/platforms/windows-productdata.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/product-internal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/product.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/products.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/queries.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/ready.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/refresh.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/register.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/store-android.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/store-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/store-test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/store-windows.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/store.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/trigger.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/utils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/validator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/js/when.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/src/windows/InAppPurchaseProxy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/helper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/run.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-android.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-error.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-finish.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-off.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-order.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-queries.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-ready.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-register.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-utils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-verify.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/js/test-when.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/run.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/src/css/index.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/src/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/src/js/iap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/test/src/js/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/www/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/www/store-android.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/www/store-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cc.fovea.cordova.purchase/www/store-windows.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/CONTRIBUTING.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/RELEASENOTES.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/de/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/de/index.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/es/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/es/index.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/fr/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/fr/index.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/it/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/it/index.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/ja/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/ja/index.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/ko/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/ko/index.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/pl/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/pl/index.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/ru/index.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/zh/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/doc/zh/index.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/plugin.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/src/android/Notification.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/src/blackberry10/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/src/firefoxos/notification.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/src/ios/CDVNotification.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/src/ios/CDVNotification.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/src/ubuntu/notification.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/src/ubuntu/notification.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/src/windows/NotificationProxy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/src/wp/notification-beep.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/tests/plugin.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/tests/tests.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/android/notification.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/blackberry10/beep.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/blackberry10/notification-beep.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/browser/notification.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/firefoxos/danger-press.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/firefoxos/danger.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/firefoxos/default.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/firefoxos/gradient.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/firefoxos/notification.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/firefoxos/pattern.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/firefoxos/recommend.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-dialogs/www/notification.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/gulpfile.babel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/package.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/plugin.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/android/Base64.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/android/Base64DecoderException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/android/IabException.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/android/IabHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/android/IabResult.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/android/InAppBillingV3.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/android/Inventory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/android/Purchase.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/android/Security.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/android/SkuDetails.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/ios/PaymentsPlugin.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/ios/PaymentsPlugin.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/ios/RMStore.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/ios/RMStore.m" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/js/index-android.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/js/index-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/js/polyfills-android.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/src/js/utils.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/test/index-android.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/test/index-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/www/index-android.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/cordova-plugin-inapppurchase/www/index-ios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/fetch.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/plugins/ios.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/www/js/pages/home.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/img/logo.png" afterPath="$PROJECT_DIR$/platforms/ios/www/img/logo.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/platforms/ios/OkcupidHelper.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Images.xcassets/AppIcon.appiconset/Contents.json" afterPath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Images.xcassets/AppIcon.appiconset/Contents.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/OkcupidHelper-Info.plist" afterPath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/OkcupidHelper-Info.plist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cordova-sqlite-storage/SQLitePlugin.m" afterPath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cordova-sqlite-storage/SQLitePlugin.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cordova-sqlite-storage/sqlite3.c" afterPath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/Plugins/cordova-sqlite-storage/sqlite3.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/config.xml" afterPath="$PROJECT_DIR$/platforms/ios/OkcupidHelper/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/frameworks.json" afterPath="$PROJECT_DIR$/platforms/ios/frameworks.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/ios.json" afterPath="$PROJECT_DIR$/platforms/ios/ios.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/platform_www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platforms/ios/platform_www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/platform_www/plugins/cordova-sqlite-storage/www/SQLitePlugin.js" afterPath="$PROJECT_DIR$/platforms/ios/platform_www/plugins/cordova-sqlite-storage/www/SQLitePlugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platforms/ios/www/cordova_plugins.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/css/app.css" afterPath="$PROJECT_DIR$/platforms/ios/www/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/home.html" afterPath="$PROJECT_DIR$/platforms/ios/www/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/app.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/pages/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/js/pages/home.js" afterPath="$PROJECT_DIR$/platforms/ios/www/js/pages/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-sqlite-storage/www/SQLitePlugin.js" afterPath="$PROJECT_DIR$/platforms/ios/www/plugins/cordova-sqlite-storage/www/SQLitePlugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/CHANGES.md" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/CHANGES.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/HISTORY.md" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/HISTORY.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/README.md" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/SQLitePlugin.coffee.md" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/SQLitePlugin.coffee.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/node_modules/cordova-sqlite-storage-dependencies/package.json" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/node_modules/cordova-sqlite-storage-dependencies/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/package.json" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/plugin.xml" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/plugin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/basic-misc-test.js" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/basic-misc-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/db-tx-sql-results.js" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/db-tx-sql-results.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/db-tx-string-test.js" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/db-tx-string-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/db-tx-value-bindings-test.js" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/db-tx-value-bindings-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/regexp-test.js" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/regexp-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/self-test.js" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/self-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/sql-batch-test.js" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/sql-batch-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/tx-semantics-test.js" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/spec/www/spec/tx-semantics-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/android/io/sqlc/SQLitePlugin.java" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/android/io/sqlc/SQLitePlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/ios/SQLitePlugin.m" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/ios/SQLitePlugin.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/windows/SQLite3-Win-RT/SQLite3/SQLite3.UWP/SQLite3.UWP.vcxproj" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/windows/SQLite3-Win-RT/SQLite3/SQLite3.UWP/SQLite3.UWP.vcxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/windows/SQLite3-Win-RT/SQLite3/SQLite3.Windows/SQLite3.Windows.vcxproj" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/windows/SQLite3-Win-RT/SQLite3/SQLite3.Windows/SQLite3.Windows.vcxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/windows/SQLite3-Win-RT/SQLite3/SQLite3.WindowsPhone/SQLite3.WindowsPhone.vcxproj" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/windows/SQLite3-Win-RT/SQLite3/SQLite3.WindowsPhone/SQLite3.WindowsPhone.vcxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/windows/sqlite-proxy.js" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/src/windows/sqlite-proxy.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/www/SQLitePlugin.js" afterPath="$PROJECT_DIR$/plugins/cordova-sqlite-storage/www/SQLitePlugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/fetch.json" afterPath="$PROJECT_DIR$/plugins/fetch.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/ios.json" afterPath="$PROJECT_DIR$/plugins/ios.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/app.css" afterPath="$PROJECT_DIR$/www/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/pages/app.js" afterPath="$PROJECT_DIR$/www/js/pages/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/pages/home.js" afterPath="$PROJECT_DIR$/www/js/pages/home.js" />
     </list>
     <ignored path="okcupidhelper.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,31 +284,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/js/pages/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="126" column="21" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="settings.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/pages/settings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1485">
+            <state relative-caret-position="210">
               <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/css/app.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2325">
-              <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -112,8 +307,8 @@
       <file leaf-file-name="flash.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/pages/flash.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="38" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="38" />
+            <state relative-caret-position="525">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding>
                 <marker date="1472177584000" expanded="true" signature="229:242" ph="..." />
                 <marker date="1472177584000" expanded="true" signature="341:348" ph="×" />
@@ -122,21 +317,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/js/pages/home.js">
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="125" column="43" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
+            <state relative-caret-position="-464">
+              <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.xml">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/js/pages/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+            <state relative-caret-position="1890">
+              <caret line="126" column="21" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -165,7 +360,7 @@
       <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/pages/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1280">
+            <state relative-caret-position="150">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
@@ -351,8 +546,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -420,6 +615,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="a972706d-f383-41e7-a103-edafed970187" name="Default" comment="" />
@@ -428,33 +626,34 @@
       <option name="presentableId" value="Default" />
       <updated>1465404404077</updated>
       <workItem from="1472315575774" duration="5905000" />
-      <workItem from="1473215625440" duration="7606000" />
+      <workItem from="1473215625440" duration="7861000" />
+      <workItem from="1474003693996" duration="41000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13511000" />
+    <option name="totallyTimeSpent" value="13807000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="977" extended-state="0" />
+    <frame x="0" y="23" width="1920" height="977" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2671875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32929516" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -473,11 +672,26 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/www/js/pages/settings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/pages/consts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="59" column="4" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -524,14 +738,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/pages/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/pages/home.js" />
     <entry file="file://$PROJECT_DIR$/www/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -560,7 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -599,14 +805,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/pages/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/pages/home.js" />
     <entry file="file://$PROJECT_DIR$/www/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -635,7 +834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -647,26 +845,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/pages/query.js" />
-    <entry file="file://$PROJECT_DIR$/www/js/pages/flash.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="38" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="38" />
-          <folding>
-            <marker date="1472177584000" expanded="true" signature="229:242" ph="..." />
-            <marker date="1472177584000" expanded="true" signature="341:348" ph="×" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/pages/consts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="885">
@@ -675,10 +854,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/app.css">
+    <entry file="file://$PROJECT_DIR$/www/js/pages/settings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2325">
-          <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
+        <state relative-caret-position="210">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.xml" />
+    <entry file="file://$PROJECT_DIR$/www/js/pages/home.js" />
+    <entry file="file://$PROJECT_DIR$/www/js/pages/flash.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <marker date="1472177584000" expanded="true" signature="229:242" ph="..." />
+            <marker date="1472177584000" expanded="true" signature="341:348" ph="×" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -693,40 +893,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/pages/utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1280">
+        <state relative-caret-position="150">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/pages/settings.js">
+    <entry file="file://$PROJECT_DIR$/www/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1485">
-          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+        <state relative-caret-position="-464">
+          <caret line="155" column="8" selection-start-line="155" selection-start-column="8" selection-end-line="155" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/pages/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
+        <state relative-caret-position="1890">
           <caret line="126" column="21" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/pages/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="125" column="43" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
           <folding />
         </state>
       </provider>
