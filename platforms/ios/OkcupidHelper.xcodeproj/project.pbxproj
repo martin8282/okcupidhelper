@@ -30,6 +30,9 @@
 		E6491C4631EB4B5DB9C2F25F /* CDVAssetLibraryFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D1931CED46422381071ADF /* CDVAssetLibraryFilesystem.m */; };
 		58945CAA1E5642F58158C343 /* SQLitePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 96653D97AE0F4D6AAB17540B /* SQLitePlugin.m */; };
 		6955F76CEE6744F0AEB6426F /* sqlite3.c in Resources */ = {isa = PBXBuildFile; fileRef = 112D1E221A554DE3A2EFBE61 /* sqlite3.c */; settings = {COMPILER_FLAGS = "-DSQLITE_TEMP_STORE=2 -DSQLITE_THREADSAFE=2 -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_RTREE -DSQLITE_LOCKING_STYLE=1 -DSQLITE_OMIT_BUILTIN_TEST -DSQLITE_OMIT_LOAD_EXTENSION"; }; };
+		EAEFF63D4B584B879300325E /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 594F606FC11A4C7C81674B08 /* CDVNotification.m */; };
+		6F375325FB984E22902C425D /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A75971A97F1E48C19F2CDFCC /* CDVNotification.bundle */; };
+		CC11C9C482234A5B89F81E9E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 135AACBE1BE74FD29EBF82BF /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +106,10 @@
 		112D1E221A554DE3A2EFBE61 /* sqlite3.c */ = {isa = PBXFileReference; name = "sqlite3.c"; path = "cordova-sqlite-storage/sqlite3.c"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		1DE65D4A57C94539A18F62BC /* SQLitePlugin.h */ = {isa = PBXFileReference; name = "SQLitePlugin.h"; path = "cordova-sqlite-storage/SQLitePlugin.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		A9F47F7B224B4E87B073BDF7 /* sqlite3.h */ = {isa = PBXFileReference; name = "sqlite3.h"; path = "cordova-sqlite-storage/sqlite3.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		594F606FC11A4C7C81674B08 /* CDVNotification.m */ = {isa = PBXFileReference; name = "CDVNotification.m"; path = "cordova-plugin-dialogs/CDVNotification.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		A4488199928D414C8CF72381 /* CDVNotification.h */ = {isa = PBXFileReference; name = "CDVNotification.h"; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		A75971A97F1E48C19F2CDFCC /* CDVNotification.bundle */ = {isa = PBXFileReference; name = "CDVNotification.bundle"; path = "CDVNotification.bundle"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.plug-in; explicitFileType = undefined; includeInIndex = 0; };
+		135AACBE1BE74FD29EBF82BF /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +121,7 @@
 				B2EB7B84F04D4927B307122D /* Security.framework in Frameworks */,
 				4784C6A875C8400BAAB71F0D /* SystemConfiguration.framework in Frameworks */,
 				9A725757DD1048D6BEE2F54C /* CoreLocation.framework in Frameworks */,
+				CC11C9C482234A5B89F81E9E /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +183,7 @@
 				0207DA571B56EA530066E2B4 /* Images.xcassets */,
 				3047A50E1AB8057F00498E2A /* config */,
 				8D1107310486CEB800E47090 /* OkcupidHelper-Info.plist */,
+				A75971A97F1E48C19F2CDFCC /* CDVNotification.bundle */,
 			);
 			name = Resources;
 			path = OkcupidHelper/Resources;
@@ -186,6 +195,7 @@
 				208D9A39D427438CBA555A00 /* Security.framework */,
 				095A8D39F7A34A92901A5E7B /* SystemConfiguration.framework */,
 				A8F603CAE9614B9391C4B7C8 /* CoreLocation.framework */,
+				135AACBE1BE74FD29EBF82BF /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -242,6 +252,8 @@
 				112D1E221A554DE3A2EFBE61 /* sqlite3.c */,
 				1DE65D4A57C94539A18F62BC /* SQLitePlugin.h */,
 				A9F47F7B224B4E87B073BDF7 /* sqlite3.h */,
+				594F606FC11A4C7C81674B08 /* CDVNotification.m */,
+				A4488199928D414C8CF72381 /* CDVNotification.h */,
 			);
 			name = Plugins;
 			path = OkcupidHelper/Plugins;
@@ -326,6 +338,7 @@
 			files = (
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
 				0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */,
+				6F375325FB984E22902C425D /* CDVNotification.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +399,7 @@
 				E392445178044E05B5EEA853 /* CDVLocation.m in Sources */,
 				58945CAA1E5642F58158C343 /* SQLitePlugin.m in Sources */,
 				6955F76CEE6744F0AEB6426F /* sqlite3.c in Resources */,
+				EAEFF63D4B584B879300325E /* CDVNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
