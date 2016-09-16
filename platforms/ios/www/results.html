@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <title>Okcupid Helper</title>
+
+    <link rel="stylesheet" type="text/css" href="themes/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/app.css" />
+
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.waiting.js"></script>
+</head>
+<body class="with-top-nav with-bottom-nav">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid text-right">
+            <a id="btnLikeAll" data-role="none" class="navbar-btn like-all">Select All</a>
+        </div>
+        <div class="alerts"></div>
+        <div class="progress hidden"></div>
+    </nav>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <button id="btnBack" data-role="none" type="button" class="btn btn-default navbar-btn pull-left">Back</button>
+            <button type="button" id="btnLike" class="btn btn-warning navbar-btn pull-right col-xs-5">Like selected</button>
+        </div>
+    </nav>
+
+    <div class="container bottom-nav" id="divResults">
+        <table class="table table-striped" id="tblResults">
+        </table>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/pages/consts.js"></script>
+    <script type="text/javascript" src="js/pages/utils.js"></script>
+    <script type="text/javascript" src="js/pages/app.js"></script>
+    <script type="text/javascript" src="js/pages/flash.js"></script>
+
+    <script type="text/javascript" src="js/pages/settings.js"></script>
+    <script type="text/javascript" src="js/pages/results.js"></script>
+</body>
+</html>

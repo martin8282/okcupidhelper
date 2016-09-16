@@ -67,23 +67,13 @@
 {
     // View defaults to full size.  If you want to customize the view's size, or its subviews (e.g. webView),
     // you can do so here.
-    
-    CGRect viewBounds = [self.webView bounds];
-    viewBounds.origin.y = 20;
-    viewBounds.size.height = viewBounds.size.height - 20;
-    self.webView.frame = viewBounds;
-    
+
     [super viewWillAppear:animated];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSURLCache sharedURLCache] removeAllCachedResponses];
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (NSHTTPCookie *cookie in [storage cookies]) {
-        [storage deleteCookie:cookie];
-    }
     // Do any additional setup after loading the view from its nib.
 }
 
