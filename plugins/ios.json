@@ -6,9 +6,31 @@
     "config_munge": {
         "files": {}
     },
-    "installed_plugins": {},
+    "installed_plugins": {
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.okcupid.okcupidhelper"
+        },
+        "cordova-plugin-http": {
+            "PACKAGE_NAME": "com.okcupid.okcupidhelper"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.okcupid.okcupidhelper"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.okcupid.okcupidhelper"
+        },
+        "cordova-plugin-inapppurchase": {
+            "PACKAGE_NAME": "com.okcupid.okcupidhelper"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.okcupid.okcupidhelper"
+        }
+    },
     "dependent_plugins": {
         "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.okcupid.okcupidhelper"
+        },
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "com.okcupid.okcupidhelper"
         }
     }
