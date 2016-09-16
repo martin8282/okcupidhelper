@@ -29,7 +29,7 @@
 - (void)setResults:(NSMutableDictionary*)dictionary withTask:(NSURLSessionTask*)task {
     if (task.response != nil) {
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
-        [dictionary setObject:[NSNumber numberWithInt:response.statusCode] forKey:@"status"];
+        [dictionary setObject:[NSNumber numberWithInt:(int)response.statusCode] forKey:@"status"];
         [dictionary setObject:response.allHeaderFields forKey:@"headers"];
     }
 }
